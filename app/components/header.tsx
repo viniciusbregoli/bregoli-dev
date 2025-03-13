@@ -1,20 +1,11 @@
+// app/components/header.tsx
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-
-const navigation = [
-  { name: 'Home', href: '/' },
-  {
-    name: 'About me',
-    href: '/about',
-  },
-  {
-    name: 'Projects',
-    href: '/projects',
-  },
-];
+import LanguageSelector from './languageSelector';
+import { useLanguage } from '../i18n/context';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -22,14 +13,22 @@ function classNames(...classes: string[]) {
 
 export default function Header() {
   const router = usePathname();
+  const { t } = useLanguage();
+
+  const navigation = [
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.projects'), href: '/projects' },
+  ];
+
   return (
     <div>
       <nav className="flex flex-row items-center h-20 bg-gray-800">
-        {/* Navigation  */}
+        {/* Navigation */}
         <div className="flex w-full ml-24">
           {navigation.map((item) => (
             <Link
-              key={item.name}
+              key={item.href}
               href={item.href}
               aria-current={router === item.href ? 'page' : undefined}
               className={classNames(
@@ -43,8 +42,9 @@ export default function Header() {
             </Link>
           ))}
         </div>
+
         {/* Socials */}
-        <div className="flex justify-end w-full mr-16">
+        <div className="flex justify-end mr-3">
           <a
             rel="noopener noreferrer"
             target="_blank"
@@ -63,6 +63,11 @@ export default function Header() {
           >
             <FaLinkedin size={30} />
           </a>
+        </div>
+
+        {/* Language Selector */}
+        <div className="flex justify-end items-center mr-4">
+          <LanguageSelector />
         </div>
       </nav>
     </div>

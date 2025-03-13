@@ -1,7 +1,12 @@
+'use client';
+
 import Image from 'next/image';
 import myImage from '@/../public/IMG-6403.jpg';
+import { useLanguage } from '../i18n/context';
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+
   return (
     <div className="bg-slate-950">
       <div className="flex px-24 py-10 justify-center items-center">
@@ -15,15 +20,11 @@ export default function HeroSection() {
         </div>
         <div className="w-full sm:w-[70%] md:w-[60%] lg:w-[50%]">
           <h1 className="text-white font-bold text-5xl mb-4">
-            Hello! <br />
-            I&apos;m Vinícius
+            {t('hero.greeting')} <br />
+            {t('hero.name')}
           </h1>
           <p className="text-white text-xl w-full sm:w-[35rem] md:w-[30rem] lg:w-[25rem] mb-10">
-            I am a Computer Engineering student with hands-on experience in programming, fullstack
-            development, workflow optimization, and IT infrastructure. Skilled in tools like Python,
-            Java, Full-stack development, source control and SQL, with a strong foundation in Linux
-            and robotics. Currently enrolled at an exchange program at Technische Hochschule
-            Ingolstadt at the Computer Science and AI course.
+            {t('hero.description')}
           </p>
         </div>
       </div>
