@@ -169,12 +169,13 @@ export default function ProjectDetailPage() {
                       key={index}
                       className="rounded-lg overflow-hidden shadow-sm bg-gray-100 dark:bg-gray-700"
                     >
-                      <div className="relative aspect-video">
+                      <div className="relative w-full h-auto">
                         <Image
                           src={image}
                           alt={`${project.title} image ${index + 1}`}
-                          fill
-                          style={{ objectFit: 'cover' }}
+                          width={600}
+                          height={400}
+                          style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
                           className="hover:scale-105 transition-transform duration-300"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
