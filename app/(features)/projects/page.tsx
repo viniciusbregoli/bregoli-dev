@@ -1,10 +1,11 @@
 'use client';
 
-import Image from 'next/image';
+import { Language } from '@/(core)/i18n/translations';
 import { useLanguage } from '../../(core)/i18n/context';
+import ProjectCard from './projectCard';
 
 export default function Projects() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const projects = [
     {
@@ -15,7 +16,8 @@ export default function Projects() {
         de: 'Mitglied des PUCPR Mobile Robotics Teams, Mitwirkung an der Entwicklung von Linienfolge-, Sumo-, Trekking- und Kampfrobotern. Teilnahme an Wettbewerben wie RoboCore Experience (RCX) und IRONCup.',
       },
       technologies: ['Arduino', 'C/C++', 'Sensors', 'Microcontrollers'],
-      image: '/api/placeholder/400/280',
+      color: 'purple',
+      icon: 'code',
     },
     {
       title: 'Digital Twin Research',
@@ -25,7 +27,8 @@ export default function Projects() {
         de: 'Stipendiat des Programms zur Einführung in die technologische Entwicklung und Innovation 2021, mit Schwerpunkt auf Innovationsforschung zu digitalen Zwillingen und ihren Anwendungen in Luft- und Raumfahrtprojekten in Partnerschaft mit Airbus.',
       },
       technologies: ['Digital Twin', 'Python', 'Simulation', 'Data Analysis'],
-      image: '/api/placeholder/400/280',
+      color: 'green',
+      icon: 'research',
     },
     {
       title: 'Web Application Development',
@@ -35,7 +38,8 @@ export default function Projects() {
         de: 'Entwicklung und Wartung von Webanwendungen mit Vue.js während des Praktikums bei Exati Tecnologias. Integration von Frontend-Anwendungen mit Backend-Diensten unter Verwendung von Java und NodeJS.',
       },
       technologies: ['Vue.js', 'Java', 'NodeJS', 'PostgreSQL', 'Git'],
-      image: '/api/placeholder/400/280',
+      color: 'blue',
+      icon: 'code',
     },
     {
       title: 'IT Infrastructure Management',
@@ -45,7 +49,8 @@ export default function Projects() {
         de: 'Erfahrung im Infrastrukturmanagement, Remote-Support und Virtualisierung während des Praktikums bei Siemens Energy Brasil. Bearbeitung von Anrufen und Tickets in einer anspruchsvollen Unternehmensumgebung.',
       },
       technologies: ['IT Support', 'Virtualization', 'Ticket Management', 'Corporate IT'],
-      image: '/api/placeholder/400/280',
+      color: 'orange',
+      icon: 'code',
     },
   ];
 
@@ -58,38 +63,15 @@ export default function Projects() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
-          <div
+          <ProjectCard
             key={index}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105"
-          >
-            <div className="h-48 bg-gray-200 dark:bg-gray-700">
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={400}
-                height={280}
-              />
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">
-                {project.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                {project.description[(t('language.code') as 'en' | 'pt' | 'de') || 'en'] ||
-                  project.description.en}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-2">
-                {project.technologies.map((tech, techIndex) => (
-                  <span
-                    key={techIndex}
-                    className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+            title={project.title}
+            description={project.description}
+            technologies={project.technologies}
+            currentLanguage={language as Language}
+            color={project.color}
+            icon={project.icon as 'code' | 'research'}
+          />
         ))}
       </div>
     </div>
