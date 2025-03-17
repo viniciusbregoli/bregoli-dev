@@ -1,10 +1,10 @@
-// app/components/header.tsx
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import LanguageSelector from './languageSelector';
+import ThemeToggle from './themeToggle';
 import { useLanguage } from '../i18n/context';
 
 function classNames(...classes: string[]) {
@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <div>
-      <nav className="flex flex-row items-center h-20 bg-gray-800">
+      <nav className="flex flex-row items-center h-20 bg-gray-800 dark:bg-gray-900">
         {/* Navigation */}
         <div className="flex w-full ml-24">
           {navigation.map((item) => (
@@ -33,7 +33,7 @@ export default function Header() {
               aria-current={router === item.href ? 'page' : undefined}
               className={classNames(
                 router === item.href
-                  ? 'bg-gray-900 text-white'
+                  ? 'bg-gray-900 dark:bg-gray-800 text-white'
                   : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                 'rounded-md px-3 py-2 text-xl font-medium',
               )}
@@ -43,8 +43,9 @@ export default function Header() {
           ))}
         </div>
 
-        {/* Language Selector */}
-        <div className="flex justify-end items-center mr-4">
+        {/* Theme & Language Controls */}
+        <div className="flex justify-end items-center space-x-2 mr-4">
+          <ThemeToggle />
           <LanguageSelector />
         </div>
 
@@ -56,6 +57,7 @@ export default function Header() {
             href="https://github.com/viniciusbregoli"
             className="text-gray-300 hover:bg-gray-700 hover:text-white
                         rounded-md px-3 py-2 text-xl font-medium"
+            aria-label="GitHub"
           >
             <FaGithub size={30} />
           </a>
@@ -65,6 +67,7 @@ export default function Header() {
             href="https://www.linkedin.com/in/viniciusbregoli/"
             className="text-gray-300 hover:bg-gray-700 hover:text-white
                         rounded-md px-3 py-2 text-xl font-medium"
+            aria-label="LinkedIn"
           >
             <FaLinkedin size={30} />
           </a>

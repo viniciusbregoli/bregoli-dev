@@ -8,7 +8,7 @@ export default function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <div className="bg-slate-950">
+    <div className="bg-slate-950 dark:bg-black">
       <div className="flex px-24 py-10 justify-center items-center">
         <div className="mr-10">
           <Image
