@@ -351,4 +351,19 @@ export const translations: Translations = {
     pt: 'Iniciante',
     de: 'Anfänger',
   },
+  'experience.title': {
+    en: 'Work Experience',
+    pt: 'Experiência Profissional',
+    de: 'Berufserfahrung',
+  },
+  'experience.subtitle': {
+    en: 'My professional experience in software development and IT infrastructure.',
+    pt: 'Minha experiência profissional em desenvolvimento de software e infraestrutura de TI.',
+    de: 'Meine Berufserfahrung in Softwareentwicklung und IT-Infrastruktur.',
+  },
+  'experience.technologies': {
+    en: 'Technologies',
+    pt: 'Tecnologias',
+    de: 'Technologien',
+  },
 };
