@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useLanguage } from '../../i18n/context';
 
 export default function EducationSection() {
@@ -19,7 +20,7 @@ export default function EducationSection() {
         de: '10/2024 - Aktuell',
       },
       location: 'Ingolstadt, Bavaria, Germany',
-      logo: '/api/placeholder/80/80',
+      logo: '/public/images/thi-logo.png',
     },
     {
       institution: 'Pontifical Catholic University of Paraná',
@@ -34,7 +35,7 @@ export default function EducationSection() {
         de: '2020 - Aktuell',
       },
       location: 'Curitiba, Brazil',
-      logo: '/api/placeholder/80/80',
+      logo: '/public/images/pucpr-logo.png',
     },
   ];
 
@@ -53,11 +54,7 @@ export default function EducationSection() {
             >
               <div className="flex-shrink-0 flex justify-center mb-4 md:mb-0 md:mr-6">
                 <div className="w-20 h-20 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center shadow-sm">
-                  <img
-                    src={education.logo}
-                    alt={education.institution}
-                    className="w-16 h-16 object-contain"
-                  />
+                  <Image src={education.logo} alt={education.institution} width={80} height={80} />
                 </div>
               </div>
               <div>

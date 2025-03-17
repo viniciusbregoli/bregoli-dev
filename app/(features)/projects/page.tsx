@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useLanguage } from '../../(core)/i18n/context';
 
 export default function Projects() {
@@ -62,7 +63,12 @@ export default function Projects() {
             className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105"
           >
             <div className="h-48 bg-gray-200 dark:bg-gray-700">
-              <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={400}
+                height={280}
+              />
             </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">
