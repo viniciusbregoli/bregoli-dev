@@ -134,6 +134,76 @@ export const translations: Translations = {
     pt: 'Uma seleção do meu trabalho técnico e contribuições',
     de: 'Eine Auswahl meiner technischen Arbeiten und Beiträge',
   },
+  'projects.viewDetails': {
+    en: 'View details',
+    pt: 'Ver detalhes',
+    de: 'Details anzeigen',
+  },
+  'projects.backToProjects': {
+    en: 'Back to Projects',
+    pt: 'Voltar para Projetos',
+    de: 'Zurück zu Projekten',
+  },
+  'projects.aboutProject': {
+    en: 'About this Project',
+    pt: 'Sobre este Projeto',
+    de: 'Über dieses Projekt',
+  },
+  'projects.projectInfo': {
+    en: 'Project Information',
+    pt: 'Informações do Projeto',
+    de: 'Projektinformationen',
+  },
+  'projects.projectType': {
+    en: 'Project Type',
+    pt: 'Tipo de Projeto',
+    de: 'Projekttyp',
+  },
+  'projects.timeline': {
+    en: 'Timeline',
+    pt: 'Período',
+    de: 'Zeitraum',
+  },
+  'projects.technologies': {
+    en: 'Technologies',
+    pt: 'Tecnologias',
+    de: 'Technologien',
+  },
+  'projects.links': {
+    en: 'Links',
+    pt: 'Links',
+    de: 'Links',
+  },
+  'projects.viewOnGithub': {
+    en: 'View on GitHub',
+    pt: 'Ver no GitHub',
+    de: 'Auf GitHub ansehen',
+  },
+  'projects.liveDemo': {
+    en: 'Live Demo',
+    pt: 'Demo ao Vivo',
+    de: 'Live-Demo',
+  },
+  'projects.visitWebsite': {
+    en: 'Visit Website',
+    pt: 'Visitar Website',
+    de: 'Website besuchen',
+  },
+  'projects.gallery': {
+    en: 'Project Gallery',
+    pt: 'Galeria do Projeto',
+    de: 'Projektgalerie',
+  },
+  'projects.notFound': {
+    en: 'Project Not Found',
+    pt: 'Projeto Não Encontrado',
+    de: 'Projekt Nicht Gefunden',
+  },
+  'projects.notFoundDesc': {
+    en: 'The project you are looking for does not exist.',
+    pt: 'O projeto que você está procurando não existe.',
+    de: 'Das gesuchte Projekt existiert nicht.',
+  },
   // Skills Section Translations
   'skills.title': {
     en: 'My Skills',
