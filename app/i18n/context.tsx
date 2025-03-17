@@ -15,6 +15,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('en');
 
   const t = (key: string): string => {
+    if (key === 'language.code') {
+      return language;
+    }
+
     if (!translations[key]) {
       console.warn(`Translation key "${key}" not found`);
       return key;
