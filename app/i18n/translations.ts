@@ -42,4 +42,9 @@ export const translations: Translations = {
     pt: 'Sobre mim',
     de: 'Über mich',
   },
+  'footer.rights': {
+    en: 'All rights reserved.',
+    pt: 'Todos os direitos reservados.',
+    de: 'Alle Rechte vorbehalten.',
+  },
 };

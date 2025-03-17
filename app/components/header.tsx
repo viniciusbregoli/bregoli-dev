@@ -43,6 +43,11 @@ export default function Header() {
           ))}
         </div>
 
+        {/* Language Selector */}
+        <div className="flex justify-end items-center mr-4">
+          <LanguageSelector />
+        </div>
+
         {/* Socials */}
         <div className="flex justify-end mr-3">
           <a
@@ -63,11 +68,6 @@ export default function Header() {
           >
             <FaLinkedin size={30} />
           </a>
-        </div>
-
-        {/* Language Selector */}
-        <div className="flex justify-end items-center mr-4">
-          <LanguageSelector />
         </div>
       </nav>
     </div>
