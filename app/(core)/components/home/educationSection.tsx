@@ -1,9 +1,9 @@
 'use client';
 
-import { useLanguage } from '../i18n/context';
+import { useLanguage } from '../../i18n/context';
 
 export default function EducationSection() {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   const educations = [
     {

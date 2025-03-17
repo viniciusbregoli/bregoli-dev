@@ -1,6 +1,6 @@
-import HeroSection from './components/heroSection';
-import SkillsSection from './components/skillsSection';
-import EducationSection from './components/educationSection';
+import HeroSection from './(core)/components/home/heroSection';
+import SkillsSection from './(core)/components/home/skillsSection';
+import EducationSection from './(core)/components/home/educationSection';
 
 export default function Home() {
   return (

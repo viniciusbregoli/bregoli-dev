@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import LanguageSelector from './languageSelector';
 import ThemeToggle from './themeToggle';
-import { useLanguage } from '../i18n/context';
+import { useLanguage } from '../../i18n/context';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');

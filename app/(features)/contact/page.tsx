@@ -1,6 +1,6 @@
 'use client';
 
-import { useLanguage } from '../i18n/context';
+import { useLanguage } from '../../(core)/i18n/context';
 import { useState } from 'react';
 
 export default function ContactPage() {

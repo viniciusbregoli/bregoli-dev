@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import myImage from '@/../public/IMG-6403.jpg';
-import { useLanguage } from '../i18n/context';
+import myImage from '@/../public/images/me.jpg';
+import { useLanguage } from '../../i18n/context';
 
 export default function HeroSection() {
   const { t } = useLanguage();
