@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <div>
-      <nav className="flex flex-row items-center h-20 bg-gray-800 dark:bg-gray-900">
+      <nav className="flex flex-row items-center h-20 bg-blue-50 dark:bg-gray-900">
         {/* Navigation */}
         <div className="flex w-full ml-24">
           {navigation.map((item) => (
@@ -33,8 +33,8 @@ export default function Header() {
               aria-current={router === item.href ? 'page' : undefined}
               className={classNames(
                 router === item.href
-                  ? 'bg-gray-900 dark:bg-gray-800 text-white'
-                  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                  ? 'bg-blue-100 dark:bg-gray-800 text-blue-800 dark:text-white'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-white',
                 'rounded-md px-3 py-2 text-xl font-medium',
               )}
             >
@@ -55,7 +55,7 @@ export default function Header() {
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/viniciusbregoli"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white
+            className="text-gray-600 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-white
                         rounded-md px-3 py-2 text-xl font-medium"
             aria-label="GitHub"
           >
@@ -65,7 +65,7 @@ export default function Header() {
             rel="noopener noreferrer"
             target="_blank"
             href="https://www.linkedin.com/in/viniciusbregoli/"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white
+            className="text-gray-600 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-white
                         rounded-md px-3 py-2 text-xl font-medium"
             aria-label="LinkedIn"
           >

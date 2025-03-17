@@ -53,7 +53,7 @@ export default function LanguageSelector() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 text-white rounded-md px-3 py-2 transition-colors"
+        className="flex items-center space-x-2 bg-blue-100 dark:bg-gray-700 hover:bg-blue-200 dark:hover:bg-gray-600 text-blue-800 dark:text-white rounded-md px-3 py-2 transition-colors"
       >
         <div className="flex items-center">
           {currentLanguage?.flag}
@@ -71,7 +71,7 @@ export default function LanguageSelector() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-10">
+        <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10">
           <div className="py-1">
             {languages.map((lang) => (
               <button
@@ -79,8 +79,8 @@ export default function LanguageSelector() {
                 onClick={() => handleSelect(lang.code)}
                 className={`block w-full text-left px-4 py-2 text-sm ${
                   language === lang.code
-                    ? 'bg-gray-700 text-white'
-                    : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                    ? 'bg-blue-100 dark:bg-gray-700 text-blue-800 dark:text-white'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-white'
                 } flex items-center`}
               >
                 {lang.flag}

@@ -7,7 +7,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-800 dark:bg-gray-900 text-gray-300 py-6">
+    <footer className="bg-blue-50 dark:bg-gray-900 text-gray-600 dark:text-gray-300 py-6">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
@@ -20,7 +20,7 @@ export default function Footer() {
               href="https://github.com/viniciusbregoli"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors"
+              className="text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-white transition-colors"
               aria-label="GitHub"
             >
               GitHub
@@ -29,7 +29,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/viniciusbregoli/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors"
+              className="text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-white transition-colors"
               aria-label="LinkedIn"
             >
               LinkedIn
