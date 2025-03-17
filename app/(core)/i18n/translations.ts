@@ -225,4 +225,130 @@ export const translations: Translations = {
     pt: 'Idiomas',
     de: 'Sprachen',
   },
+  'skills.technical.javascript': {
+    en: 'JavaScript',
+    pt: 'JavaScript',
+    de: 'JavaScript',
+  },
+  'skills.technical.python': {
+    en: 'Python',
+    pt: 'Python',
+    de: 'Python',
+  },
+  'skills.technical.htmlcss': {
+    en: 'HTML/CSS',
+    pt: 'HTML/CSS',
+    de: 'HTML/CSS',
+  },
+  'skills.technical.reactjs': {
+    en: 'ReactJS',
+    pt: 'ReactJS',
+    de: 'ReactJS',
+  },
+  'skills.technical.vuejs': {
+    en: 'VueJS',
+    pt: 'VueJS',
+    de: 'VueJS',
+  },
+  'skills.technical.sql': {
+    en: 'SQL',
+    pt: 'SQL',
+    de: 'SQL',
+  },
+  'skills.technical.git': {
+    en: 'Git',
+    pt: 'Git',
+    de: 'Git',
+  },
+  'skills.technical.linux': {
+    en: 'Linux',
+    pt: 'Linux',
+    de: 'Linux',
+  },
+  'skills.technical.java': {
+    en: 'Java',
+    pt: 'Java',
+    de: 'Java',
+  },
+  'skills.technical.cpp': {
+    en: 'C/C++',
+    pt: 'C/C++',
+    de: 'C/C++',
+  },
+
+  // Soft Skills
+  'skills.soft.proactiveLearning': {
+    en: 'Proactive Learning',
+    pt: 'Aprendizado Proativo',
+    de: 'Proaktives Lernen',
+  },
+  'skills.soft.communication': {
+    en: 'Effective Communication',
+    pt: 'Comunicação Eficaz',
+    de: 'Effektive Kommunikation',
+  },
+  'skills.soft.teamwork': {
+    en: 'Teamwork',
+    pt: 'Trabalho em Equipe',
+    de: 'Teamarbeit',
+  },
+  'skills.soft.problemSolving': {
+    en: 'Problem-Solving',
+    pt: 'Resolução de Problemas',
+    de: 'Problemlösung',
+  },
+  'skills.soft.adaptability': {
+    en: 'Adaptability',
+    pt: 'Adaptabilidade',
+    de: 'Anpassungsfähigkeit',
+  },
+  'skills.soft.criticalThinking': {
+    en: 'Critical Thinking',
+    pt: 'Pensamento Crítico',
+    de: 'Kritisches Denken',
+  },
+  'skills.soft.accountability': {
+    en: 'Accountability',
+    pt: 'Responsabilidade',
+    de: 'Verantwortlichkeit',
+  },
+
+  // Languages
+  'skills.languages.english': {
+    en: 'English',
+    pt: 'Inglês',
+    de: 'Englisch',
+  },
+  'skills.languages.portuguese': {
+    en: 'Portuguese',
+    pt: 'Português',
+    de: 'Portugiesisch',
+  },
+  'skills.languages.spanish': {
+    en: 'Spanish',
+    pt: 'Espanhol',
+    de: 'Spanisch',
+  },
+  'skills.languages.german': {
+    en: 'German',
+    pt: 'Alemão',
+    de: 'Deutsch',
+  },
+
+  // Language Levels
+  'skills.level.fluent': {
+    en: 'Fluent',
+    pt: 'Fluente',
+    de: 'Fließend',
+  },
+  'skills.level.intermediate': {
+    en: 'Intermediate',
+    pt: 'Intermediário',
+    de: 'Mittelstufe',
+  },
+  'skills.level.beginner': {
+    en: 'Beginner',
+    pt: 'Iniciante',
+    de: 'Anfänger',
+  },
 };

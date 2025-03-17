@@ -6,33 +6,33 @@ export default function SkillsSection() {
   const { t } = useLanguage();
 
   const technicalSkills = [
-    'JavaScript',
-    'Python',
-    'HTML/CSS',
-    'ReactJS',
-    'VueJS',
-    'SQL',
-    'Git',
-    'Linux',
-    'Java',
-    'C/C++',
+    { key: 'skills.technical.javascript', icon: '📝' },
+    { key: 'skills.technical.python', icon: '🐍' },
+    { key: 'skills.technical.htmlcss', icon: '🌐' },
+    { key: 'skills.technical.reactjs', icon: '⚛️' },
+    { key: 'skills.technical.vuejs', icon: '🔧' },
+    { key: 'skills.technical.sql', icon: '💾' },
+    { key: 'skills.technical.git', icon: '📊' },
+    { key: 'skills.technical.linux', icon: '🐧' },
+    { key: 'skills.technical.java', icon: '☕' },
+    { key: 'skills.technical.cpp', icon: '⚙️' },
   ];
 
   const softSkills = [
-    'Proactive Learning',
-    'Effective Communication',
-    'Teamwork',
-    'Problem-Solving',
-    'Adaptability',
-    'Critical Thinking',
-    'Accountability',
+    { key: 'skills.soft.proactiveLearning' },
+    { key: 'skills.soft.communication' },
+    { key: 'skills.soft.teamwork' },
+    { key: 'skills.soft.problemSolving' },
+    { key: 'skills.soft.adaptability' },
+    { key: 'skills.soft.criticalThinking' },
+    { key: 'skills.soft.accountability' },
   ];
 
   const languages = [
-    { name: 'English', level: 'Fluent', icon: '🇺🇸' },
-    { name: 'Portuguese', level: 'Fluent', icon: '🇧🇷' },
-    { name: 'Spanish', level: 'Intermediate', icon: '🇪🇸' },
-    { name: 'German', level: 'Beginner', icon: '🇩🇪' },
+    { key: 'skills.languages.english', levelKey: 'skills.level.fluent', icon: '🇺🇸' },
+    { key: 'skills.languages.portuguese', levelKey: 'skills.level.fluent', icon: '🇧🇷' },
+    { key: 'skills.languages.spanish', levelKey: 'skills.level.intermediate', icon: '🇪🇸' },
+    { key: 'skills.languages.german', levelKey: 'skills.level.beginner', icon: '🇩🇪' },
   ];
 
   return (
@@ -55,7 +55,7 @@ export default function SkillsSection() {
                   className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4 flex items-center justify-center transform transition-all duration-200 hover:scale-105"
                 >
                   <span className="text-lg font-medium text-blue-700 dark:text-blue-300">
-                    {skill}
+                    {t(skill.key)}
                   </span>
                 </div>
               ))}
@@ -84,7 +84,7 @@ export default function SkillsSection() {
                       />
                     </svg>
                   </div>
-                  <span className="text-xl">{skill}</span>
+                  <span className="text-xl">{t(skill.key)}</span>
                 </li>
               ))}
             </ul>
@@ -101,9 +101,11 @@ export default function SkillsSection() {
                   <span className="text-4xl mr-4">{language.icon}</span>
                   <div>
                     <p className="font-medium text-xl text-gray-800 dark:text-white">
-                      {language.name}
+                      {t(language.key)}
                     </p>
-                    <p className="text-lg text-gray-500 dark:text-gray-400">{language.level}</p>
+                    <p className="text-lg text-gray-500 dark:text-gray-400">
+                      {t(language.levelKey)}
+                    </p>
                   </div>
                 </li>
               ))}

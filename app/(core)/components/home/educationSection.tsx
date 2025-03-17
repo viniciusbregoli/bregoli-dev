@@ -27,7 +27,7 @@ export default function EducationSection() {
       program: {
         en: 'Computer Engineering',
         pt: 'Engenharia da Computação',
-        de: 'Computer Engineering',
+        de: 'Technische Informatik',
       },
       period: {
         en: '2020 - Present',
