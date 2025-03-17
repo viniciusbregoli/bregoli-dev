@@ -15,26 +15,6 @@ export default function Footer() {
               © {currentYear} Vinícius Bregoli. {t('footer.rights')}
             </p>
           </div>
-          <div className="flex space-x-4">
-            <a
-              href="https://github.com/viniciusbregoli"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-white transition-colors"
-              aria-label="GitHub"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/viniciusbregoli/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-white transition-colors"
-              aria-label="LinkedIn"
-            >
-              LinkedIn
-            </a>
-          </div>
         </div>
       </div>
     </footer>

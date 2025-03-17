@@ -20,7 +20,7 @@ export default function EducationSection() {
         de: '10/2024 - Aktuell',
       },
       location: 'Ingolstadt, Bavaria, Germany',
-      logo: '/public/images/thi-logo.png',
+      logo: '/images/thi-logo.png',
     },
     {
       institution: 'Pontifical Catholic University of Paraná',
@@ -35,7 +35,7 @@ export default function EducationSection() {
         de: '2020 - Aktuell',
       },
       location: 'Curitiba, Brazil',
-      logo: '/public/images/pucpr-logo.png',
+      logo: '/images/pucpr-logo.png',
     },
   ];
 
@@ -53,8 +53,19 @@ export default function EducationSection() {
               className="flex flex-col md:flex-row bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-md"
             >
               <div className="flex-shrink-0 flex justify-center mb-4 md:mb-0 md:mr-6">
-                <div className="w-20 h-20 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center shadow-sm">
-                  <Image src={education.logo} alt={education.institution} width={80} height={80} />
+                <div className="w-20 h-20 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center shadow-sm p-2">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={education.logo}
+                      alt={education.institution}
+                      fill
+                      style={{ objectFit: 'contain' }}
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = '/api/placeholder/80/80';
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
               <div>
