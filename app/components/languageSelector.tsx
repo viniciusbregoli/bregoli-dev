@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, JSX } from 'react';
 import { useLanguage } from '../i18n/context';
-import { FaGlobeAmericas } from 'react-icons/fa';
 import { Language } from '../i18n/translations';
 
 export default function LanguageSelector() {
@@ -10,10 +9,22 @@ export default function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const languages: { code: Language; label: string }[] = [
-    { code: 'en', label: 'EN' },
-    { code: 'de', label: 'DE' },
-    { code: 'pt', label: 'PT' },
+  const languages: { code: Language; label: string; flag: JSX.Element }[] = [
+    {
+      code: 'en',
+      label: 'EN',
+      flag: <span className="mr-2 text-lg">🇺🇸</span>,
+    },
+    {
+      code: 'de',
+      label: 'DE',
+      flag: <span className="mr-2 text-lg">🇩🇪</span>,
+    },
+    {
+      code: 'pt',
+      label: 'PT',
+      flag: <span className="mr-2 text-lg">🇧🇷</span>,
+    },
   ];
 
   // Close dropdown when clicking outside
@@ -35,19 +46,19 @@ export default function LanguageSelector() {
     setIsOpen(false);
   };
 
-  // Determine the current language label
-  const currentLanguage = languages.find((lang) => lang.code === language)?.label || 'English';
+  // Determine the current language label and flag
+  const currentLanguage = languages.find((lang) => lang.code === language);
 
   return (
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 text-white rounded-md px-3 py-2 transition-colors"
-        aria-expanded={isOpen}
-        aria-haspopup="true"
       >
-        <FaGlobeAmericas className="text-gray-300" />
-        <span className="text-sm font-medium">{currentLanguage}</span>
+        <div className="flex items-center">
+          {currentLanguage?.flag}
+          <span className="text-sm font-medium">{currentLanguage?.label}</span>
+        </div>
         <svg
           className="w-5 h-5 ml-1"
           fill="none"
@@ -70,8 +81,9 @@ export default function LanguageSelector() {
                   language === lang.code
                     ? 'bg-gray-700 text-white'
                     : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                }`}
+                } flex items-center`}
               >
+                {lang.flag}
                 {lang.label}
               </button>
             ))}
