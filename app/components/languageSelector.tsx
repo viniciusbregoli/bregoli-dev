@@ -60,7 +60,7 @@ export default function LanguageSelector() {
           <span className="text-sm font-medium">{currentLanguage?.label}</span>
         </div>
         <svg
-          className="w-5 h-5 ml-1"
+          className="w-4 h-5 ml-1"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
