@@ -7,15 +7,13 @@ import { getEducationData } from './education/educationData';
 import SectionTitle from '../common/SectionTitle';
 
 export default function EducationSection() {
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
   const educations = getEducationData();
 
   return (
     <div className="py-12 bg-white dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-4">
-        <SectionTitle>
-          {language === 'en' ? 'Education' : language === 'pt' ? 'Educação' : 'Bildung'}
-        </SectionTitle>
+        <SectionTitle>{t('education.title')}</SectionTitle>
 
         <div className="space-y-8">
           {educations.map((education, index) => (

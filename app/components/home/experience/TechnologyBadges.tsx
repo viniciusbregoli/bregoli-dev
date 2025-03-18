@@ -10,7 +10,6 @@ interface TechnologyBadgesProps {
 }
 
 export default function TechnologyBadges({ technologies, currentLanguage }: TechnologyBadgesProps) {
-  const { t } = useLanguage();
 
   return (
     <div>

@@ -28,7 +28,7 @@ export default function HeroSection() {
 
   return (
     <div className="bg-blue-50 dark:bg-gray-800">
-      <div className="flex px-24 py-10 justify-center items-center">
+      <div className="flex px-24 py-12 justify-center items-center">
         <div className="mr-10">
           <Image
             className="rounded-2xl w-full h-auto md:w-auto md:h-auto shadow-lg border-2 border-transparent dark:border-blue-500"

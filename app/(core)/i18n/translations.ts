@@ -57,7 +57,6 @@ export const translations: Translations = {
     pt: 'Todos os direitos reservados.',
     de: 'Alle Rechte vorbehalten.',
   },
-  // New Contact Page Translations
   'contact.title': {
     en: 'Contact Me',
     pt: 'Entre em Contato',
@@ -123,7 +122,6 @@ export const translations: Translations = {
     pt: 'Obrigado! Sua mensagem foi enviada com sucesso. Entrarei em contato em breve.',
     de: 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Ich werde mich bald bei Ihnen melden.',
   },
-  // Projects Page Translations
   'projects.title': {
     en: 'My Projects',
     pt: 'Meus Projetos',
@@ -204,7 +202,6 @@ export const translations: Translations = {
     pt: 'O projeto que você está procurando não existe.',
     de: 'Das gesuchte Projekt existiert nicht.',
   },
-  // Skills Section Translations
   'skills.title': {
     en: 'My Skills',
     pt: 'Minhas Habilidades',
@@ -335,7 +332,6 @@ export const translations: Translations = {
     de: 'Deutsch',
   },
 
-  // Language Levels
   'skills.level.fluent': {
     en: 'Fluent',
     pt: 'Fluente',
@@ -351,19 +347,9 @@ export const translations: Translations = {
     pt: 'Iniciante',
     de: 'Anfänger',
   },
-  'experience.title': {
-    en: 'Work Experience',
-    pt: 'Experiência Profissional',
-    de: 'Berufserfahrung',
-  },
-  'experience.subtitle': {
-    en: 'My professional experience in software development and IT infrastructure.',
-    pt: 'Minha experiência profissional em desenvolvimento de software e infraestrutura de TI.',
-    de: 'Meine Berufserfahrung in Softwareentwicklung und IT-Infrastruktur.',
-  },
-  'experience.technologies': {
-    en: 'Technologies',
-    pt: 'Tecnologias',
-    de: 'Technologien',
+  'education.title': {
+    en: 'Education',
+    pt: 'Educação',
+    de: 'Bildung',
   },
 };
