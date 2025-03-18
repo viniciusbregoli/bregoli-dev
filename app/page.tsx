@@ -1,5 +1,5 @@
 import HeroSection from './components/home/HeroSection';
-import ExperienceSection from './components/home/EducationCards';
+import ExperienceSection from './components/home/WorkExperienceSection';
 import SkillsSection from './components/home/SkillsGrid';
 import EducationSection from './components/home/EducationSection';
 

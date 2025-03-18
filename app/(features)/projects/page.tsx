@@ -16,7 +16,7 @@ export default function Projects() {
       </h1>
       <p className="text-gray-600 dark:text-gray-300 mb-10">{t('projects.subtitle')}</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-2 gap-8">
         {projects.map((project, index) => (
           <ProjectCard
             key={index}
