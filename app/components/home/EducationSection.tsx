@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useLanguage } from '../../i18n/context';
+import { useLanguage } from '../../(core)/i18n/context';
 
 export default function EducationSection() {
   const { language } = useLanguage();

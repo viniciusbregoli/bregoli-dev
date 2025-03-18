@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import myImage from '@/../public/images/me.jpg';
-import { useLanguage } from '../../i18n/context';
+import { useLanguage } from '../../(core)/i18n/context';
 
 export default function HeroSection() {
   const { t, language } = useLanguage();

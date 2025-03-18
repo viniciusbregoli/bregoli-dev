@@ -3,7 +3,7 @@
 
 import { Language } from '@/(core)/i18n/translations';
 import { useLanguage } from '../../(core)/i18n/context';
-import ProjectCard from './projectCard';
+import ProjectCard from '../../components/projects/projectCard';
 import { projects } from './projectData';
 
 export default function Projects() {
