@@ -1,7 +1,6 @@
 // app/components/home/experience/TechnologyBadges.tsx
 'use client';
 
-import { useLanguage } from '../../../(core)/i18n/context';
 import { Language } from '../../../(core)/i18n/translations';
 
 interface TechnologyBadgesProps {
@@ -10,7 +9,6 @@ interface TechnologyBadgesProps {
 }
 
 export default function TechnologyBadges({ technologies, currentLanguage }: TechnologyBadgesProps) {
-
   return (
     <div>
       <h5 className="text-gray-700 dark:text-gray-200 font-medium mb-3">
