@@ -1,10 +1,10 @@
-// app/components/home/EducationSection.tsx
+// app/components/home/EducationSection.tsx (updated)
 'use client';
 
 import { useLanguage } from '../../(core)/i18n/context';
-import SectionTitle from '../common/SectionTitle';
 import EducationCard from './education/EducationCard';
 import { getEducationData } from './education/educationData';
+import SectionTitle from '../common/SectionTitle';
 
 export default function EducationSection() {
   const { language } = useLanguage();
