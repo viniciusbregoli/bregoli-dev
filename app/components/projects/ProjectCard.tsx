@@ -6,7 +6,7 @@ import { FiCode, FiBookOpen, FiArrowRight } from 'react-icons/fi';
 import { Language } from '../../(core)/i18n/translations';
 
 interface ProjectCardProps {
-  id: string; // Add an id prop for the project
+  id: string;
   title: string;
   description: {
     en: string;

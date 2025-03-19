@@ -22,10 +22,10 @@ export default function Header() {
   ];
 
   return (
-    <div>
+    <div className="fixed top-0 left-0 right-0 z-50 shadow-md">
       <nav className="flex flex-row items-center h-20 bg-blue-50 dark:bg-gray-900">
         {/* Navigation */}
-        <div className="flex w-full ml-24">
+        <div className="flex w-full ml-24 gap-2">
           {navigation.map((item) => (
             <Link
               key={item.href}

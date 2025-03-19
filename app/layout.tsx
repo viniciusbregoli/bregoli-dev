@@ -29,7 +29,7 @@ export default function RootLayout({
         <LanguageProvider>
           <ThemeProvider>
             <Header />
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow pt-20">{children}</main>
             <Footer />
           </ThemeProvider>
         </LanguageProvider>
