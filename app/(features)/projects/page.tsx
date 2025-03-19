@@ -1,4 +1,3 @@
-// app/(features)/projects/page.tsx
 'use client';
 
 import { Language } from '@/(core)/i18n/translations';
