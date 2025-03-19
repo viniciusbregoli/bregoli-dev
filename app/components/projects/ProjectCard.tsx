@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { FiCode, FiBookOpen, FiArrowRight } from 'react-icons/fi';
 import { Language } from '../../(core)/i18n/translations';
+import { useLanguage } from '../../(core)/i18n/context';
 
 interface ProjectCardProps {
   id: string;
@@ -28,6 +29,8 @@ export default function ProjectCard({
   color,
   icon,
 }: ProjectCardProps) {
+  const { t } = useLanguage();
+
   // Determine the gradient based on the color prop
   const gradients: Record<string, { from: string; to: string; darkFrom: string; darkTo: string }> =
     {
@@ -89,13 +92,7 @@ export default function ProjectCard({
             ))}
           </div>
           <div className="flex justify-end items-center text-blue-600 dark:text-blue-400 font-medium">
-            <span className="mr-2">
-              {currentLanguage === 'en'
-                ? 'View details'
-                : currentLanguage === 'pt'
-                  ? 'Ver detalhes'
-                  : 'Details anzeigen'}
-            </span>
+            <span className="mr-2">{t('projects.viewDetails')}</span>
             <FiArrowRight />
           </div>
         </div>

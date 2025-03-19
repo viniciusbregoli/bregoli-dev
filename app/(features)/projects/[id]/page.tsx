@@ -36,7 +36,7 @@ export default function ProjectDetailPage() {
   }
 
   if (!project) {
-    return <ProjectNotFound language={language} />;
+    return <ProjectNotFound />;
   }
 
   // Get gradient for header based on project color
@@ -54,11 +54,7 @@ export default function ProjectDetailPage() {
 
             {/* Image Gallery */}
             {project.gallery && project.gallery.length > 0 && (
-              <ProjectGallery
-                gallery={project.gallery}
-                projectTitle={project.title}
-                language={language}
-              />
+              <ProjectGallery gallery={project.gallery} projectTitle={project.title} />
             )}
           </div>
 

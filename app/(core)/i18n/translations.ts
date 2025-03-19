@@ -310,7 +310,6 @@ export const translations: Translations = {
     de: 'Verantwortlichkeit',
   },
 
-  // Languages
   'skills.languages.english': {
     en: 'English',
     pt: 'Inglês',
@@ -351,5 +350,17 @@ export const translations: Translations = {
     en: 'Education',
     pt: 'Educação',
     de: 'Bildung',
+  },
+
+  'technologies.title': {
+    en: 'Technologies',
+    pt: 'Tecnologias',
+    de: 'Technologien',
+  },
+
+  'time.present': {
+    en: 'Present',
+    pt: 'Presente',
+    de: 'Aktuell',
   },
 };

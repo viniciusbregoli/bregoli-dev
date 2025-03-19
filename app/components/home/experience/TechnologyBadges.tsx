@@ -1,23 +1,19 @@
 // app/components/home/experience/TechnologyBadges.tsx
 'use client';
 
-import { Language } from '../../../(core)/i18n/translations';
+import { useLanguage } from '../../../(core)/i18n/context';
 
 interface TechnologyBadgesProps {
   technologies: string[];
-  currentLanguage: Language;
 }
 
-export default function TechnologyBadges({ technologies, currentLanguage }: TechnologyBadgesProps) {
+export default function TechnologyBadges({ technologies }: TechnologyBadgesProps) {
+  const { t } = useLanguage();
+
   return (
     <div>
       <h5 className="text-gray-700 dark:text-gray-200 font-medium mb-3">
-        {currentLanguage === 'en'
-          ? 'Technologies'
-          : currentLanguage === 'pt'
-            ? 'Tecnologias'
-            : 'Technologien'}
-        :
+        {t('technologies.title')}:
       </h5>
       <div className="flex flex-wrap gap-2">
         {technologies.map((tech, techIndex) => (

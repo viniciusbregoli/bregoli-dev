@@ -2,6 +2,7 @@
 
 import { Project } from '../../(features)/projects/projectData';
 import { Language } from '../../(core)/i18n/translations';
+import { useLanguage } from '../../(core)/i18n/context';
 
 interface ProjectAboutProps {
   project: Project;
@@ -9,14 +10,12 @@ interface ProjectAboutProps {
 }
 
 export default function ProjectAbout({ project, language }: ProjectAboutProps) {
+  const { t } = useLanguage();
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 mb-8">
       <h2 className="text-2xl font-semibold mb-6 text-blue-700 dark:text-blue-300">
-        {language === 'en'
-          ? 'About this Project'
-          : language === 'pt'
-            ? 'Sobre este Projeto'
-            : 'Über dieses Projekt'}
+        {t('projects.aboutProject')}
       </h2>
       <div className="prose dark:prose-invert max-w-none">
         {project.detailedDescription ? (
