@@ -36,7 +36,7 @@ export default function ExperienceCard({ experience, currentLanguage }: Experien
         {experience.description[currentLanguage] || experience.description.en}
       </p>
 
-      <TechnologyBadges technologies={experience.technologies} />
+      <TechnologyBadges technologies={experience.technologies} currentLanguage={currentLanguage} />
     </div>
   );
 }

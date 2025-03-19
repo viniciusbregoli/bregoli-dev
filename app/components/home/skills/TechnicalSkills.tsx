@@ -3,20 +3,110 @@
 import { useLanguage } from '../../../(core)/i18n/context';
 import SkillCard from './SkillCard';
 
-export default function TechnicalSkills() {
-  const { t } = useLanguage();
+interface Skill {
+  key: string;
+  icon: string;
+  translations: {
+    en: string;
+    pt: string;
+    de: string;
+  };
+}
 
-  const technicalSkills = [
-    { key: 'skills.technical.javascript', icon: '📝' },
-    { key: 'skills.technical.python', icon: '🐍' },
-    { key: 'skills.technical.htmlcss', icon: '🌐' },
-    { key: 'skills.technical.reactjs', icon: '⚛️' },
-    { key: 'skills.technical.vuejs', icon: '🔧' },
-    { key: 'skills.technical.sql', icon: '💾' },
-    { key: 'skills.technical.git', icon: '📊' },
-    { key: 'skills.technical.linux', icon: '🐧' },
-    { key: 'skills.technical.java', icon: '☕' },
-    { key: 'skills.technical.cpp', icon: '⚙️' },
+export default function TechnicalSkills() {
+  const { t, language } = useLanguage();
+
+  const technicalSkills: Skill[] = [
+    {
+      key: 'javascript',
+      icon: '📝',
+      translations: {
+        en: 'JavaScript',
+        pt: 'JavaScript',
+        de: 'JavaScript',
+      },
+    },
+    {
+      key: 'python',
+      icon: '🐍',
+      translations: {
+        en: 'Python',
+        pt: 'Python',
+        de: 'Python',
+      },
+    },
+    {
+      key: 'htmlcss',
+      icon: '🌐',
+      translations: {
+        en: 'HTML/CSS',
+        pt: 'HTML/CSS',
+        de: 'HTML/CSS',
+      },
+    },
+    {
+      key: 'reactjs',
+      icon: '⚛️',
+      translations: {
+        en: 'ReactJS',
+        pt: 'ReactJS',
+        de: 'ReactJS',
+      },
+    },
+    {
+      key: 'vuejs',
+      icon: '🔧',
+      translations: {
+        en: 'VueJS',
+        pt: 'VueJS',
+        de: 'VueJS',
+      },
+    },
+    {
+      key: 'sql',
+      icon: '💾',
+      translations: {
+        en: 'SQL',
+        pt: 'SQL',
+        de: 'SQL',
+      },
+    },
+    {
+      key: 'git',
+      icon: '📊',
+      translations: {
+        en: 'Git',
+        pt: 'Git',
+        de: 'Git',
+      },
+    },
+    {
+      key: 'linux',
+      icon: '🐧',
+      translations: {
+        en: 'Linux',
+        pt: 'Linux',
+        de: 'Linux',
+      },
+    },
+    {
+      key: 'java',
+      icon: '☕',
+      translations: {
+        en: 'Java',
+        pt: 'Java',
+        de: 'Java',
+      },
+    },
+    {
+      key: 'cpp',
+      icon: '⚙️',
+      translations: {
+        en: 'C/C++',
+        pt: 'C/C++',
+        de: 'C/C++',
+      },
+    },
   ];
 
   return (
@@ -28,7 +118,7 @@ export default function TechnicalSkills() {
             className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4 flex items-center justify-center transform transition-all duration-200 hover:scale-105"
           >
             <span className="text-lg font-medium text-blue-700 dark:text-blue-300">
-              {t(skill.key)}
+              {skill.translations[language] || skill.translations.en}
             </span>
           </div>
         ))}

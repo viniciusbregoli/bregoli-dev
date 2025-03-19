@@ -1,6 +1,10 @@
 export interface Project {
   id: string;
-  title: string;
+  title: {
+    en: string;
+    pt: string;
+    de: string;
+  };
   description: {
     en: string;
     pt: string;
@@ -11,7 +15,11 @@ export interface Project {
     pt: string;
     de: string;
   };
-  technologies: string[];
+  technologies: {
+    en: string;
+    pt: string;
+    de: string;
+  }[];
   color: string;
   icon: 'code' | 'research';
   gallery?: string[];
@@ -32,7 +40,11 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'mobile-robotics',
-    title: 'Mobile Robotics',
+    title: {
+      en: 'Mobile Robotics',
+      pt: 'Robótica Móvel',
+      de: 'Mobile Robotik',
+    },
     description: {
       en: 'Member of the PUCPR Mobile Robotics Team, contributing to the development of follow-line, sumo, trekking, and combat robots. Participated in competitions like RoboCore Experience (RCX) and IRONCup.',
       pt: 'Membro da Equipe de Robótica Móvel da PUCPR, contribuindo para o desenvolvimento de robôs seguidores de linha, sumô, trekking e combate. Participação em competições como RoboCore Experience (RCX) e IRONCup.',
@@ -44,13 +56,41 @@ export const projects: Project[] = [
       de: 'Als Mitglied des PUCPR Mobile Robotics Teams hatte ich die Gelegenheit, mit einer talentierten Gruppe von Ingenieuren zusammenzuarbeiten, um verschiedene Arten von Robotern für Wettbewerbe zu entwerfen, zu bauen und zu programmieren. Unser Team spezialisierte sich auf verschiedene Roboterkategorien, darunter Linienfolger, Sumo-Roboter, Trekking-Roboter und Kampfroboter.\n\nFür Linienfolger-Roboter arbeitete ich an der Optimierung von PID-Reglern, um eine schnellere und genauere Linienverfolgung zu erreichen. Die Sumo-Roboter erforderten ein robustes mechanisches Design und effektive Strategien zur Gegnererkennung. Die Trekking-Roboter beinhalteten fortschrittliche Navigationsalgorithmen, um komplexes Gelände zu durchqueren. Schließlich erforderten die Kampfroboter eine langlebige Konstruktion und innovative Waffensysteme.\n\nWir nahmen an prominenten Robotik-Wettbewerben wie RoboCore Experience (RCX) und IRONCup teil, wo wir die Gelegenheit hatten, unsere Kreationen gegen andere Universitätsteams zu testen. Diese Erfahrungen halfen mir, starke Problemlösungsfähigkeiten, Teamarbeitsfähigkeiten und praktisches Wissen über die Programmierung eingebetteter Systeme zu entwickeln.',
     },
     technologies: [
-      'Arduino',
-      'C/C++',
-      'Sensors',
-      'Microcontrollers',
-      'PID Controllers',
-      '3D Printing',
-      'CAD Design',
+      {
+        en: 'Arduino',
+        pt: 'Arduino',
+        de: 'Arduino',
+      },
+      {
+        en: 'C/C++',
+        pt: 'C/C++',
+        de: 'C/C++',
+      },
+      {
+        en: 'Sensors',
+        pt: 'Sensores',
+        de: 'Sensoren',
+      },
+      {
+        en: 'Microcontrollers',
+        pt: 'Microcontroladores',
+        de: 'Mikrocontroller',
+      },
+      {
+        en: 'PID Controllers',
+        pt: 'Controladores PID',
+        de: 'PID-Regler',
+      },
+      {
+        en: '3D Printing',
+        pt: 'Impressão 3D',
+        de: '3D-Druck',
+      },
+      {
+        en: 'CAD Design',
+        pt: 'Design CAD',
+        de: 'CAD-Design',
+      },
     ],
     color: 'purple',
     icon: 'code',
@@ -65,7 +105,11 @@ export const projects: Project[] = [
   },
   {
     id: 'digital-twin-research',
-    title: 'Digital Twin Research',
+    title: {
+      en: 'Digital Twin Research',
+      pt: 'Pesquisa em Gêmeos Digitais',
+      de: 'Digital-Twin-Forschung',
+    },
     description: {
       en: 'Scholarship recipient for the Program for Initiation in Technological Development and Innovation 2021, focusing on research innovation related to digital twins and their applications in aerospace projects in partnership with Airbus.',
       pt: 'Bolsista do Programa de Iniciação em Desenvolvimento Tecnológico e Inovação 2021, com foco em pesquisa de inovação relacionada a gêmeos digitais e suas aplicações em projetos aeroespaciais em parceria com a Airbus.',
@@ -76,7 +120,38 @@ export const projects: Project[] = [
       pt: 'Como bolsista do Programa de Iniciação em Desenvolvimento Tecnológico e Inovação 2021, conduzi pesquisas sobre tecnologia de gêmeos digitais e suas aplicações em projetos aeroespaciais. Esta pesquisa foi realizada em parceria com a Airbus, proporcionando valiosos insights da indústria e aplicações do mundo real.\n\nGêmeos digitais são réplicas virtuais de sistemas físicos que podem ser usados para simulação, análise e otimização. Minha pesquisa concentrou-se no desenvolvimento de metodologias para a criação de gêmeos digitais precisos de componentes e sistemas aeroespaciais. Isso envolveu estratégias de coleta de dados, integração de sensores, processamento de dados em tempo real e técnicas de visualização.\n\nO projeto contribuiu para avançar o entendimento de como os gêmeos digitais podem melhorar as iterações de design, prever necessidades de manutenção e otimizar o desempenho em aplicações aeroespaciais. Tive a oportunidade de trabalhar com software avançado de simulação, ferramentas de análise de dados e colaborar com profissionais da indústria da Airbus.',
       de: 'Als Stipendiat des Programms zur Einführung in die technologische Entwicklung und Innovation 2021 führte ich Forschungen zur Digital-Twin-Technologie und ihren Anwendungen in Luft- und Raumfahrtprojekten durch. Diese Forschung wurde in Partnerschaft mit Airbus durchgeführt, was wertvolle Einblicke in die Industrie und reale Anwendungen ermöglichte.\n\nDigitale Zwillinge sind virtuelle Repliken physischer Systeme, die für Simulation, Analyse und Optimierung verwendet werden können. Meine Forschung konzentrierte sich auf die Entwicklung von Methoden zur Erstellung genauer digitaler Zwillinge von Luft- und Raumfahrtkomponenten und -systemen. Dies umfasste Datenerfassungsstrategien, Sensorintegration, Echtzeit-Datenverarbeitung und Visualisierungstechniken.\n\nDas Projekt trug dazu bei, das Verständnis dafür zu verbessern, wie digitale Zwillinge Design-Iterationen verbessern, Wartungsbedarf vorhersagen und die Leistung in Luft- und Raumfahrtanwendungen optimieren können. Ich hatte die Gelegenheit, mit fortschrittlicher Simulationssoftware und Datenanalysetools zu arbeiten und mit Branchenfachleuten von Airbus zusammenzuarbeiten.',
     },
-    technologies: ['Python', 'Simulation', 'Data Analysis', 'Digital Twin', 'MATLAB', 'IoT'],
+    technologies: [
+      {
+        en: 'Python',
+        pt: 'Python',
+        de: 'Python',
+      },
+      {
+        en: 'Simulation',
+        pt: 'Simulação',
+        de: 'Simulation',
+      },
+      {
+        en: 'Data Analysis',
+        pt: 'Análise de Dados',
+        de: 'Datenanalyse',
+      },
+      {
+        en: 'Digital Twin',
+        pt: 'Gêmeos Digitais',
+        de: 'Digitaler Zwilling',
+      },
+      {
+        en: 'MATLAB',
+        pt: 'MATLAB',
+        de: 'MATLAB',
+      },
+      {
+        en: 'IoT',
+        pt: 'IoT',
+        de: 'IoT',
+      },
+    ],
     color: 'green',
     icon: 'research',
     startDate: '2021',

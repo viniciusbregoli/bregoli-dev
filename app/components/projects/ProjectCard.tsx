@@ -4,17 +4,24 @@
 import Link from 'next/link';
 import { FiCode, FiBookOpen, FiArrowRight } from 'react-icons/fi';
 import { Language } from '../../(core)/i18n/translations';
-import { useLanguage } from '../../(core)/i18n/context';
 
 interface ProjectCardProps {
   id: string;
-  title: string;
+  title: {
+    en: string;
+    pt: string;
+    de: string;
+  };
   description: {
     en: string;
     pt: string;
     de: string;
   };
-  technologies: string[];
+  technologies: {
+    en: string;
+    pt: string;
+    de: string;
+  }[];
   currentLanguage: Language;
   color: string;
   icon: 'code' | 'research';
@@ -29,8 +36,6 @@ export default function ProjectCard({
   color,
   icon,
 }: ProjectCardProps) {
-  const { t } = useLanguage();
-
   // Determine the gradient based on the color prop
   const gradients: Record<string, { from: string; to: string; darkFrom: string; darkTo: string }> =
     {
@@ -77,7 +82,9 @@ export default function ProjectCard({
         </div>
 
         <div className="p-6 flex-grow flex flex-col">
-          <h3 className="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">{title}</h3>
+          <h3 className="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">
+            {title[currentLanguage] || title.en}
+          </h3>
           <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
             {description[currentLanguage] || description.en}
           </p>
@@ -87,12 +94,18 @@ export default function ProjectCard({
                 key={techIndex}
                 className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full"
               >
-                {tech}
+                {tech[currentLanguage] || tech.en}
               </span>
             ))}
           </div>
           <div className="flex justify-end items-center text-blue-600 dark:text-blue-400 font-medium">
-            <span className="mr-2">{t('projects.viewDetails')}</span>
+            <span className="mr-2">
+              {currentLanguage === 'en'
+                ? 'View details'
+                : currentLanguage === 'pt'
+                  ? 'Ver detalhes'
+                  : 'Details anzeigen'}
+            </span>
             <FiArrowRight />
           </div>
         </div>

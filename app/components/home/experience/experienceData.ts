@@ -12,7 +12,11 @@ export interface ExperienceType {
   description: {
     [key in Language]?: string;
   };
-  technologies: string[];
+  technologies: {
+    en: string;
+    pt: string;
+    de: string;
+  }[];
   location: string;
 }
 
@@ -35,7 +39,43 @@ export function getExperienceData(): ExperienceType[] {
         pt: 'Desenvolvimento e manutenção de aplicações web com Vue.js. Integração de aplicações frontend com serviços backend usando Java e NodeJS. Criação e gerenciamento de bancos de dados com PostgreSQL. Uso de Git e GitLab como controle de fonte. Gerenciamento de tarefas e rastreamento de bugs e tarefas com Youtrack.',
         de: 'Entwicklung und Wartung von Webanwendungen mit Vue.js. Integration von Frontend-Anwendungen mit Backend-Diensten unter Verwendung von Java und NodeJS. Erstellung und Verwaltung von Datenbanken mit PostgreSQL. Verwendung von Git und GitLab zur Quellcodeverwaltung. Aufgabenverwaltung und Verfolgung von Fehlern und Aufgaben mit Youtrack.',
       },
-      technologies: ['Vue.js', 'Java', 'NodeJS', 'PostgreSQL', 'Git', 'GitLab', 'Youtrack'],
+      technologies: [
+        {
+          en: 'Vue.js',
+          pt: 'Vue.js',
+          de: 'Vue.js',
+        },
+        {
+          en: 'Java',
+          pt: 'Java',
+          de: 'Java',
+        },
+        {
+          en: 'NodeJS',
+          pt: 'NodeJS',
+          de: 'NodeJS',
+        },
+        {
+          en: 'PostgreSQL',
+          pt: 'PostgreSQL',
+          de: 'PostgreSQL',
+        },
+        {
+          en: 'Git',
+          pt: 'Git',
+          de: 'Git',
+        },
+        {
+          en: 'GitLab',
+          pt: 'GitLab',
+          de: 'GitLab',
+        },
+        {
+          en: 'Youtrack',
+          pt: 'Youtrack',
+          de: 'Youtrack',
+        },
+      ],
       location: 'Brazil',
     },
     {
@@ -56,11 +96,31 @@ export function getExperienceData(): ExperienceType[] {
         de: 'Infrastrukturmanagement in einem großen Unternehmen, das mir ermöglichte, technische Fähigkeiten und Problemmanagement in einer anspruchsvollen Umgebung zu entwickeln. Zu meinen Aufgaben gehörten Infrastrukturmanagement, Fernunterstützung, Virtualisierung und Anruf- und Ticketmanagement.',
       },
       technologies: [
-        'IT Support',
-        'Virtualization',
-        'Ticket Management',
-        'Corporate IT',
-        'Network Management',
+        {
+          en: 'IT Support',
+          pt: 'Suporte de TI',
+          de: 'IT-Support',
+        },
+        {
+          en: 'Virtualization',
+          pt: 'Virtualização',
+          de: 'Virtualisierung',
+        },
+        {
+          en: 'Ticket Management',
+          pt: 'Gerenciamento de Tickets',
+          de: 'Ticket-Management',
+        },
+        {
+          en: 'Corporate IT',
+          pt: 'TI Corporativa',
+          de: 'Unternehmens-IT',
+        },
+        {
+          en: 'Network Management',
+          pt: 'Gerenciamento de Rede',
+          de: 'Netzwerkmanagement',
+        },
       ],
       location: 'Brazil',
     },

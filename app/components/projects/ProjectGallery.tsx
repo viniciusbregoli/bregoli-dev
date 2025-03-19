@@ -1,24 +1,33 @@
 'use client';
 
 import Image from 'next/image';
-import { useLanguage } from '../../(core)/i18n/context';
+import { Language } from '../../(core)/i18n/translations';
 
 interface ProjectGalleryProps {
   gallery: string[];
-  projectTitle: string;
+  projectTitle: {
+    en: string;
+    pt: string;
+    de: string;
+  };
+  language: Language;
 }
 
-export default function ProjectGallery({ gallery, projectTitle }: ProjectGalleryProps) {
-  const { t } = useLanguage();
-
+export default function ProjectGallery({ gallery, projectTitle, language }: ProjectGalleryProps) {
   if (!gallery || gallery.length === 0) {
     return null;
   }
 
+  const title = projectTitle[language] || projectTitle.en;
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
       <h2 className="text-2xl font-semibold mb-6 text-blue-700 dark:text-blue-300">
-        {t('projects.gallery')}
+        {language === 'en'
+          ? 'Project Gallery'
+          : language === 'pt'
+            ? 'Galeria do Projeto'
+            : 'Projektgalerie'}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {gallery.map((image, index) => (
@@ -29,7 +38,7 @@ export default function ProjectGallery({ gallery, projectTitle }: ProjectGallery
             <div className="relative w-full h-auto">
               <Image
                 src={image}
-                alt={`${projectTitle} image ${index + 1}`}
+                alt={`${title} image ${index + 1}`}
                 width={600}
                 height={400}
                 style={{ objectFit: 'contain', width: '100%', height: 'auto' }}

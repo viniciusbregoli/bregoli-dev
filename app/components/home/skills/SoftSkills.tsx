@@ -2,17 +2,75 @@
 
 import { useLanguage } from '../../../(core)/i18n/context';
 
-export default function SoftSkills() {
-  const { t } = useLanguage();
+interface SoftSkill {
+  key: string;
+  translations: {
+    en: string;
+    pt: string;
+    de: string;
+  };
+}
 
-  const softSkills = [
-    { key: 'skills.soft.proactiveLearning' },
-    { key: 'skills.soft.communication' },
-    { key: 'skills.soft.teamwork' },
-    { key: 'skills.soft.problemSolving' },
-    { key: 'skills.soft.adaptability' },
-    { key: 'skills.soft.criticalThinking' },
-    { key: 'skills.soft.accountability' },
+export default function SoftSkills() {
+  const { t, language } = useLanguage();
+
+  const softSkills: SoftSkill[] = [
+    {
+      key: 'proactiveLearning',
+      translations: {
+        en: 'Proactive Learning',
+        pt: 'Aprendizado Proativo',
+        de: 'Proaktives Lernen',
+      },
+    },
+    {
+      key: 'communication',
+      translations: {
+        en: 'Effective Communication',
+        pt: 'Comunicação Eficaz',
+        de: 'Effektive Kommunikation',
+      },
+    },
+    {
+      key: 'teamwork',
+      translations: {
+        en: 'Teamwork',
+        pt: 'Trabalho em Equipe',
+        de: 'Teamarbeit',
+      },
+    },
+    {
+      key: 'problemSolving',
+      translations: {
+        en: 'Problem-Solving',
+        pt: 'Resolução de Problemas',
+        de: 'Problemlösung',
+      },
+    },
+    {
+      key: 'adaptability',
+      translations: {
+        en: 'Adaptability',
+        pt: 'Adaptabilidade',
+        de: 'Anpassungsfähigkeit',
+      },
+    },
+    {
+      key: 'criticalThinking',
+      translations: {
+        en: 'Critical Thinking',
+        pt: 'Pensamento Crítico',
+        de: 'Kritisches Denken',
+      },
+    },
+    {
+      key: 'accountability',
+      translations: {
+        en: 'Accountability',
+        pt: 'Responsabilidade',
+        de: 'Verantwortlichkeit',
+      },
+    },
   ];
 
   return (
@@ -37,7 +95,7 @@ export default function SoftSkills() {
                 />
               </svg>
             </div>
-            <span className="text-xl">{t(skill.key)}</span>
+            <span className="text-xl">{skill.translations[language] || skill.translations.en}</span>
           </li>
         ))}
       </ul>
