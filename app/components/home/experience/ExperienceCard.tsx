@@ -14,7 +14,7 @@ interface ExperienceCardProps {
 
 export default function ExperienceCard({ experience, currentLanguage }: ExperienceCardProps) {
   return (
-    <div className="bg-blue-50 dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:shadow-xl">
+    <div className="bg-blue-50 dark:bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 transform transition-all duration-300 hover:shadow-xl">
       <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
         <ExperienceHeader
           company={experience.company}

@@ -9,6 +9,7 @@ import { projects } from './projectData';
 export default function Projects() {
   const { t, language } = useLanguage();
 
+  // Update app/(features)/projects/page.tsx
   return (
     <div className="max-w-6xl mx-auto px-4 py-12 bg-white dark:bg-gray-900">
       <h1 className="text-3xl font-bold mb-2 text-blue-800 dark:text-white">
@@ -16,7 +17,7 @@ export default function Projects() {
       </h1>
       <p className="text-gray-600 dark:text-gray-300 mb-10">{t('projects.subtitle')}</p>
 
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
           <ProjectCard
             key={index}

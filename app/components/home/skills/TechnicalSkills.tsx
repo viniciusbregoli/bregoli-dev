@@ -109,15 +109,16 @@ export default function TechnicalSkills() {
     },
   ];
 
+  // Update app/components/home/skills/TechnicalSkills.tsx in the return statement
   return (
     <SkillCard title={t('skills.technical')}>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 xs:grid-cols-2 gap-4">
         {technicalSkills.map((skill, index) => (
           <div
             key={index}
-            className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4 flex items-center justify-center transform transition-all duration-200 hover:scale-105"
+            className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-3 sm:p-4 flex items-center justify-center transform transition-all duration-200 hover:scale-105"
           >
-            <span className="text-lg font-medium text-blue-700 dark:text-blue-300">
+            <span className="text-base sm:text-lg font-medium text-blue-700 dark:text-blue-300">
               {skill.translations[language] || skill.translations.en}
             </span>
           </div>

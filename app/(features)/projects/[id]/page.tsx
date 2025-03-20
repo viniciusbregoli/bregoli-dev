@@ -46,15 +46,19 @@ export default function ProjectDetailPage() {
     <div>
       <ProjectHeader project={project} language={language} gradient={gradient} />
       {/* Content Section */}
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto px-4 py-8 md:py-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Main Content */}
           <div className="lg:col-span-2">
             <ProjectAbout project={project} language={language} />
 
             {/* Image Gallery */}
             {project.gallery && project.gallery.length > 0 && (
-              <ProjectGallery gallery={project.gallery} projectTitle={project.title} />
+              <ProjectGallery
+                gallery={project.gallery}
+                projectTitle={project.title}
+                language={language}
+              />
             )}
           </div>
 
