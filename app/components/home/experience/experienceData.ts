@@ -18,6 +18,7 @@ export interface ExperienceType {
     de: string;
   }[];
   location: string;
+  icon?: 'briefcase' | 'robot' | 'code' | 'server';
 }
 
 export function getExperienceData(): ExperienceType[] {
@@ -123,6 +124,63 @@ export function getExperienceData(): ExperienceType[] {
         },
       ],
       location: 'Brazil',
+    },
+    {
+      company: 'PUCPR Mobile Robotics Team',
+      position: {
+        en: 'Team Member',
+        pt: 'Membro da Equipe',
+        de: 'Teammitglied',
+      },
+      period: {
+        en: '2021 - 2023',
+        pt: '2021 - 2023',
+        de: '2021 - 2023',
+      },
+      description: {
+        en: 'Member of the PUCPR Mobile Robotics Team, contributing to the development of follow-line, sumo, trekking, and combat robots. Participated in competitions like RoboCore Experience (RCX) and IRONCup. Worked on optimizing PID controllers for line-following robots, developing robust mechanical designs for sumo robots, implementing advanced navigation algorithms for trekking robots, and creating durable constructions with innovative weapon systems for combat robots.',
+        pt: 'Membro da Equipe de Robótica Móvel da PUCPR, contribuindo para o desenvolvimento de robôs seguidores de linha, sumô, trekking e combate. Participação em competições como RoboCore Experience (RCX) e IRONCup. Trabalhou na otimização de controladores PID para robôs seguidores de linha, desenvolvimento de designs mecânicos robustos para robôs sumô, implementação de algoritmos avançados de navegação para robôs trekking e criação de construções duráveis com sistemas de armas inovadores para robôs de combate.',
+        de: 'Mitglied des PUCPR Mobile Robotics Teams, Mitwirkung an der Entwicklung von Linienfolge-, Sumo-, Trekking- und Kampfrobotern. Teilnahme an Wettbewerben wie RoboCore Experience (RCX) und IRONCup. Arbeitete an der Optimierung von PID-Reglern für Linienfolger-Roboter, entwickelte robuste mechanische Designs für Sumo-Roboter, implementierte fortschrittliche Navigationsalgorithmen für Trekking-Roboter und erstellte langlebige Konstruktionen mit innovativen Waffensystemen für Kampfroboter.',
+      },
+      technologies: [
+        {
+          en: 'Arduino',
+          pt: 'Arduino',
+          de: 'Arduino',
+        },
+        {
+          en: 'C/C++',
+          pt: 'C/C++',
+          de: 'C/C++',
+        },
+        {
+          en: 'Sensors',
+          pt: 'Sensores',
+          de: 'Sensoren',
+        },
+        {
+          en: 'Microcontrollers',
+          pt: 'Microcontroladores',
+          de: 'Mikrocontroller',
+        },
+        {
+          en: 'PID Controllers',
+          pt: 'Controladores PID',
+          de: 'PID-Regler',
+        },
+        {
+          en: '3D Printing',
+          pt: 'Impressão 3D',
+          de: '3D-Druck',
+        },
+        {
+          en: 'CAD Design',
+          pt: 'Design CAD',
+          de: 'CAD-Design',
+        },
+      ],
+      location: 'Brazil',
+      icon: 'robot',
     },
   ];
 }

@@ -1,7 +1,7 @@
 // app/components/home/experience/ExperienceCard.tsx
 'use client';
 
-import { FiCalendar, FiMapPin, FiBriefcase } from 'react-icons/fi';
+import { FiCalendar, FiMapPin, FiBriefcase, FiCode, FiServer, FiCpu } from 'react-icons/fi';
 import { Language } from '../../../(core)/i18n/translations';
 import { ExperienceType } from './experienceData';
 import TechnologyBadges from './TechnologyBadges';
@@ -13,12 +13,25 @@ interface ExperienceCardProps {
 }
 
 export default function ExperienceCard({ experience, currentLanguage }: ExperienceCardProps) {
+  const getIcon = () => {
+    switch (experience.icon) {
+      case 'robot':
+        return <FiCpu className="w-6 h-6 text-blue-600 dark:text-blue-400" />;
+      case 'code':
+        return <FiCode className="w-6 h-6 text-blue-600 dark:text-blue-400" />;
+      case 'server':
+        return <FiServer className="w-6 h-6 text-blue-600 dark:text-blue-400" />;
+      default:
+        return <FiBriefcase className="w-6 h-6 text-blue-600 dark:text-blue-400" />;
+    }
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 transform transition-all duration-300 hover:shadow-xl border border-gray-100 dark:border-gray-700">
       <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
         <div className="flex items-start space-x-4">
           <div className="bg-blue-100 dark:bg-blue-900/30 rounded-lg p-3">
-            <FiBriefcase className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            {getIcon()}
           </div>
           <ExperienceHeader
             company={experience.company}
