@@ -126,7 +126,7 @@ export function getExperienceData(): ExperienceType[] {
       location: 'Brazil',
     },
     {
-      company: 'PUCPR Mobile Robotics Team',
+      company: 'PUCPR Mobile Robotics',
       position: {
         en: 'Team Member',
         pt: 'Membro da Equipe',

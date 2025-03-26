@@ -33,10 +33,12 @@ export default function ExperienceCard({ experience, currentLanguage }: Experien
           <div className="bg-blue-100 dark:bg-blue-900/30 rounded-lg p-3">
             {getIcon()}
           </div>
-          <ExperienceHeader
-            company={experience.company}
-            position={experience.position[currentLanguage] || experience.position.en || ''}
-          />
+          <div className="text-left">
+            <ExperienceHeader
+              company={experience.company}
+              position={experience.position[currentLanguage] || experience.position.en || ''}
+            />
+          </div>
         </div>
         <div className="mt-4 md:mt-0 flex flex-col md:items-end space-y-2">
           <div className="flex items-center text-gray-700 dark:text-gray-300">
@@ -51,7 +53,7 @@ export default function ExperienceCard({ experience, currentLanguage }: Experien
       </div>
 
       <div className="border-t border-gray-100 dark:border-gray-700 pt-6">
-        <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-left">
           {experience.description[currentLanguage] || experience.description.en}
         </p>
 
