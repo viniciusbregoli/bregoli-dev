@@ -8,8 +8,8 @@ interface ExperienceHeaderProps {
 export default function ExperienceHeader({ company, position }: ExperienceHeaderProps) {
   return (
     <div>
-      <h3 className="text-2xl font-semibold text-blue-700 dark:text-blue-300">{company}</h3>
-      <h4 className="text-xl text-gray-800 dark:text-white mt-1">{position}</h4>
+      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{company}</h3>
+      <h4 className="text-lg text-blue-600 dark:text-blue-400 mt-1 font-medium">{position}</h4>
     </div>
   );
 }
