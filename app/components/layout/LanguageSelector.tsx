@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, JSX } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../../(core)/i18n/context';
 import { Language } from '../../(core)/i18n/translations';
 
@@ -9,21 +9,18 @@ export default function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const languages: { code: Language; label: string; flag: JSX.Element }[] = [
+  const languages: { code: Language; label: string }[] = [
     {
       code: 'en',
       label: 'EN',
-      flag: <span className="mr-2 text-lg">🇺🇸</span>,
     },
     {
       code: 'de',
       label: 'DE',
-      flag: <span className="mr-2 text-lg">🇩🇪</span>,
     },
     {
       code: 'pt',
       label: 'PT',
-      flag: <span className="mr-2 text-lg">🇧🇷</span>,
     },
   ];
 
@@ -46,17 +43,16 @@ export default function LanguageSelector() {
     setIsOpen(false);
   };
 
-  // Determine the current language label and flag
+  // Determine the current language label
   const currentLanguage = languages.find((lang) => lang.code === language);
 
   return (
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 bg-blue-100 dark:bg-gray-700 hover:bg-blue-200 dark:hover:bg-gray-600 text-blue-800 dark:text-white rounded-md px-3 py-2 transition-colors"
+        className="flex items-center justify-center space-x-2 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 text-slate-800 dark:text-white rounded-md px-3 transition-colors h-11 w-16"
       >
         <div className="flex items-center">
-          {currentLanguage?.flag}
           <span className="text-sm font-medium">{currentLanguage?.label}</span>
         </div>
         <svg
@@ -71,7 +67,7 @@ export default function LanguageSelector() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10">
+        <div className="absolute right-0 mt-2 w-16 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10">
           <div className="py-1">
             {languages.map((lang) => (
               <button
@@ -79,11 +75,10 @@ export default function LanguageSelector() {
                 onClick={() => handleSelect(lang.code)}
                 className={`block w-full text-left px-4 py-2 text-sm ${
                   language === lang.code
-                    ? 'bg-blue-100 dark:bg-gray-700 text-blue-800 dark:text-white'
-                    : 'text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-white'
-                } flex items-center`}
+                    ? 'bg-slate-100 dark:bg-gray-700 text-slate-800 dark:text-white'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 hover:text-slate-800 dark:hover:text-white'
+                } flex items-center justify-center transition-colors duration-200`}
               >
-                {lang.flag}
                 {lang.label}
               </button>
             ))}

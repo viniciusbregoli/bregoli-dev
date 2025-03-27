@@ -1,113 +1,101 @@
 // app/(features)/projects/projectCard.tsx
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
-import { FiCode, FiBookOpen, FiArrowRight } from 'react-icons/fi';
+import { FiExternalLink, FiCode, FiBookOpen } from 'react-icons/fi';
+import { Project } from '../../(features)/projects/projectData';
 import { Language } from '../../(core)/i18n/translations';
+import { getGradientByColor } from './GradientUtils';
 
 interface ProjectCardProps {
-  id: string;
-  title: {
-    en: string;
-    pt: string;
-    de: string;
-  };
-  description: {
-    en: string;
-    pt: string;
-    de: string;
-  };
-  technologies: {
-    en: string;
-    pt: string;
-    de: string;
-  }[];
-  currentLanguage: Language;
-  color: string;
-  icon: 'code' | 'research';
+  project: Project;
+  language: Language;
 }
 
-export default function ProjectCard({
-  id,
-  title,
-  description,
-  technologies,
-  currentLanguage,
-  color,
-  icon,
-}: ProjectCardProps) {
-  // Determine the gradient based on the color prop
-  const gradients: Record<string, { from: string; to: string; darkFrom: string; darkTo: string }> =
-    {
-      blue: {
-        from: 'from-blue-400',
-        to: 'to-blue-600',
-        darkFrom: 'dark:from-blue-600',
-        darkTo: 'dark:to-blue-800',
-      },
-      purple: {
-        from: 'from-purple-400',
-        to: 'to-purple-600',
-        darkFrom: 'dark:from-purple-600',
-        darkTo: 'dark:to-purple-800',
-      },
-      green: {
-        from: 'from-green-400',
-        to: 'to-green-600',
-        darkFrom: 'dark:from-green-600',
-        darkTo: 'dark:to-green-800',
-      },
-      orange: {
-        from: 'from-orange-400',
-        to: 'to-orange-600',
-        darkFrom: 'dark:from-orange-600',
-        darkTo: 'dark:to-orange-800',
-      },
-    };
-
-  const gradient = gradients[color] || gradients.blue;
+export default function ProjectCard({ project, language }: ProjectCardProps) {
+  const gradient = getGradientByColor(project.color);
 
   return (
-    <Link href={`/projects/${id}`} className="block h-full">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 h-full flex flex-col cursor-pointer">
-        {/* Visual header area with gradient and icon */}
-        <div
-          className={`h-48 bg-gradient-to-r ${gradient.from} ${gradient.to} ${gradient.darkFrom} ${gradient.darkTo} flex items-center justify-center`}
-        >
-          {icon === 'code' ? (
-            <FiCode className="text-white w-20 h-20 opacity-80" />
-          ) : (
-            <FiBookOpen className="text-white w-20 h-20 opacity-80" />
+    <Link
+      href={`/projects/${project.id}`}
+      className="group block bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+    >
+      {/* Header with gradient background */}
+      <div
+        className={`relative h-48 bg-gradient-to-r ${gradient.from} ${gradient.to} ${gradient.darkFrom} ${gradient.darkTo} overflow-hidden`}
+      >
+        {/* Decorative background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent dark:from-black/10"></div>
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/10 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-white/10 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+        </div>
+
+        {/* Project Type Icon */}
+        <div className="absolute top-4 right-4">
+          <div className="bg-white/20 backdrop-blur-sm p-3 rounded-lg transform transition-transform duration-300 group-hover:scale-110">
+            {project.icon === 'code' ? (
+              <FiCode className="w-6 h-6 text-white" />
+            ) : (
+              <FiBookOpen className="w-6 h-6 text-white" />
+            )}
+          </div>
+        </div>
+
+        {/* Project Image */}
+        {project.gallery && project.gallery.length > 0 && (
+          <div className="absolute inset-0">
+            <Image
+              src={project.gallery[0]}
+              alt={project.title[language] || project.title.en}
+              fill
+              className="object-cover opacity-20"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+        )}
+
+        {/* Project Title */}
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          <h3 className="text-2xl font-bold text-white mb-2">
+            {project.title[language] || project.title.en}
+          </h3>
+          <p className="text-white/90 text-lg">
+            {project.description[language] || project.description.en}
+          </p>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-6">
+        {/* Technologies */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.technologies.slice(0, 3).map((tech, index) => (
+            <span
+              key={index}
+              className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm px-3 py-1 rounded-full"
+            >
+              {tech[language] || tech.en}
+            </span>
+          ))}
+          {project.technologies.length > 3 && (
+            <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm px-3 py-1 rounded-full">
+              +{project.technologies.length - 3}
+            </span>
           )}
         </div>
 
-        <div className="p-6 flex-grow flex flex-col">
-          <h3 className="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">
-            {title[currentLanguage] || title.en}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
-            {description[currentLanguage] || description.en}
-          </p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {technologies.map((tech, techIndex) => (
-              <span
-                key={techIndex}
-                className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full"
-              >
-                {tech[currentLanguage] || tech.en}
-              </span>
-            ))}
-          </div>
-          <div className="flex justify-end items-center text-blue-600 dark:text-blue-400 font-medium">
-            <span className="mr-2">
-              {currentLanguage === 'en'
-                ? 'View details'
-                : currentLanguage === 'pt'
-                  ? 'Ver detalhes'
-                  : 'Details anzeigen'}
-            </span>
-            <FiArrowRight />
-          </div>
+        {/* View Project Link */}
+        <div className="flex items-center text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-200">
+          <span className="mr-2">
+            {language === 'en'
+              ? 'View Project'
+              : language === 'pt'
+                ? 'Ver Projeto'
+                : 'Projekt ansehen'}
+          </span>
+          <FiExternalLink className="transform transition-transform duration-300 group-hover:translate-x-1" />
         </div>
       </div>
     </Link>

@@ -19,13 +19,20 @@ interface ProjectHeaderProps {
 export default function ProjectHeader({ project, language, gradient }: ProjectHeaderProps) {
   return (
     <div
-      className={`bg-gradient-to-r ${gradient.from} ${gradient.to} ${gradient.darkFrom} ${gradient.darkTo}`}
+      className={`relative bg-gradient-to-r ${gradient.from} ${gradient.to} ${gradient.darkFrom} ${gradient.darkTo} overflow-hidden`}
     >
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="mb-4">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent dark:from-black/10"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-4 py-16">
+        <div className="mb-6">
           <Link
             href="/projects"
-            className="inline-flex items-center text-white bg-white/20 hover:bg-white/30 px-4 py-2 rounded-md font-medium transition"
+            className="inline-flex items-center text-white bg-white/20 hover:bg-white/30 px-4 py-2 rounded-md font-medium transition-all duration-200 hover:translate-x-[-2px]"
           >
             <FiChevronLeft className="mr-2" />
             {language === 'en'

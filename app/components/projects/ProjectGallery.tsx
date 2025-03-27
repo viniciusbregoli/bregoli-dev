@@ -21,19 +21,19 @@ export default function ProjectGallery({ gallery, projectTitle, language }: Proj
   const title = projectTitle[language] || projectTitle.en;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
-      <h2 className="text-2xl font-semibold mb-6 text-blue-700 dark:text-blue-300">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:shadow-xl">
+      <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-blue-300">
         {language === 'en'
           ? 'Project Gallery'
           : language === 'pt'
             ? 'Galeria do Projeto'
             : 'Projektgalerie'}
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {gallery.map((image, index) => (
           <div
             key={index}
-            className="rounded-lg overflow-hidden shadow-sm bg-gray-100 dark:bg-gray-700"
+            className="group relative rounded-xl overflow-hidden shadow-md bg-gray-100 dark:bg-gray-700 transform transition-all duration-300 hover:shadow-xl"
           >
             <div className="relative w-full h-auto">
               <Image
@@ -42,13 +42,14 @@ export default function ProjectGallery({ gallery, projectTitle, language }: Proj
                 width={600}
                 height={400}
                 style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
-                className="hover:scale-105 transition-transform duration-300"
+                className="transform transition-transform duration-500 group-hover:scale-105"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.src = '/api/placeholder/600/400';
                 }}
               />
             </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
         ))}
       </div>

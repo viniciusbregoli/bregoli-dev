@@ -43,13 +43,13 @@ export default function ProjectDetailPage() {
   const gradient = getGradientByColor(project.color);
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-slate-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <ProjectHeader project={project} language={language} gradient={gradient} />
       {/* Content Section */}
-      <div className="max-w-6xl mx-auto px-4 py-8 md:py-12">
+      <div className="max-w-6xl mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Main Content */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 space-y-8">
             <ProjectAbout project={project} language={language} />
 
             {/* Image Gallery */}

@@ -25,10 +25,10 @@ export default function FormField({
   placeholder,
   rows = 3,
 }: FormFieldProps) {
-  const baseClassName = `w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+  const baseClassName = `w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 border transition-colors duration-200 ${
     error
       ? 'border-red-500 focus:ring-red-500 dark:border-red-500'
-      : 'border-gray-300 focus:ring-blue-500 dark:border-gray-600'
+      : 'border-slate-200 focus:ring-slate-400 dark:border-gray-600 dark:focus:ring-blue-500'
   }`;
 
   return (
@@ -43,7 +43,7 @@ export default function FormField({
           value={value}
           onChange={onChange}
           rows={rows}
-          className={baseClassName}
+          className={`${baseClassName} resize-none`}
           placeholder={placeholder}
         />
       ) : (

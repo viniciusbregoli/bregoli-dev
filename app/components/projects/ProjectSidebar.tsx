@@ -11,8 +11,8 @@ interface ProjectSidebarProps {
 
 export default function ProjectSidebar({ project, language }: ProjectSidebarProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-      <h3 className="text-xl font-semibold mb-4 text-blue-700 dark:text-blue-300">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:shadow-xl">
+      <h3 className="text-xl font-semibold mb-6 text-gray-800 dark:text-blue-300">
         {language === 'en'
           ? 'Project Information'
           : language === 'pt'
@@ -22,7 +22,7 @@ export default function ProjectSidebar({ project, language }: ProjectSidebarProp
 
       {/* Project Type */}
       {project.projectType && (
-        <div className="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
           <h4 className="text-sm uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">
             {language === 'en'
               ? 'Project Type'
@@ -30,7 +30,7 @@ export default function ProjectSidebar({ project, language }: ProjectSidebarProp
                 ? 'Tipo de Projeto'
                 : 'Projekttyp'}
           </h4>
-          <p className="text-gray-800 dark:text-gray-200">
+          <p className="text-gray-700 dark:text-gray-200">
             {project.projectType[language] || project.projectType.en}
           </p>
         </div>
@@ -38,12 +38,12 @@ export default function ProjectSidebar({ project, language }: ProjectSidebarProp
 
       {/* Timeline */}
       {(project.startDate || project.endDate) && (
-        <div className="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
           <h4 className="text-sm uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">
             {language === 'en' ? 'Timeline' : language === 'pt' ? 'Período' : 'Zeitraum'}
           </h4>
-          <div className="flex items-center text-gray-800 dark:text-gray-200">
-            <FiCalendar className="mr-2 text-blue-600 dark:text-blue-400" />
+          <div className="flex items-center text-gray-700 dark:text-gray-200">
+            <FiCalendar className="mr-2 text-slate-500 dark:text-blue-400" />
             <span>
               {project.startDate}
               {project.endDate && project.endDate !== project.startDate
@@ -63,7 +63,7 @@ export default function ProjectSidebar({ project, language }: ProjectSidebarProp
       )}
 
       {/* Technologies */}
-      <div className="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
         <h4 className="text-sm uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">
           {language === 'en' ? 'Technologies' : language === 'pt' ? 'Tecnologias' : 'Technologien'}
         </h4>
@@ -71,7 +71,7 @@ export default function ProjectSidebar({ project, language }: ProjectSidebarProp
           {project.technologies.map((tech, index) => (
             <span
               key={index}
-              className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full"
+              className="bg-gray-100 dark:bg-blue-900 text-gray-700 dark:text-blue-200 text-sm px-3 py-1 rounded-full"
             >
               {tech[language] || tech.en}
             </span>
@@ -85,13 +85,13 @@ export default function ProjectSidebar({ project, language }: ProjectSidebarProp
           <h4 className="text-sm uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">
             {language === 'en' ? 'Links' : language === 'pt' ? 'Links' : 'Links'}
           </h4>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {project.links.github && (
               <a
                 href={project.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+                className="flex items-center text-slate-600 dark:text-blue-400 hover:text-slate-800 dark:hover:text-blue-300 transition-colors duration-200"
               >
                 <FiGithub className="mr-2" />
                 {language === 'en'
@@ -106,7 +106,7 @@ export default function ProjectSidebar({ project, language }: ProjectSidebarProp
                 href={project.links.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+                className="flex items-center text-slate-600 dark:text-blue-400 hover:text-slate-800 dark:hover:text-blue-300 transition-colors duration-200"
               >
                 <FiExternalLink className="mr-2" />
                 {language === 'en' ? 'Live Demo' : language === 'pt' ? 'Demo ao Vivo' : 'Live-Demo'}
@@ -117,7 +117,7 @@ export default function ProjectSidebar({ project, language }: ProjectSidebarProp
                 href={project.links.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+                className="flex items-center text-slate-600 dark:text-blue-400 hover:text-slate-800 dark:hover:text-blue-300 transition-colors duration-200"
               >
                 <FiExternalLink className="mr-2" />
                 {language === 'en'
