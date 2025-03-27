@@ -30,9 +30,7 @@ export default function ExperienceCard({ experience, currentLanguage }: Experien
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 transform transition-all duration-300 hover:shadow-xl border border-gray-100 dark:border-gray-700">
       <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
         <div className="flex items-start space-x-4">
-          <div className="bg-blue-100 dark:bg-blue-900/30 rounded-lg p-3">
-            {getIcon()}
-          </div>
+          <div className="bg-blue-100 dark:bg-blue-900/30 rounded-lg p-3">{getIcon()}</div>
           <div className="text-left">
             <ExperienceHeader
               company={experience.company}
@@ -43,7 +41,9 @@ export default function ExperienceCard({ experience, currentLanguage }: Experien
         <div className="mt-4 md:mt-0 flex flex-col md:items-end space-y-2">
           <div className="flex items-center text-gray-700 dark:text-gray-300">
             <FiCalendar className="mr-2 text-blue-500 dark:text-blue-400" />
-            <span className="font-medium">{experience.period[currentLanguage] || experience.period.en}</span>
+            <span className="font-medium">
+              {experience.period[currentLanguage] || experience.period.en}
+            </span>
           </div>
           <div className="flex items-center text-gray-700 dark:text-gray-300">
             <FiMapPin className="mr-2 text-blue-500 dark:text-blue-400" />
@@ -57,7 +57,10 @@ export default function ExperienceCard({ experience, currentLanguage }: Experien
           {experience.description[currentLanguage] || experience.description.en}
         </p>
 
-        <TechnologyBadges technologies={experience.technologies} currentLanguage={currentLanguage} />
+        <TechnologyBadges
+          technologies={experience.technologies}
+          currentLanguage={currentLanguage}
+        />
       </div>
     </div>
   );

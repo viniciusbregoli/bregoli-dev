@@ -19,6 +19,7 @@ export interface ExperienceType {
   }[];
   location: string;
   icon?: 'briefcase' | 'robot' | 'code' | 'server';
+  image?: string; // Path to the image that will be shown on the opposite side
 }
 
 export function getExperienceData(): ExperienceType[] {
@@ -78,6 +79,8 @@ export function getExperienceData(): ExperienceType[] {
         },
       ],
       location: 'Brazil',
+      icon: 'code',
+      image: '/images/exati-exp.jpg'
     },
     {
       company: 'Siemens Energy Brasil',
@@ -124,6 +127,8 @@ export function getExperienceData(): ExperienceType[] {
         },
       ],
       location: 'Brazil',
+      icon: 'server',
+      image: '/images/siemens-exp.jpg'
     },
     {
       company: 'PUCPR Mobile Robotics',
@@ -181,6 +186,7 @@ export function getExperienceData(): ExperienceType[] {
       ],
       location: 'Brazil',
       icon: 'robot',
+      image: '/images/mobile-robotics-1.png'
     },
   ];
 }
