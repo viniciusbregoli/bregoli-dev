@@ -10,12 +10,12 @@ export default function SubmitButton({ isSubmitting, label }: SubmitButtonProps)
     <button
       type="submit"
       disabled={isSubmitting}
-      className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
+      className="w-full bg-slate-600 hover:bg-slate-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-4 px-6 rounded-lg transition duration-300 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed text-lg"
     >
       {isSubmitting ? (
         <>
           <svg
-            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+            className="animate-spin -ml-1 mr-3 h-6 w-6 text-white"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
