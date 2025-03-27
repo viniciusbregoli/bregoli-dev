@@ -2,7 +2,6 @@
   "name": "bregoli-dev",
   "version": "0.1.0",
   "private": true,
-  // Main application scripts
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
