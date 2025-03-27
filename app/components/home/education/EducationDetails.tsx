@@ -15,7 +15,7 @@ export default function EducationDetails({
 }: EducationDetailsProps) {
   return (
     <div>
-      <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-300">{institution}</h3>
+      <h3 className="text-xl font-semibold text-slate-700 dark:text-slate-300">{institution}</h3>
       <p className="text-gray-800 dark:text-white font-medium mt-1">{program}</p>
       <p className="text-gray-600 dark:text-gray-300 mt-1">{period}</p>
       <p className="text-gray-500 dark:text-gray-400 mt-1">{location}</p>

@@ -10,11 +10,13 @@ export default function SkillsSection() {
   const { t } = useLanguage();
 
   return (
-    <div className="py-12 bg-gray-50 dark:bg-gray-800">
+    <div className="py-10 bg-gradient-to-b from-gray-50 via-slate-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-6xl mx-auto px-4">
-        <SectionTitle>{t('skills.title')}</SectionTitle>
+        <SectionTitle className="text-gray-800 dark:text-rose-300">
+          {t('skills.title')}
+        </SectionTitle>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="space-y-10 mt-12">
           <TechnicalSkills />
           <SoftSkills />
           <LanguageSkills />

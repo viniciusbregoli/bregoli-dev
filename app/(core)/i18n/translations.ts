@@ -40,6 +40,11 @@ export const translations: Translations = {
     pt: 'Meu nome é Vinícius',
     de: 'Ich bin Vinícius',
   },
+  'hero.professionalClaim': {
+    en: 'Building innovative solutions through technology',
+    pt: 'Construindo soluções inovadoras através da tecnologia',
+    de: 'Innovative Lösungen durch Technologie entwickeln',
+  },
   'hero.description': {
     en: 'I am a Computer Engineering student with hands-on experience in programming, fullstack development, workflow optimization, and IT infrastructure. Skilled in tools like Python, Java, Full-stack development, source control and SQL, with a strong foundation in Linux and robotics. Currently enrolled at an exchange program at Technische Hochschule Ingolstadt at the Computer Science and AI course.',
     pt: 'Sou estudante de Engenharia da Computação com experiência prática em programação, desenvolvimento fullstack, otimização de fluxo de trabalho e infraestrutura de TI. Habilidades em ferramentas como Python, Java, desenvolvimento Full-stack, controle de versão e SQL, com uma base sólida em Linux e robótica. Atualmente matriculado em um programa de intercâmbio na Technische Hochschule Ingolstadt no curso de Ciência da Computação e IA.',
@@ -49,6 +54,33 @@ export const translations: Translations = {
     en: 'Download Resume',
     pt: 'Baixar Currículo',
     de: 'Lebenslauf Herunterladen',
+  },
+
+  // Goals Section
+  'goals.title': {
+    en: 'My Mission',
+    pt: 'Minha Missão',
+    de: 'Meine Mission',
+  },
+  'goals.shortTerm': {
+    en: 'Vision',
+    pt: 'Visão',
+    de: 'Vision',
+  },
+  'goals.shortTermDesc': {
+    en: 'As a Computer Engineer, I am committed to developing innovative products and services that transform businesses and positively impact people\'s lives. I believe technology should be a force for good, capable of solving complex challenges and improving quality of life across communities.',
+    pt: 'Como engenheiro de computação, meu compromisso é desenvolver produtos e serviços inovadores que transformem negócios e impactem positivamente a vida das pessoas. Acredito que a tecnologia deve ser uma força para o bem, capaz de resolver desafios complexos e melhorar a qualidade de vida em diversas comunidades.',
+    de: 'Als Informatikingenieur setze ich mich für die Entwicklung innovativer Produkte und Dienstleistungen ein, die Unternehmen transformieren und das Leben der Menschen positiv beeinflussen. Ich glaube, dass Technologie eine Kraft zum Guten sein sollte, die komplexe Herausforderungen lösen und die Lebensqualität in verschiedenen Gemeinschaften verbessern kann.',
+  },
+  'goals.longTerm': {
+    en: 'Commitment',
+    pt: 'Compromisso',
+    de: 'Engagement',
+  },
+  'goals.longTermDesc': {
+    en: 'I am dedicated to creating tools that help companies optimize processes and increase productivity while being socially responsible. I believe in technology as a means to democratize access to information and create a more just and sustainable world.',
+    pt: 'Estou dedicado a criar ferramentas que ajudem empresas a otimizar processos e aumentar a produtividade, mantendo a responsabilidade social. Acredito na tecnologia como meio para democratizar o acesso à informação e criar um mundo mais justo e sustentável.',
+    de: 'Ich bin bestrebt, Tools zu entwickeln, die Unternehmen helfen, Prozesse zu optimieren und die Produktivität zu steigern, während sie sozial verantwortlich bleiben. Ich glaube an Technologie als Mittel zur Demokratisierung des Informationszugangs und zur Schaffung einer gerechteren und nachhaltigeren Welt.',
   },
 
   // About Section

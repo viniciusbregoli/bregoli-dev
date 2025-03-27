@@ -94,7 +94,7 @@ export const projects: Project[] = [
     ],
     color: 'purple',
     icon: 'code',
-    gallery: ['/images/projects/mobile-robotics-1.png', '/images/projects/mobile-robotics-2.png'],
+    gallery: ['/images/mobile-robotics-1.png', '/images/mobile-robotics-2.png'],
     startDate: '2021',
     endDate: '2023',
     projectType: {

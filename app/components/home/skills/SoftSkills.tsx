@@ -1,104 +1,64 @@
 'use client';
 
 import { useLanguage } from '../../../(core)/i18n/context';
-
-interface SoftSkill {
-  key: string;
-  translations: {
-    en: string;
-    pt: string;
-    de: string;
-  };
-}
+import { FaUsers, FaLightbulb, FaHandshake, FaChartLine } from 'react-icons/fa';
 
 export default function SoftSkills() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
-  const softSkills: SoftSkill[] = [
+  const softSkills = [
     {
-      key: 'proactiveLearning',
-      translations: {
-        en: 'Proactive Learning',
-        pt: 'Aprendizado Proativo',
-        de: 'Proaktives Lernen',
-      },
+      category: 'Communication',
+      icon: <FaUsers className="w-7 h-7 text-white" />,
+      skills: ['Team Collaboration', 'Client Communication', 'Problem Solving'],
     },
     {
-      key: 'communication',
-      translations: {
-        en: 'Effective Communication',
-        pt: 'Comunicação Eficaz',
-        de: 'Effektive Kommunikation',
-      },
+      category: 'Leadership',
+      icon: <FaChartLine className="w-7 h-7 text-white" />,
+      skills: ['Project Management', 'Team Leadership', 'Strategic Planning'],
     },
     {
-      key: 'teamwork',
-      translations: {
-        en: 'Teamwork',
-        pt: 'Trabalho em Equipe',
-        de: 'Teamarbeit',
-      },
+      category: 'Innovation',
+      icon: <FaLightbulb className="w-7 h-7 text-white" />,
+      skills: ['Creative Thinking', 'Process Optimization', 'Technical Innovation'],
     },
     {
-      key: 'problemSolving',
-      translations: {
-        en: 'Problem-Solving',
-        pt: 'Resolução de Problemas',
-        de: 'Problemlösung',
-      },
-    },
-    {
-      key: 'adaptability',
-      translations: {
-        en: 'Adaptability',
-        pt: 'Adaptabilidade',
-        de: 'Anpassungsfähigkeit',
-      },
-    },
-    {
-      key: 'criticalThinking',
-      translations: {
-        en: 'Critical Thinking',
-        pt: 'Pensamento Crítico',
-        de: 'Kritisches Denken',
-      },
-    },
-    {
-      key: 'accountability',
-      translations: {
-        en: 'Accountability',
-        pt: 'Responsabilidade',
-        de: 'Verantwortlichkeit',
-      },
+      category: 'Professional',
+      icon: <FaHandshake className="w-7 h-7 text-white" />,
+      skills: ['Agile Methodologies', 'Risk Management', 'Quality Assurance'],
     },
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:shadow-xl">
-      <h3 className="text-2xl font-semibold mb-8 text-blue-700 dark:text-blue-300">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:shadow-xl">
+      <h3 className="text-3xl font-semibold mb-8 text-gray-800 dark:text-blue-300">
         {t('skills.soft')}
       </h3>
-      <ul className="space-y-5">
-        {softSkills.map((skill, index) => (
-          <li key={index} className="flex items-center text-gray-700 dark:text-gray-300">
-            <div className="bg-blue-100 dark:bg-blue-900 rounded-full p-3 mr-4">
-              <svg
-                className="w-6 h-6 text-blue-600 dark:text-blue-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {softSkills.map((category, index) => (
+          <div key={index} className="space-y-4">
+            <div className="flex items-center space-x-3">
+              <div className="bg-slate-500 dark:bg-blue-500 rounded-full p-3">{category.icon}</div>
+              <h4 className="text-xl font-medium text-gray-700 dark:text-gray-200">
+                {category.category}
+              </h4>
             </div>
-            <span className="text-xl">{skill.translations[language] || skill.translations.en}</span>
-          </li>
+            <div className="space-y-3">
+              {category.skills.map((skill, skillIndex) => (
+                <div
+                  key={skillIndex}
+                  className="flex items-center space-x-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg px-5 py-3 transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-blue-400"></div>
+                  <span className="text-lg text-gray-700 dark:text-gray-200 font-medium">
+                    {skill}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
