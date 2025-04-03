@@ -7,7 +7,7 @@ export default function LanguageSkills() {
   const { t } = useLanguage();
 
   const languages = [
-    { name: 'English', level: 'Native' },
+    { name: 'English', level: 'Fluent' },
     { name: 'Portuguese', level: 'Native' },
     { name: 'Spanish', level: 'Advanced' },
     { name: 'German', level: 'Intermediate' },

@@ -162,6 +162,63 @@ export const projects: Project[] = [
       de: 'Forschungsprojekt',
     },
   },
+  {
+    id: 'bregoli-dev',
+    title: {
+      en: 'Personal Portfolio Website',
+      pt: 'Website de Portfólio Pessoal',
+      de: 'Persönliche Portfolio-Website',
+    },
+    description: {
+      en: 'A modern, responsive portfolio website built with Next.js and Tailwind CSS, featuring a multilingual interface and dynamic project showcase.',
+      pt: 'Um site de portfólio moderno e responsivo construído com Next.js e Tailwind CSS, apresentando uma interface multilíngue e exibição dinâmica de projetos.',
+      de: 'Eine moderne, responsive Portfolio-Website, erstellt mit Next.js und Tailwind CSS, mit mehrsprachiger Benutzeroberfläche und dynamischer Projektpräsentation.',
+    },
+    detailedDescription: {
+      en: 'This portfolio website showcases my professional journey and projects in a modern, user-friendly interface. Built with Next.js and Tailwind CSS, it features a responsive design that works seamlessly across all devices. The site includes a multilingual interface supporting English, Portuguese, and German, making it accessible to a wider audience.\n\nThe project demonstrates my expertise in modern web development practices, including server-side rendering, responsive design, and internationalization. It serves as both a showcase of my work and a practical demonstration of my technical skills.',
+      pt: 'Este site de portfólio apresenta minha jornada profissional e projetos em uma interface moderna e amigável. Construído com Next.js e Tailwind CSS, apresenta um design responsivo que funciona perfeitamente em todos os dispositivos. O site inclui uma interface multilíngue que suporta inglês, português e alemão, tornando-o acessível a um público mais amplo.\n\nO projeto demonstra minha experiência em práticas modernas de desenvolvimento web, incluindo renderização do lado do servidor, design responsivo e internacionalização. Serve tanto como uma vitrine do meu trabalho quanto como uma demonstração prática das minhas habilidades técnicas.',
+      de: 'Diese Portfolio-Website präsentiert meinen beruflichen Werdegang und meine Projekte in einer modernen, benutzerfreundlichen Oberfläche. Erstellt mit Next.js und Tailwind CSS, bietet sie ein responsives Design, das nahtlos auf allen Geräten funktioniert. Die Website enthält eine mehrsprachige Benutzeroberfläche, die Englisch, Portugiesisch und Deutsch unterstützt und damit ein breiteres Publikum erreicht.\n\nDas Projekt demonstriert meine Expertise in modernen Webentwicklungspraktiken, einschließlich Server-Side-Rendering, responsivem Design und Internationalisierung. Es dient sowohl als Präsentation meiner Arbeit als auch als praktische Demonstration meiner technischen Fähigkeiten.',
+    },
+    technologies: [
+      {
+        en: 'Next.js',
+        pt: 'Next.js',
+        de: 'Next.js',
+      },
+      {
+        en: 'TypeScript',
+        pt: 'TypeScript',
+        de: 'TypeScript',
+      },
+      {
+        en: 'Tailwind CSS',
+        pt: 'Tailwind CSS',
+        de: 'Tailwind CSS',
+      },
+      {
+        en: 'React',
+        pt: 'React',
+        de: 'React',
+      },
+      {
+        en: 'i18n',
+        pt: 'i18n',
+        de: 'i18n',
+      },
+    ],
+    color: 'blue',
+    icon: 'code',
+    links: {
+      github: 'https://github.com/viniciusbregoli/bregoli-dev',
+      website: 'https://bregoli-dev.vercel.app',
+    },
+    startDate: '2024',
+    projectType: {
+      en: 'Personal Project',
+      pt: 'Projeto Pessoal',
+      de: 'Persönliches Projekt',
+    },
+  },
 ];
 
 export function getProjectById(id: string): Project | undefined {

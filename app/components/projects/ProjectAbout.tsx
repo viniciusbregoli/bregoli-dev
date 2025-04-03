@@ -19,11 +19,11 @@ export default function ProjectAbout({ project, language }: ProjectAboutProps) {
       </h2>
       <div className="prose dark:prose-invert max-w-none">
         {project.detailedDescription ? (
-          <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line leading-relaxed">
+          <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line leading-relaxed text-lg">
             {project.detailedDescription[language] || project.detailedDescription.en}
           </p>
         ) : (
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
             {project.description[language] || project.description.en}
           </p>
         )}
