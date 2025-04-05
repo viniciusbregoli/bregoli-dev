@@ -8,24 +8,40 @@ export default function SoftSkills() {
 
   const softSkills = [
     {
-      category: 'Communication',
+      category: t('skills.soft.communication'),
       icon: <FaUsers className="w-7 h-7 text-white" />,
-      skills: ['Team Collaboration', 'Client Communication', 'Problem Solving'],
+      skills: [
+        t('skills.soft.teamCollaboration'),
+        t('skills.soft.clientCommunication'),
+        t('skills.soft.problemSolving'),
+      ],
     },
     {
-      category: 'Leadership',
+      category: t('skills.soft.leadership'),
       icon: <FaChartLine className="w-7 h-7 text-white" />,
-      skills: ['Project Management', 'Team Leadership', 'Strategic Planning'],
+      skills: [
+        t('skills.soft.projectManagement'),
+        t('skills.soft.teamLeadership'),
+        t('skills.soft.strategicPlanning'),
+      ],
     },
     {
-      category: 'Innovation',
+      category: t('skills.soft.innovation'),
       icon: <FaLightbulb className="w-7 h-7 text-white" />,
-      skills: ['Creative Thinking', 'Process Optimization', 'Technical Innovation'],
+      skills: [
+        t('skills.soft.creativeThinking'),
+        t('skills.soft.processOptimization'),
+        t('skills.soft.technicalInnovation'),
+      ],
     },
     {
-      category: 'Professional',
+      category: t('skills.soft.professional'),
       icon: <FaHandshake className="w-7 h-7 text-white" />,
-      skills: ['Agile Methodologies', 'Risk Management', 'Quality Assurance'],
+      skills: [
+        t('skills.soft.agileMethodologies'),
+        t('skills.soft.riskManagement'),
+        t('skills.soft.qualityAssurance'),
+      ],
     },
   ];
 
@@ -47,10 +63,10 @@ export default function SoftSkills() {
               {category.skills.map((skill, skillIndex) => (
                 <div
                   key={skillIndex}
-                  className="flex items-center space-x-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg px-5 py-3 transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center space-x-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg px-5 py-3 transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 h-[4.5rem]"
                 >
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-blue-400"></div>
-                  <span className="text-lg text-gray-700 dark:text-gray-200 font-medium">
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-blue-400 flex-shrink-0"></div>
+                  <span className="text-lg text-gray-700 dark:text-gray-200 font-medium break-words">
                     {skill}
                   </span>
                 </div>

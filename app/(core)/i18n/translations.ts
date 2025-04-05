@@ -120,6 +120,86 @@ export const translations: Translations = {
     pt: 'Habilidades Interpessoais',
     de: 'Soziale Kompetenzen',
   },
+  'skills.soft.communication': {
+    en: 'Communication',
+    pt: 'Comunicação',
+    de: 'Kommunikation',
+  },
+  'skills.soft.leadership': {
+    en: 'Leadership',
+    pt: 'Liderança',
+    de: 'Führung',
+  },
+  'skills.soft.innovation': {
+    en: 'Innovation',
+    pt: 'Inovação',
+    de: 'Innovation',
+  },
+  'skills.soft.professional': {
+    en: 'Professional',
+    pt: 'Profissional',
+    de: 'Beruflich',
+  },
+  'skills.soft.teamCollaboration': {
+    en: 'Team Collaboration',
+    pt: 'Colaboração em Equipe',
+    de: 'Teamarbeit',
+  },
+  'skills.soft.clientCommunication': {
+    en: 'Client Communication',
+    pt: 'Comunicação com Clientes',
+    de: 'Kundenkommunikation',
+  },
+  'skills.soft.problemSolving': {
+    en: 'Problem Solving',
+    pt: 'Resolução de Problemas',
+    de: 'Problemlösung',
+  },
+  'skills.soft.projectManagement': {
+    en: 'Project Management',
+    pt: 'Gerenciamento de Projetos',
+    de: 'Projektmanagement',
+  },
+  'skills.soft.teamLeadership': {
+    en: 'Team Leadership',
+    pt: 'Liderança de Equipe',
+    de: 'Teamführung',
+  },
+  'skills.soft.strategicPlanning': {
+    en: 'Strategic Planning',
+    pt: 'Planejamento Estratégico',
+    de: 'Strategische Planung',
+  },
+  'skills.soft.creativeThinking': {
+    en: 'Creative Thinking',
+    pt: 'Pensamento Criativo',
+    de: 'Kreatives Denken',
+  },
+  'skills.soft.processOptimization': {
+    en: 'Process Optimization',
+    pt: 'Otimização de Processos',
+    de: 'Prozessoptimierung',
+  },
+  'skills.soft.technicalInnovation': {
+    en: 'Technical Innovation',
+    pt: 'Inovação Técnica',
+    de: 'Technische Innovation',
+  },
+  'skills.soft.agileMethodologies': {
+    en: 'Agile Methodologies',
+    pt: 'Metodologias Ágeis',
+    de: 'Agile Methoden',
+  },
+  'skills.soft.riskManagement': {
+    en: 'Risk Management',
+    pt: 'Gerenciamento de Riscos',
+    de: 'Risikomanagement',
+  },
+  'skills.soft.qualityAssurance': {
+    en: 'Quality Assurance',
+    pt: 'Garantia de Qualidade',
+    de: 'Qualitätssicherung',
+  },
   'skills.languages': {
     en: 'Languages',
     pt: 'Idiomas',
