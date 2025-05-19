@@ -51,7 +51,7 @@ export default function Header() {
           </div>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/vinibregoli"
+              href="https://github.com/viniciusbregoli"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-300 hover:text-slate-800 dark:hover:text-white transition-colors duration-200"
