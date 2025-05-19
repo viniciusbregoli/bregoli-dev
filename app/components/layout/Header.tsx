@@ -59,7 +59,7 @@ export default function Header() {
               <FaGithub className="h-6 w-6" />
             </a>
             <a
-              href="https://linkedin.com/in/vinibregoli"
+              href="https://linkedin.com/in/viniciusbregoli"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-300 hover:text-slate-800 dark:hover:text-white transition-colors duration-200"
