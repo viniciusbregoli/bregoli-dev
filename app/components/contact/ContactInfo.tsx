@@ -28,7 +28,7 @@ export default function ContactInfo() {
               href="mailto:vinibregoli@gmail.com"
               className="text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-blue-300 transition-colors duration-200"
             >
-              vinibregoli@gmail.com
+              me@viniciusbregoli.dev
             </a>
           </div>
         </div>

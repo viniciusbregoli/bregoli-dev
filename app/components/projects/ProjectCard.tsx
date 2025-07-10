@@ -19,7 +19,7 @@ export default function ProjectCard({ project, language }: ProjectCardProps) {
   return (
     <Link
       href={`/projects/${project.id}`}
-      className="group block bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+      className="group bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
     >
       {/* Header with gradient background */}
       <div
@@ -55,20 +55,16 @@ export default function ProjectCard({ project, language }: ProjectCardProps) {
             />
           </div>
         )}
-
-        {/* Project Title */}
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          <h3 className="text-2xl font-bold text-white mb-2">
-            {project.title[language] || project.title.en}
-          </h3>
-          <p className="text-white/90 text-lg">
-            {project.description[language] || project.description.en}
-          </p>
-        </div>
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+          {project.title[language] || project.title.en}
+        </h3>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">
+          {project.description[language] || project.description.en}
+        </p>
         {/* Technologies */}
         <div className="flex flex-wrap gap-2 mb-4">
           {project.technologies.slice(0, 3).map((tech, index) => (
@@ -87,7 +83,7 @@ export default function ProjectCard({ project, language }: ProjectCardProps) {
         </div>
 
         {/* View Project Link */}
-        <div className="flex items-center text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-200">
+        <div className="mt-auto flex items-center text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-200">
           <span className="mr-2">
             {language === 'en'
               ? 'View Project'

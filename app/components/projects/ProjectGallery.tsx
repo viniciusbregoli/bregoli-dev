@@ -29,7 +29,11 @@ export default function ProjectGallery({ gallery, projectTitle, language }: Proj
             ? 'Galeria do Projeto'
             : 'Projektgalerie'}
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div
+        className={`grid gap-6 ${
+          gallery.length > 1 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'
+        }`}
+      >
         {gallery.map((image, index) => (
           <div
             key={index}

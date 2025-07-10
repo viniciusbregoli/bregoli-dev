@@ -51,9 +51,9 @@ export const projects: Project[] = [
       de: 'Mitglied des PUCPR Mobile Robotics Teams, Mitwirkung an der Entwicklung von Linienfolge-, Sumo-, Trekking- und Kampfrobotern. Teilnahme an Wettbewerben wie RoboCore Experience (RCX) und IRONCup.',
     },
     detailedDescription: {
-      en: 'As a member of the PUCPR Mobile Robotics Team, I had the opportunity to work with a talented group of engineers to design, build, and program various types of robots for competitions. Our team specialized in different robot categories including line followers, sumo robots, trekking robots, and combat robots.\n\nFor line follower robots, I worked on optimizing PID controllers to achieve faster and more accurate line tracking. The sumo robots required robust mechanical design and effective opponent detection strategies. The trekking robots involved advanced navigation algorithms to traverse complex terrains. Finally, the combat robots demanded durable construction and innovative weapon systems.\n\nWe participated in prominent robotics competitions like RoboCore Experience (RCX) and IRONCup, where we had the opportunity to test our creations against other university teams. These experiences helped me develop strong problem-solving skills, teamwork abilities, and practical knowledge of embedded systems programming.',
-      pt: 'Como membro da Equipe de Robótica Móvel da PUCPR, tive a oportunidade de trabalhar com um grupo talentoso de engenheiros para projetar, construir e programar vários tipos de robôs para competições. Nossa equipe se especializou em diferentes categorias de robôs, incluindo seguidores de linha, robôs de sumô, robôs de trekking e robôs de combate.\n\nPara os robôs seguidores de linha, trabalhei na otimização de controladores PID para obter um rastreamento de linha mais rápido e preciso. Os robôs de sumô requeriam design mecânico robusto e estratégias eficazes de detecção de oponentes. Os robôs de trekking envolviam algoritmos avançados de navegação para atravessar terrenos complexos. Finalmente, os robôs de combate exigiam construção durável e sistemas de armas inovadores.\n\nParticipamos de importantes competições de robótica como RoboCore Experience (RCX) e IRONCup, onde tivemos a oportunidade de testar nossas criações contra outras equipes universitárias. Essas experiências me ajudaram a desenvolver fortes habilidades de resolução de problemas, capacidades de trabalho em equipe e conhecimento prático de programação de sistemas embarcados.',
-      de: 'Als Mitglied des PUCPR Mobile Robotics Teams hatte ich die Gelegenheit, mit einer talentierten Gruppe von Ingenieuren zusammenzuarbeiten, um verschiedene Arten von Robotern für Wettbewerbe zu entwerfen, zu bauen und zu programmieren. Unser Team spezialisierte sich auf verschiedene Roboterkategorien, darunter Linienfolger, Sumo-Roboter, Trekking-Roboter und Kampfroboter.\n\nFür Linienfolger-Roboter arbeitete ich an der Optimierung von PID-Reglern, um eine schnellere und genauere Linienverfolgung zu erreichen. Die Sumo-Roboter erforderten ein robustes mechanisches Design und effektive Strategien zur Gegnererkennung. Die Trekking-Roboter beinhalteten fortschrittliche Navigationsalgorithmen, um komplexes Gelände zu durchqueren. Schließlich erforderten die Kampfroboter eine langlebige Konstruktion und innovative Waffensysteme.\n\nWir nahmen an prominenten Robotik-Wettbewerben wie RoboCore Experience (RCX) und IRONCup teil, wo wir die Gelegenheit hatten, unsere Kreationen gegen andere Universitätsteams zu testen. Diese Erfahrungen halfen mir, starke Problemlösungsfähigkeiten, Teamarbeitsfähigkeiten und praktisches Wissen über die Programmierung eingebetteter Systeme zu entwickeln.',
+      en: 'As a member of the PUCPR Mobile Robotics Team, I had the opportunity to work with a group of engineers to design, build, and program various types of robots for competitions. Our team specialized in different robot categories including line followers, sumo robots, trekking robots, and combat robots.\n\nFor line follower robots, I worked on optimizing PID controllers to achieve faster and more accurate line tracking. The sumo robots required robust mechanical design and effective opponent detection strategies. The trekking robots involved advanced navigation algorithms to traverse complex terrains. Finally, the combat robots demanded durable construction and innovative weapon systems.\n\nWe participated in robotics competitions like RoboCore Experience (RCX) and IRONCup, where we had the opportunity to test our creations against other university teams. These experiences helped me develop strong problem-solving skills, teamwork abilities, and practical knowledge of embedded systems programming.',
+      pt: 'Como membro da Equipe de Robótica Móvel da PUCPR, tive a oportunidade de trabalhar com um grupo de engenheiros para projetar, construir e programar vários tipos de robôs para competições. Nossa equipe se especializou em diferentes categorias de robôs, incluindo seguidores de linha, robôs de sumô, robôs de trekking e robôs de combate.\n\nPara os robôs seguidores de linha, trabalhei na otimização de controladores PID para obter um rastreamento de linha mais rápido e preciso. Os robôs de sumô requeriam design mecânico robusto e estratégias eficazes de detecção de oponentes. Os robôs de trekking envolviam algoritmos avançados de navegação para atravessar terrenos complexos. Finalmente, os robôs de combate exigiam construção durável e sistemas de armas inovadores.\n\nParticipamos de importantes competições de robótica como RoboCore Experience (RCX) e IRONCup, onde tivemos a oportunidade de testar nossas criações contra outras equipes universitárias. Essas experiências me ajudaram a desenvolver fortes habilidades de resolução de problemas, capacidades de trabalho em equipe e conhecimento prático de programação de sistemas embarcados.',
+      de: 'Als Mitglied des PUCPR Mobile Robotics Teams hatte ich die Gelegenheit, mit eine Gruppe von Ingenieuren zusammenzuarbeiten, um verschiedene Arten von Robotern für Wettbewerbe zu entwerfen, zu bauen und zu programmieren. Unser Team spezialisierte sich auf verschiedene Roboterkategorien, darunter Linienfolger, Sumo-Roboter, Trekking-Roboter und Kampfroboter.\n\nFür Linienfolger-Roboter arbeitete ich an der Optimierung von PID-Reglern, um eine schnellere und genauere Linienverfolgung zu erreichen. Die Sumo-Roboter erforderten ein robustes mechanisches Design und effektive Strategien zur Gegnererkennung. Die Trekking-Roboter beinhalteten fortschrittliche Navigationsalgorithmen, um komplexes Gelände zu durchqueren. Schließlich erforderten die Kampfroboter eine langlebige Konstruktion und innovative Waffensysteme.\n\nWir nahmen an prominenten Robotik-Wettbewerben wie RoboCore Experience (RCX) und IRONCup teil, wo wir die Gelegenheit hatten, unsere Kreationen gegen andere Universitätsteams zu testen. Diese Erfahrungen halfen mir, starke Problemlösungsfähigkeiten, Teamarbeitsfähigkeiten und praktisches Wissen über die Programmierung eingebetteter Systeme zu entwickeln.',
     },
     technologies: [
       {
@@ -170,14 +170,14 @@ export const projects: Project[] = [
       de: 'Persönliche Portfolio-Website',
     },
     description: {
-      en: 'A modern, responsive portfolio website built with Next.js and Tailwind CSS, featuring a multilingual interface and dynamic project showcase.',
-      pt: 'Um site de portfólio moderno e responsivo construído com Next.js e Tailwind CSS, apresentando uma interface multilíngue e exibição dinâmica de projetos.',
-      de: 'Eine moderne, responsive Portfolio-Website, erstellt mit Next.js und Tailwind CSS, mit mehrsprachiger Benutzeroberfläche und dynamischer Projektpräsentation.',
+      en: 'A portfolio website built with Next.js and Tailwind CSS, featuring a multilingual interface and dynamic project showcase.',
+      pt: 'Um site de portfólio construído com Next.js e Tailwind CSS, apresentando uma interface multilíngue e exibição dinâmica de projetos.',
+      de: 'Eine Portfolio-Website, erstellt mit Next.js und Tailwind CSS, mit mehrsprachiger Benutzeroberfläche und dynamischer Projektpräsentation.',
     },
     detailedDescription: {
-      en: 'This portfolio website showcases my professional journey and projects in a modern, user-friendly interface. Built with Next.js and Tailwind CSS, it features a responsive design that works seamlessly across all devices. The site includes a multilingual interface supporting English, Portuguese, and German, making it accessible to a wider audience.\n\nThe project demonstrates my expertise in modern web development practices, including server-side rendering, responsive design, and internationalization. It serves as both a showcase of my work and a practical demonstration of my technical skills.',
-      pt: 'Este site de portfólio apresenta minha jornada profissional e projetos em uma interface moderna e amigável. Construído com Next.js e Tailwind CSS, apresenta um design responsivo que funciona perfeitamente em todos os dispositivos. O site inclui uma interface multilíngue que suporta inglês, português e alemão, tornando-o acessível a um público mais amplo.\n\nO projeto demonstra minha experiência em práticas modernas de desenvolvimento web, incluindo renderização do lado do servidor, design responsivo e internacionalização. Serve tanto como uma vitrine do meu trabalho quanto como uma demonstração prática das minhas habilidades técnicas.',
-      de: 'Diese Portfolio-Website präsentiert meinen beruflichen Werdegang und meine Projekte in einer modernen, benutzerfreundlichen Oberfläche. Erstellt mit Next.js und Tailwind CSS, bietet sie ein responsives Design, das nahtlos auf allen Geräten funktioniert. Die Website enthält eine mehrsprachige Benutzeroberfläche, die Englisch, Portugiesisch und Deutsch unterstützt und damit ein breiteres Publikum erreicht.\n\nDas Projekt demonstriert meine Expertise in modernen Webentwicklungspraktiken, einschließlich Server-Side-Rendering, responsivem Design und Internationalisierung. Es dient sowohl als Präsentation meiner Arbeit als auch als praktische Demonstration meiner technischen Fähigkeiten.',
+      en: 'This portfolio website showcases my professional journey and projects. Built with Next.js and Tailwind CSS, it includes a multilingual interface supporting English, Portuguese, and German.\n\nThe project demonstrates my experience in modern web development practices, including server-side rendering, responsive design, and internationalization. It serves as both a showcase of my work and a practical demonstration of my technical skills.',
+      pt: 'Este site de portfólio apresenta minha jornada profissional e projetos. Construído com Next.js e Tailwind CSS, inclui uma interface multilíngue que suporta inglês, português e alemão.\n\nO projeto demonstra minha experiência em práticas modernas de desenvolvimento web, incluindo renderização do lado do servidor, design responsivo e internacionalização. Serve tanto como uma vitrine do meu trabalho quanto como uma demonstração prática das minhas habilidades técnicas.',
+      de: 'Diese Portfolio-Website präsentiert meinen beruflichen Werdegang und meine Projekte. Erstellt mit Next.js und Tailwind CSS, bietet sie eine mehrsprachige Benutzeroberfläche, die Englisch, Portugiesisch und Deutsch unterstützt.\n\nDas Projekt demonstriert meine Expertise in modernen Webentwicklungspraktiken, einschließlich Server-Side-Rendering, responsivem Design und Internationalisierung. Es dient sowohl als Präsentation meiner Arbeit als auch als praktische Demonstration meiner technischen Fähigkeiten.',
     },
     technologies: [
       {
@@ -208,11 +208,68 @@ export const projects: Project[] = [
     ],
     color: 'blue',
     icon: 'code',
+    gallery: ['/images/bregoli-dev.png'],
     links: {
       github: 'https://github.com/viniciusbregoli/bregoli-dev',
       website: 'https://bregoli-dev.vercel.app',
     },
     startDate: '2024',
+    projectType: {
+      en: 'Personal Project',
+      pt: 'Projeto Pessoal',
+      de: 'Persönliches Projekt',
+    },
+  },
+  {
+    id: 'computer-vision-project',
+    title: {
+      en: 'Computer Vision Project',
+      pt: 'Projeto de Visão Computacional',
+      de: 'Computer-Vision-Projekt',
+    },
+    description: {
+      en: 'A real-time computer vision application with advanced image processing, filtering, and hand gesture recognition.',
+      pt: 'Uma aplicação de visão computacional em tempo real com processamento avançado de imagem, filtragem e reconhecimento de gestos manuais.',
+      de: 'Eine Echtzeit-Computer-Vision-Anwendung mit erweiterter Bildverarbeitung, Filterung und Handgestenerkennung.',
+    },
+    detailedDescription: {
+      en: 'This project is a real-time computer vision application built with Python and OpenCV. It features a range of functionalities, including statistical analysis of image channels, adjustable linear transformations for brightness and contrast, and advanced filters like Gaussian blur, sharpening, and Canny edge detection. A key feature is the real-time hand detection using MediaPipe, which can recognize specific gestures like the Vulcan Salute, triggering special effects. The application is designed for ease of use with automatic camera detection and setup of a virtual camera for use in other applications like OBS. \nThis code was developed as the main project for the class of Computer Vision, taken in THI.',
+      pt: 'Este projeto é uma aplicação de visão computacional em tempo real construída com Python e OpenCV. Ele oferece uma gama de funcionalidades, incluindo análise estatística dos canais de imagem, transformações lineares ajustáveis para brilho e contraste, e filtros avançados como desfoque Gaussiano, nitidez e detecção de bordas Canny. Uma característica principal é a detecção de mãos em tempo real usando MediaPipe, que pode reconhecer gestos específicos como a Saudação Vulcana, acionando efeitos especiais. A aplicação é projetada para ser fácil de usar, com detecção automática de câmera e configuração de uma câmera virtual para uso em outras aplicações como o OBS. \nEste código foi desenvolvido como o projeto principal para a disciplina de Visão Computacional, cursada na THI.',
+      de: 'Dieses Projekt ist eine Echtzeit-Computer-Vision-Anwendung, die mit Python und OpenCV erstellt wurde. Es verfügt über eine Reihe von Funktionalitäten, einschließlich statistischer Analyse von Bildkanälen, einstellbaren linearen Transformationen für Helligkeit und Kontrast sowie fortschrittlichen Filtern wie Gaußschem Weichzeichner, Schärfen und Canny-Kantenerkennung. Ein Hauptmerkmal ist die Echtzeit-Hand-Erkennung mit MediaPipe, die spezifische Gesten wie den Vulkaniergruß erkennen kann, was spezielle Effekte auslöst. Die Anwendung ist für eine einfache Bedienung konzipiert, mit automatischer Kameraerkennung und Einrichtung einer virtuellen Kamera zur Verwendung in anderen Anwendungen wie OBS. \nDieser Code wurde als Hauptprojekt für den Kurs Computer Vision an der THI entwickelt.',
+    },
+    technologies: [
+      {
+        en: 'Python',
+        pt: 'Python',
+        de: 'Python',
+      },
+      {
+        en: 'OpenCV',
+        pt: 'OpenCV',
+        de: 'OpenCV',
+      },
+      {
+        en: 'MediaPipe',
+        pt: 'MediaPipe',
+        de: 'MediaPipe',
+      },
+      {
+        en: 'Image Processing',
+        pt: 'Processamento de Imagem',
+        de: 'Bildverarbeitung',
+      },
+      {
+        en: 'Gesture Recognition',
+        pt: 'Reconhecimento de Gestos',
+        de: 'Gestenerkennung',
+      },
+    ],
+    color: 'orange',
+    icon: 'code',
+    gallery: ['/images/vulcan_salute.png'],
+    links: {
+      github: 'https://github.com/viniciusbregoli/computer-vision-project',
+    },
     projectType: {
       en: 'Personal Project',
       pt: 'Projeto Pessoal',
