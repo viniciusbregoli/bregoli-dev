@@ -50,7 +50,7 @@ export default function ProjectCard({ project, language }: ProjectCardProps) {
               src={project.gallery[0]}
               alt={project.title[language] || project.title.en}
               fill
-              className="object-cover opacity-20"
+              className="object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-300"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
