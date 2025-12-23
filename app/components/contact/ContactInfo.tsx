@@ -41,7 +41,7 @@ export default function ContactInfo() {
           {
             icon: <FaMapMarkerAlt className="h-7 w-7" />,
             title: t('contact.location'),
-            value: 'Ingolstadt, Bavaria - Germany',
+            value: 'Curitiba, PR - Brazil',
             href: null,
             color: 'text-accent',
             bgColor: 'bg-accent/10',

@@ -46,9 +46,9 @@ export const translations: Translations = {
     de: 'Innovative Lösungen durch Technologie entwickeln',
   },
   'hero.description': {
-    en: 'I am a Computer Engineering student with hands-on experience in programming, fullstack development, IT infrastructure and AI. Skilled in tools like Python, React, source control and SQL, with a strong foundation in Linux and robotics. Currently enrolled at an exchange program at Technische Hochschule Ingolstadt at the Computer Science and AI course.',
-    pt: 'Sou estudante de Engenharia da Computação com experiência prática em programação, desenvolvimento fullstack, infraestrutura de TI e IA. Habilidades em ferramentas como Python, React, controle de versão e SQL, com uma base sólida em Linux e robótica. Atualmente matriculado em um programa de intercâmbio na Technische Hochschule Ingolstadt no curso de Ciência da Computação e IA.',
-    de: 'Ich bin ein Student der Informatik mit praktischer Erfahrung in Programmierung, Fullstack-Entwicklung, IT-Infrastruktur und KI. Kenntnisse in Tools wie Python, React, Quellcodeverwaltung und SQL, mit einer soliden Grundlage in Linux und Robotik. Derzeit eingeschrieben in einem Austauschprogramm an der Technischen Hochschule Ingolstadt im Studiengang Informatik und KI.',
+    en: 'I am a Computer Engineer with hands-on experience in programming, fullstack development, IT infrastructure and AI. Skilled in tools like Python, React, source control and SQL, with a strong foundation in Linux and robotics. I also completed an exchange program at Technische Hochschule Ingolstadt, focusing on Computer Science and AI.',
+    pt: 'Sou Engenheiro de Computação com experiência prática em programação, desenvolvimento fullstack, infraestrutura de TI e IA. Habilidades em ferramentas como Python, React, controle de versão e SQL, com uma base sólida em Linux e robótica. Também conclui um programa de intercâmbio na Technische Hochschule Ingolstadt, focado em Ciência da Computação e IA.',
+    de: 'Ich bin Informatikingenieur mit praktischer Erfahrung in Programmierung, Fullstack-Entwicklung, IT-Infrastruktur und KI. Kenntnisse in Tools wie Python, React, Quellcodeverwaltung und SQL, mit einer soliden Grundlage in Linux und Robotik. Ich habe außerdem ein Austauschprogramm an der Technischen Hochschule Ingolstadt mit Schwerpunkt Informatik und KI absolviert.',
   },
   'hero.cta': {
     en: 'Download Resume',

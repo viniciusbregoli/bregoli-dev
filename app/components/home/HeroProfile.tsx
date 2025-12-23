@@ -55,7 +55,7 @@ export default function HeroSection() {
                 </motion.div>
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 dark:text-white">
                   <span className="block">{t('hero.name')}</span>
-                  <span className="text-gradient">Portfolio</span>
+
                 </h1>
               </div>
 
