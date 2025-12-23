@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiExternalLink, FiCode, FiBookOpen, FiArrowRight } from 'react-icons/fi';
+import { FiCode, FiBookOpen, FiArrowRight } from 'react-icons/fi';
 import { Project } from '../../(features)/projects/projectData';
 import { Language } from '../../(core)/i18n/translations';
 import { getGradientByColor } from './GradientUtils';

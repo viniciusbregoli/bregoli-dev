@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../../(core)/i18n/context';
-import { FaGlobe, FaLanguage } from 'react-icons/fa';
+import { FaLanguage } from 'react-icons/fa';
 
 const containerVariants = {
   hidden: { opacity: 0 },
