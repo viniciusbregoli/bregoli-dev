@@ -1,7 +1,27 @@
-'use client';
-
+import { motion } from 'framer-motion';
 import { useLanguage } from '../../../(core)/i18n/context';
 import { FaUsers, FaLightbulb, FaHandshake, FaChartLine } from 'react-icons/fa';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
 
 export default function SoftSkills() {
   const { t } = useLanguage();
@@ -9,7 +29,7 @@ export default function SoftSkills() {
   const softSkills = [
     {
       category: t('skills.soft.communication'),
-      icon: <FaUsers className="w-7 h-7 text-white" />,
+      icon: <FaUsers className="w-6 h-6 text-primary" />,
       skills: [
         t('skills.soft.teamCollaboration'),
         t('skills.soft.clientCommunication'),
@@ -18,7 +38,7 @@ export default function SoftSkills() {
     },
     {
       category: t('skills.soft.leadership'),
-      icon: <FaChartLine className="w-7 h-7 text-white" />,
+      icon: <FaChartLine className="w-6 h-6 text-secondary" />,
       skills: [
         t('skills.soft.projectManagement'),
         t('skills.soft.teamLeadership'),
@@ -27,7 +47,7 @@ export default function SoftSkills() {
     },
     {
       category: t('skills.soft.innovation'),
-      icon: <FaLightbulb className="w-7 h-7 text-white" />,
+      icon: <FaLightbulb className="w-6 h-6 text-accent" />,
       skills: [
         t('skills.soft.creativeThinking'),
         t('skills.soft.processOptimization'),
@@ -36,7 +56,7 @@ export default function SoftSkills() {
     },
     {
       category: t('skills.soft.professional'),
-      icon: <FaHandshake className="w-7 h-7 text-white" />,
+      icon: <FaHandshake className="w-6 h-6 text-primary" />,
       skills: [
         t('skills.soft.agileMethodologies'),
         t('skills.soft.riskManagement'),
@@ -46,16 +66,29 @@ export default function SoftSkills() {
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:shadow-xl">
-      <h3 className="text-3xl font-semibold mb-8 text-gray-800 dark:text-blue-300">
-        {t('skills.soft')}
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      className="glass-morphism rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden"
+    >
+      <div className="absolute top-0 right-0 p-8 opacity-5">
+        <FaUsers className="w-32 h-32" />
+      </div>
+
+      <h3 className="text-3xl md:text-4xl font-bold mb-12 text-gray-900 dark:text-white">
+        <span className="text-gradient-rose">{t('skills.soft')}</span>
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {softSkills.map((category, index) => (
-          <div key={index} className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="bg-slate-500 dark:bg-blue-500 rounded-full p-3">{category.icon}</div>
-              <h4 className="text-xl font-medium text-gray-700 dark:text-gray-200">
+          <motion.div key={index} variants={itemVariants} className="space-y-6">
+            <div className="flex items-center space-x-4">
+              <div className="bg-primary/10 dark:bg-white/5 rounded-2xl p-4 shadow-inner">
+                {category.icon}
+              </div>
+              <h4 className="text-xl font-bold text-gray-800 dark:text-gray-100 italic">
                 {category.category}
               </h4>
             </div>
@@ -63,18 +96,15 @@ export default function SoftSkills() {
               {category.skills.map((skill, skillIndex) => (
                 <div
                   key={skillIndex}
-                  className="flex items-center space-x-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg px-5 py-3 transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 h-[4.5rem]"
+                  className="bg-white/50 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-xl px-5 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 shadow-sm"
                 >
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-blue-400 flex-shrink-0"></div>
-                  <span className="text-lg text-gray-700 dark:text-gray-200 font-medium break-words">
-                    {skill}
-                  </span>
+                  {skill}
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

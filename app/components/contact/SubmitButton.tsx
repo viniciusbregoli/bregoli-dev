@@ -1,5 +1,7 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 interface SubmitButtonProps {
   isSubmitting: boolean;
   label: string;
@@ -7,15 +9,17 @@ interface SubmitButtonProps {
 
 export default function SubmitButton({ isSubmitting, label }: SubmitButtonProps) {
   return (
-    <button
+    <motion.button
       type="submit"
       disabled={isSubmitting}
-      className="w-full bg-slate-600 hover:bg-slate-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-4 px-6 rounded-lg transition duration-300 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed text-lg"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className="w-full bg-gradient-to-r from-primary to-secondary text-white font-black uppercase tracking-widest py-5 px-8 rounded-2xl shadow-xl transition-all duration-300 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed text-sm"
     >
       {isSubmitting ? (
         <>
           <svg
-            className="animate-spin -ml-1 mr-3 h-6 w-6 text-white"
+            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -39,6 +43,6 @@ export default function SubmitButton({ isSubmitting, label }: SubmitButtonProps)
       ) : (
         label
       )}
-    </button>
+    </motion.button>
   );
 }

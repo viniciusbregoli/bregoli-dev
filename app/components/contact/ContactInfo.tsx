@@ -7,60 +7,71 @@ export default function ContactInfo() {
   const { t } = useLanguage();
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:shadow-xl">
-      <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-blue-300">
-        {t('contact.getInTouch')}
+    <div className="glass-morphism rounded-[2.5rem] p-10 md:p-14 shadow-2xl border border-white/20 dark:border-white/10 transition-all duration-500 relative overflow-hidden h-full">
+      {/* Decorative accent */}
+      <div className="absolute top-0 right-0 p-8 opacity-10">
+        <FaEnvelope className="w-32 h-32" />
+      </div>
+
+      <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
+        <span className="text-gradient-rose">{t('contact.getInTouch')}</span>
       </h2>
-      <p className="mb-8 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+      <p className="mb-12 text-gray-700 dark:text-gray-300 text-xl leading-relaxed font-medium">
         {t('contact.description')}
       </p>
 
-      <div className="space-y-6">
-        <div className="flex items-start group">
-          <div className="bg-slate-100 dark:bg-blue-900 p-3 rounded-xl mr-4 transform transition-transform duration-300 group-hover:scale-110">
-            <FaEnvelope className="h-6 w-6 text-slate-600 dark:text-blue-300" />
+      <div className="space-y-10">
+        {[
+          {
+            icon: <FaEnvelope className="h-7 w-7" />,
+            title: t('contact.email'),
+            value: 'me@viniciusbregoli.dev',
+            href: 'mailto:me@viniciusbregoli.dev',
+            color: 'text-primary',
+            bgColor: 'bg-primary/10',
+          },
+          {
+            icon: <FaLinkedin className="h-7 w-7" />,
+            title: 'LinkedIn',
+            value: 'linkedin.com/in/viniciusbregoli',
+            href: 'https://linkedin.com/in/viniciusbregoli',
+            color: 'text-secondary',
+            bgColor: 'bg-secondary/10',
+          },
+          {
+            icon: <FaMapMarkerAlt className="h-7 w-7" />,
+            title: t('contact.location'),
+            value: 'Ingolstadt, Bavaria - Germany',
+            href: null,
+            color: 'text-accent',
+            bgColor: 'bg-accent/10',
+          },
+        ].map((item, index) => (
+          <div key={index} className="flex items-center group">
+            <div className={`${item.bgColor} ${item.color} p-5 rounded-[1.5rem] mr-6 shadow-inner group-hover:scale-110 transition-transform duration-300 border border-white/10`}>
+              {item.icon}
+            </div>
+            <div>
+              <h3 className="text-xs uppercase font-black tracking-widest text-gray-400 dark:text-gray-500 mb-1">
+                {item.title}
+              </h3>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="text-xl font-bold text-gray-800 dark:text-gray-100 hover:text-primary transition-colors"
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <p className="text-xl font-bold text-gray-800 dark:text-gray-100">
+                  {item.value}
+                </p>
+              )}
+            </div>
           </div>
-          <div>
-            <h3 className="font-medium text-gray-800 dark:text-white text-lg mb-1">
-              {t('contact.email')}
-            </h3>
-            <a
-              href="mailto:vinibregoli@gmail.com"
-              className="text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-blue-300 transition-colors duration-200"
-            >
-              me@viniciusbregoli.dev
-            </a>
-          </div>
-        </div>
-
-        <div className="flex items-start group">
-          <div className="bg-slate-100 dark:bg-blue-900 p-3 rounded-xl mr-4 transform transition-transform duration-300 group-hover:scale-110">
-            <FaLinkedin className="h-6 w-6 text-slate-600 dark:text-blue-300" />
-          </div>
-          <div>
-            <h3 className="font-medium text-gray-800 dark:text-white text-lg mb-1">LinkedIn</h3>
-            <a
-              href="https://linkedin.com/in/viniciusbregoli"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-blue-300 transition-colors duration-200"
-            >
-              linkedin.com/in/viniciusbregoli
-            </a>
-          </div>
-        </div>
-
-        <div className="flex items-start group">
-          <div className="bg-slate-100 dark:bg-blue-900 p-3 rounded-xl mr-4 transform transition-transform duration-300 group-hover:scale-110">
-            <FaMapMarkerAlt className="h-6 w-6 text-slate-600 dark:text-blue-300" />
-          </div>
-          <div>
-            <h3 className="font-medium text-gray-800 dark:text-white text-lg mb-1">
-              {t('contact.location')}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400">Ingolstadt, Bavaria - Germany</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

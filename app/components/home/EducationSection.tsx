@@ -1,27 +1,62 @@
-// app/components/home/EducationSection.tsx
 'use client';
 
+import { motion } from 'framer-motion';
 import { useLanguage } from '../../(core)/i18n/context';
 import SectionTitle from '../common/SectionTitle';
 import EducationCard from './education/EducationCard';
 import { getEducationData } from './education/educationData';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+};
+
 export default function EducationSection() {
   const { language } = useLanguage();
   const educations = getEducationData();
 
+  const title = language === 'en' ? 'Education' : language === 'pt' ? 'Educação' : 'Bildung';
+
   return (
-    <div className="py-10 bg-gradient-to-b from-gray-50 via-slate-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="max-w-6xl mx-auto px-4">
-        <SectionTitle className="text-gray-800 dark:text-amber-300">
-          {language === 'en' ? 'Education' : language === 'pt' ? 'Educação' : 'Bildung'}
+    <div id="education" className="py-24 relative overflow-hidden">
+      {/* Decorative background element */}
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -z-10" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <SectionTitle className="text-gray-900 dark:text-white mb-20">
+          <span className="text-gradient-rose">{title}</span>
         </SectionTitle>
 
-        <div className="space-y-8 mt-12">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="space-y-12"
+        >
           {educations.map((education, index) => (
-            <EducationCard key={index} education={education} currentLanguage={language} />
+            <motion.div key={index} variants={itemVariants}>
+              <EducationCard education={education} currentLanguage={language} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -25,6 +25,61 @@ export interface ExperienceType {
 export function getExperienceData(): ExperienceType[] {
   return [
     {
+      company: 'Kinebot',
+      position: {
+        en: 'Machine Learning and AI Junior Developer',
+        pt: 'Desenvolvedor Junior de IA e Machine Learning',
+        de: 'Junior Entwickler für KI und Maschinelles Lernen',
+      },
+      period: {
+        en: 'Sept 2025 - Present',
+        pt: 'Set 2025 - Atual',
+        de: 'Sept 2025 - Heute',
+      },
+      description: {
+        en: 'Working on cutting-edge AI, Machine Learning, and ergonomic solutions. Developing and implementing intelligent algorithms to solve complex automation problems and improve robot decision-making processes.',
+        pt: 'Trabalhando em soluções de ponta de IA, Machine Learning e soluções ergonômicas. Desenvolvendo e implementando algoritmos inteligentes para resolver problemas complexos de automação e melhorar processos de tomada de decisão robótica.',
+        de: 'Arbeit an modernsten KI-, Machine-Learning- und ergonomischen Lösungen. Entwicklung und Implementierung intelligenter Algorithmen zur Lösung komplexer Automatisierungsprobleme und zur Verbesserung robotergestützter Entscheidungsprozesse.',
+      },
+      technologies: [
+        { en: 'Python', pt: 'Python', de: 'Python' },
+        { en: 'Machine Learning', pt: 'Machine Learning', de: 'Maschinelles Lernen' },
+        { en: 'Artificial Intelligence', pt: 'IA', de: 'KI' },
+        { en: 'Deep Learning', pt: 'Deep Learning', de: 'Deep Learning' },
+        { en: 'Computer Vision', pt: 'Visão Computacional', de: 'Computer Vision' },
+      ],
+      location: 'Brazil',
+      icon: 'robot',
+      image: '/images/fiep.jpg'
+    },
+    {
+      company: 'Technische Hochschule Ingolstadt',
+      position: {
+        en: 'Exchange Program - Computer Science & AI',
+        pt: 'Intercâmbio - Ciência da Computação e IA',
+        de: 'Austauschprogramm - Informatik & KI',
+      },
+      period: {
+        en: 'Sept 2024 - Aug 2025',
+        pt: 'Set 2024 - Ago 2025',
+        de: 'Sept 2024 - Aug 2025',
+      },
+      description: {
+        en: 'International exchange program focusing on advanced topics in Computer Science and Artificial Intelligence. Gained hands-on experience with German engineering standards and collaborated on international research projects.',
+        pt: 'Programa de intercâmbio internacional focado em tópicos avançados de Ciência da Computação e Inteligência Artificial. Experiência prática com padrões de engenharia alemães e colaboração em projetos de pesquisa internacionais.',
+        de: 'Internationales Austauschprogramm mit Schwerpunkt auf fortgeschrittenen Themen der Informatik und Künstlichen Intelligenz. Praktische Erfahrung mit deutschen Ingenieurstandards und Mitarbeit an internationalen Forschungsprojekten.',
+      },
+      technologies: [
+        { en: 'AI Principles', pt: 'Princípios de IA', de: 'KI-Prinzipien' },
+        { en: 'Computer Science', pt: 'Ciência da Computação', de: 'Informatik' },
+        { en: 'German Standards', pt: 'Padrões Alemães', de: 'Deutsche Standards' },
+        { en: 'Research', pt: 'Pesquisa', de: 'Forschung' },
+      ],
+      location: 'Ingolstadt, Germany',
+      icon: 'code',
+      image: '/images/thi.jpg'
+    },
+    {
       company: 'Exati Tecnologias',
       position: {
         en: 'Web Development Intern',

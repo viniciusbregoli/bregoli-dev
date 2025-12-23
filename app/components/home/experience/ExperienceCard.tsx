@@ -27,40 +27,47 @@ export default function ExperienceCard({ experience, currentLanguage }: Experien
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 transform transition-all duration-300 hover:shadow-xl border border-gray-100 dark:border-gray-700">
-      <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
-        <div className="flex items-start space-x-4">
-          <div className="bg-slate-100 dark:bg-slate-900/30 rounded-lg p-3">{getIcon()}</div>
-          <div className="text-left">
-            <ExperienceHeader
-              company={experience.company}
-              position={experience.position[currentLanguage] || experience.position.en || ''}
+    <div className="glass-morphism rounded-3xl p-8 shadow-xl border border-white/20 dark:border-white/10 hover:shadow-primary/10 transition-all duration-500 group relative">
+      <div className="flex flex-col gap-6">
+        {/* Header Section */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="bg-primary/10 dark:bg-primary/20 rounded-2xl p-3 shadow-inner group-hover:scale-110 transition-transform duration-300">
+              {getIcon()}
+            </div>
+            <div>
+              <ExperienceHeader
+                company={experience.company}
+                position={experience.position[currentLanguage] || experience.position.en || ''}
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider">
+            <div className="flex items-center px-3 py-1.5 rounded-full bg-primary/5 text-primary border border-primary/10">
+              <FiCalendar className="mr-2" />
+              {experience.period[currentLanguage] || experience.period.en}
+            </div>
+            <div className="flex items-center px-3 py-1.5 rounded-full bg-secondary/5 text-secondary border border-secondary/10">
+              <FiMapPin className="mr-2" />
+              {experience.location}
+            </div>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="space-y-6">
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+            {experience.description[currentLanguage] || experience.description.en}
+          </p>
+
+          <div className="pt-4 border-t border-gray-100 dark:border-white/5">
+            <TechnologyBadges
+              technologies={experience.technologies}
+              currentLanguage={currentLanguage}
             />
           </div>
         </div>
-        <div className="mt-4 md:mt-0 flex flex-col md:items-end space-y-2">
-          <div className="flex items-center text-gray-700 dark:text-gray-300">
-            <FiCalendar className="mr-2 text-slate-500 dark:text-slate-400" />
-            <span className="font-medium">
-              {experience.period[currentLanguage] || experience.period.en}
-            </span>
-          </div>
-          <div className="flex items-center text-gray-700 dark:text-gray-300">
-            <FiMapPin className="mr-2 text-slate-500 dark:text-slate-400" />
-            <span className="font-medium">{experience.location}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-gray-100 dark:border-gray-700 pt-6">
-        <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-left">
-          {experience.description[currentLanguage] || experience.description.en}
-        </p>
-
-        <TechnologyBadges
-          technologies={experience.technologies}
-          currentLanguage={currentLanguage}
-        />
       </div>
     </div>
   );

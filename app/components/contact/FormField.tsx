@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 
 interface FormFieldProps {
   type: 'text' | 'email' | 'textarea';
@@ -23,17 +24,19 @@ export default function FormField({
   error,
   label,
   placeholder,
-  rows = 3,
+  rows = 4,
 }: FormFieldProps) {
-  const baseClassName = `w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 border transition-colors duration-200 ${
-    error
-      ? 'border-red-500 focus:ring-red-500 dark:border-red-500'
-      : 'border-slate-200 focus:ring-slate-400 dark:border-gray-600 dark:focus:ring-blue-500'
-  }`;
+  const baseClassName = `w-full px-6 py-4 rounded-2xl focus:outline-none bg-white/50 dark:bg-white/5 backdrop-blur-md border transition-all duration-300 ${error
+    ? 'border-red-500/50 focus:border-red-500'
+    : 'border-gray-200 dark:border-white/10 focus:border-primary/50 dark:focus:border-primary/50 focus:ring-4 focus:ring-primary/10'
+    } text-lg text-gray-800 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-600`;
 
   return (
-    <div>
-      <label htmlFor={id} className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+    <div className="group">
+      <label
+        htmlFor={id}
+        className="block text-sm font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3 group-focus-within:text-primary transition-colors"
+      >
         {label}
       </label>
       {type === 'textarea' ? (
@@ -57,7 +60,16 @@ export default function FormField({
           placeholder={placeholder}
         />
       )}
-      {error && <p className="mt-1 text-red-600 dark:text-red-400 text-sm">{error}</p>}
+      {error && (
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-2 text-red-500 font-bold text-sm flex items-center gap-2"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+          {error}
+        </motion.p>
+      )}
     </div>
   );
 }

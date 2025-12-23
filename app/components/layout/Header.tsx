@@ -22,20 +22,19 @@ export default function Header() {
   ];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 shadow-md">
-      <nav className="flex flex-col sm:flex-row items-center h-auto min-h-20 bg-slate-50 dark:bg-gray-900 py-3 sm:py-0">
+    <header className="fixed top-0 left-0 right-0 z-50 p-4">
+      <nav className="max-w-7xl mx-auto glass-morphism rounded-2xl md:rounded-full px-6 py-2 md:h-16 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg shadow-black/5">
         {/* Navigation */}
-        <div className="flex w-full px-4 sm:ml-4 md:ml-8 lg:ml-24 gap-2 overflow-x-auto whitespace-nowrap mb-3 sm:mb-0">
+        <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              aria-current={router === item.href ? 'page' : undefined}
               className={classNames(
                 router === item.href
-                  ? 'bg-slate-100 dark:bg-gray-800 text-slate-800 dark:text-white'
-                  : 'text-gray-600 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 hover:text-slate-800 dark:hover:text-white',
-                'rounded-md px-3 py-2 text-sm sm:text-base md:text-xl font-medium flex-shrink-0 transition-colors duration-200',
+                  ? 'bg-primary/10 text-primary dark:bg-primary/20'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary hover:bg-primary/5',
+                'rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300',
               )}
             >
               {item.name}
@@ -43,32 +42,33 @@ export default function Header() {
           ))}
         </div>
 
-        {/* Theme, Language and Socials in one container on mobile */}
-        <div className="flex items-center gap-4 px-4 sm:px-6 md:px-8 lg:px-12">
-          <div className="flex items-center gap-4">
+        {/* Actions & Socials */}
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2 border-r border-gray-200 dark:border-white/10 pr-6">
             <ThemeToggle />
             <LanguageSelector />
           </div>
+
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/viniciusbregoli"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-300 hover:text-slate-800 dark:hover:text-white transition-colors duration-200"
+              className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-all duration-300 hover:scale-110"
             >
-              <FaGithub className="h-6 w-6" />
+              <FaGithub className="h-5 w-5" />
             </a>
             <a
               href="https://linkedin.com/in/viniciusbregoli"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-300 hover:text-slate-800 dark:hover:text-white transition-colors duration-200"
+              className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-all duration-300 hover:scale-110"
             >
-              <FaLinkedin className="h-6 w-6" />
+              <FaLinkedin className="h-5 w-5" />
             </a>
           </div>
         </div>
       </nav>
-    </div>
+    </header>
   );
 }
