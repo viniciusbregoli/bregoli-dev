@@ -29,10 +29,10 @@ const itemVariants = {
 };
 
 export default function EducationSection() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const educations = getEducationData();
 
-  const title = language === 'en' ? 'Education' : language === 'pt' ? 'Educação' : 'Bildung';
+  const title = t('education.title');
 
   return (
     <div id="education" className="py-24 relative overflow-hidden">

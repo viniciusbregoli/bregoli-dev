@@ -95,7 +95,7 @@ export default function HeroSection() {
                   href="#experience"
                   className="inline-flex items-center justify-center px-8 py-4 font-bold text-gray-700 dark:text-white transition-all duration-200 bg-white/50 dark:bg-white/10 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-xl hover:bg-white dark:hover:bg-white/20 focus:outline-none"
                 >
-                  View Experience
+                  {t('hero.viewExperience')}
                 </a>
               </motion.div>
             </div>

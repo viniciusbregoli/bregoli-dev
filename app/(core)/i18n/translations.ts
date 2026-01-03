@@ -55,6 +55,11 @@ export const translations: Translations = {
     pt: 'Baixar Currículo',
     de: 'Lebenslauf Herunterladen',
   },
+  'hero.viewExperience': {
+    en: 'View Experience',
+    pt: 'Ver Experiência',
+    de: 'Erfahrung Ansehen',
+  },
 
   // Goals Section
   'goals.title': {
@@ -68,19 +73,19 @@ export const translations: Translations = {
     de: 'Vision',
   },
   'goals.shortTermDesc': {
-    en: 'As a Computer Engineer, I am committed to developing innovative products and services that transform businesses and positively impact people\'s lives. I believe technology should be a force for good, capable of solving complex challenges and improving quality of life across communities.',
-    pt: 'Como engenheiro de computação, meu compromisso é desenvolver produtos e serviços inovadores que transformem negócios e impactem positivamente a vida das pessoas. Acredito que a tecnologia deve ser uma força para o bem, capaz de resolver desafios complexos e melhorar a qualidade de vida em diversas comunidades.',
-    de: 'Als Informatikingenieur setze ich mich für die Entwicklung innovativer Produkte und Dienstleistungen ein, die Unternehmen transformieren und das Leben der Menschen positiv beeinflussen. Ich glaube, dass Technologie eine Kraft zum Guten sein sollte, die komplexe Herausforderungen lösen und die Lebensqualität in verschiedenen Gemeinschaften verbessern kann.',
+    en: 'Build useful tools. Solve real problems. Keep learning. I enjoy taking on technical challenges and finding solutions that actually work, not just in theory.',
+    pt: 'Construir ferramentas úteis. Resolver problemas reais. Continuar aprendendo. Gosto de encarar desafios técnicos e encontrar soluções que realmente funcionam, não apenas na teoria.',
+    de: 'Nützliche Tools bauen. Echte Probleme lösen. Weiter lernen. Ich mag es, technische Herausforderungen anzunehmen und Lösungen zu finden, die wirklich funktionieren, nicht nur in der Theorie.',
   },
   'goals.longTerm': {
-    en: 'Commitment',
-    pt: 'Compromisso',
-    de: 'Engagement',
+    en: 'Approach',
+    pt: 'Abordagem',
+    de: 'Ansatz',
   },
   'goals.longTermDesc': {
-    en: 'I am dedicated to creating tools that help companies optimize processes and increase productivity while being socially responsible. I believe in technology as a means to democratize access to information and create a more just and sustainable world.',
-    pt: 'Estou dedicado a criar ferramentas que ajudem empresas a otimizar processos e aumentar a produtividade, mantendo a responsabilidade social. Acredito na tecnologia como meio para democratizar o acesso à informação e criar um mundo mais justo e sustentável.',
-    de: 'Ich bin bestrebt, Tools zu entwickeln, die Unternehmen helfen, Prozesse zu optimieren und die Produktivität zu steigern, während sie sozial verantwortlich bleiben. Ich glaube an Technologie als Mittel zur Demokratisierung des Informationszugangs und zur Schaffung einer gerechteren und nachhaltigeren Welt.',
+    en: 'I prefer working close to the code - debugging, experimenting, and iterating until things work right. Currently exploring AI and computer vision, always looking for the next thing to learn.',
+    pt: 'Prefiro trabalhar perto do código - debugando, experimentando e iterando até que as coisas funcionem. Atualmente explorando IA e visão computacional, sempre buscando a próxima coisa para aprender.',
+    de: 'Ich arbeite am liebsten nah am Code - debuggen, experimentieren und iterieren, bis alles richtig funktioniert. Aktuell erforsche ich KI und Computer Vision, immer auf der Suche nach dem nächsten Lernziel.',
   },
 
   // About Section
@@ -222,6 +227,16 @@ export const translations: Translations = {
     pt: 'Ver detalhes',
     de: 'Details anzeigen',
   },
+  'projects.viewProject': {
+    en: 'View Project',
+    pt: 'Ver Projeto',
+    de: 'Projekt Ansehen',
+  },
+  'projects.project': {
+    en: 'Project',
+    pt: 'Projeto',
+    de: 'Projekt',
+  },
   'projects.backToProjects': {
     en: 'Back to Projects',
     pt: 'Voltar para Projetos',
@@ -328,6 +343,51 @@ export const translations: Translations = {
     en: 'Thank you! Your message has been sent successfully. I will get back to you soon.',
     pt: 'Obrigado! Sua mensagem foi enviada com sucesso. Entrarei em contato em breve.',
     de: 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Ich werde mich bald bei Ihnen melden.',
+  },
+  'contact.submitError': {
+    en: 'There was a problem sending your message. Please try again later.',
+    pt: 'Houve um problema ao enviar sua mensagem. Por favor, tente novamente mais tarde.',
+    de: 'Beim Senden Ihrer Nachricht ist ein Problem aufgetreten. Bitte versuchen Sie es später erneut.',
+  },
+  'contact.validation.nameRequired': {
+    en: 'Name is required',
+    pt: 'Nome é obrigatório',
+    de: 'Name ist erforderlich',
+  },
+  'contact.validation.emailRequired': {
+    en: 'Email is required',
+    pt: 'Email é obrigatório',
+    de: 'E-Mail ist erforderlich',
+  },
+  'contact.validation.emailInvalid': {
+    en: 'Please enter a valid email address',
+    pt: 'Por favor, insira um endereço de email válido',
+    de: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
+  },
+  'contact.validation.messageRequired': {
+    en: 'Message is required',
+    pt: 'Mensagem é obrigatória',
+    de: 'Nachricht ist erforderlich',
+  },
+  'contact.validation.messageTooShort': {
+    en: 'Message must be at least 10 characters long',
+    pt: 'A mensagem deve ter pelo menos 10 caracteres',
+    de: 'Die Nachricht muss mindestens 10 Zeichen lang sein',
+  },
+  'contact.placeholder.name': {
+    en: 'Your name',
+    pt: 'Seu nome',
+    de: 'Ihr Name',
+  },
+  'contact.placeholder.email': {
+    en: 'your-email@example.com',
+    pt: 'seu-email@exemplo.com',
+    de: 'ihre-email@beispiel.de',
+  },
+  'contact.placeholder.message': {
+    en: 'Your message here...',
+    pt: 'Sua mensagem aqui...',
+    de: 'Ihre Nachricht hier...',
   },
 
   // Footer

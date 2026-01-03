@@ -20,7 +20,7 @@ type FormErrors = {
 };
 
 export default function ContactForm() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -47,51 +47,26 @@ export default function ContactForm() {
 
     // Validate name
     if (!formData.name.trim()) {
-      newErrors.name =
-        language === 'en'
-          ? 'Name is required'
-          : language === 'pt'
-            ? 'Nome é obrigatório'
-            : 'Name ist erforderlich';
+      newErrors.name = t('contact.validation.nameRequired');
       isValid = false;
     }
 
     // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email =
-        language === 'en'
-          ? 'Email is required'
-          : language === 'pt'
-            ? 'Email é obrigatório'
-            : 'E-Mail ist erforderlich';
+      newErrors.email = t('contact.validation.emailRequired');
       isValid = false;
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email =
-        language === 'en'
-          ? 'Please enter a valid email address'
-          : language === 'pt'
-            ? 'Por favor, insira um endereço de email válido'
-            : 'Bitte geben Sie eine gültige E-Mail-Adresse ein';
+      newErrors.email = t('contact.validation.emailInvalid');
       isValid = false;
     }
 
     // Validate message
     if (!formData.message.trim()) {
-      newErrors.message =
-        language === 'en'
-          ? 'Message is required'
-          : language === 'pt'
-            ? 'Mensagem é obrigatória'
-            : 'Nachricht ist erforderlich';
+      newErrors.message = t('contact.validation.messageRequired');
       isValid = false;
     } else if (formData.message.trim().length < 10) {
-      newErrors.message =
-        language === 'en'
-          ? 'Message must be at least 10 characters long'
-          : language === 'pt'
-            ? 'A mensagem deve ter pelo menos 10 caracteres'
-            : 'Die Nachricht muss mindestens 10 Zeichen lang sein';
+      newErrors.message = t('contact.validation.messageTooShort');
       isValid = false;
     }
 
@@ -127,13 +102,7 @@ export default function ContactForm() {
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       console.error('Error submitting form:', error);
-      setSubmitError(
-        language === 'en'
-          ? 'There was a problem sending your message. Please try again later.'
-          : language === 'pt'
-            ? 'Houve um problema ao enviar sua mensagem. Por favor, tente novamente mais tarde.'
-            : 'Beim Senden Ihrer Nachricht ist ein Problem aufgetreten. Bitte versuchen Sie es später erneut.',
-      );
+      setSubmitError(t('contact.submitError'));
     } finally {
       setIsSubmitting(false);
     }
@@ -153,7 +122,7 @@ export default function ContactForm() {
         onChange={handleChange}
         error={errors.name}
         label={t('contact.name')}
-        placeholder={language === 'en' ? 'Your name' : language === 'pt' ? 'Seu nome' : 'Ihr Name'}
+        placeholder={t('contact.placeholder.name')}
       />
 
       <FormField
@@ -164,13 +133,7 @@ export default function ContactForm() {
         onChange={handleChange}
         error={errors.email}
         label={t('contact.emailField')}
-        placeholder={
-          language === 'en'
-            ? 'your-email@example.com'
-            : language === 'pt'
-              ? 'seu-email@exemplo.com'
-              : 'ihre-email@beispiel.de'
-        }
+        placeholder={t('contact.placeholder.email')}
       />
 
       <FormField
@@ -181,13 +144,7 @@ export default function ContactForm() {
         onChange={handleChange}
         error={errors.message}
         label={t('contact.message')}
-        placeholder={
-          language === 'en'
-            ? 'Your message here...'
-            : language === 'pt'
-              ? 'Sua mensagem aqui...'
-              : 'Ihre Nachricht hier...'
-        }
+        placeholder={t('contact.placeholder.message')}
         rows={5}
       />
 

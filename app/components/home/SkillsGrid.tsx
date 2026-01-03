@@ -12,7 +12,7 @@ export default function SkillsSection() {
   return (
     <div id="skills" className="py-24 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4">
-        <SectionTitle className="text-gray-800 dark:text-rose-300">
+        <SectionTitle className="text-gray-800 dark:text-cyan-300">
           {t('skills.title')}
         </SectionTitle>
 

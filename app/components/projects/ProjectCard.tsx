@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FiCode, FiBookOpen, FiArrowRight } from 'react-icons/fi';
 import { Project } from '../../(features)/projects/projectData';
-import { Language } from '../../(core)/i18n/translations';
+import { Language, translations } from '../../(core)/i18n/translations';
 import { getGradientByColor } from './GradientUtils';
 
 interface ProjectCardProps {
@@ -94,11 +94,7 @@ export default function ProjectCard({ project, language }: ProjectCardProps) {
           {/* Action Link */}
           <div className="flex items-center text-primary font-bold text-lg group/link">
             <span className="mr-3">
-              {language === 'en'
-                ? 'View Case Study'
-                : language === 'pt'
-                  ? 'Ver Detalhes'
-                  : 'Details ansehen'}
+              {translations['projects.viewProject'][language] || translations['projects.viewProject'].en}
             </span>
             <div className="bg-primary/10 p-2 rounded-full group-hover/link:bg-primary group-hover/link:text-white transition-all duration-300">
               <FiArrowRight />

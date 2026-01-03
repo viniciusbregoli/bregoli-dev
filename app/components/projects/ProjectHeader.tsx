@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiChevronLeft } from 'react-icons/fi';
 import { Project } from '../../(features)/projects/projectData';
-import { Language } from '../../(core)/i18n/translations';
+import { Language, translations } from '../../(core)/i18n/translations';
 
 interface ProjectHeaderProps {
   project: Project;
@@ -38,11 +38,7 @@ export default function ProjectHeader({ project, language, gradient }: ProjectHe
             className="group inline-flex items-center text-white bg-white/10 backdrop-blur-md hover:bg-white/20 px-6 py-3 rounded-2xl font-bold transition-all duration-300 border border-white/20 shadow-xl"
           >
             <FiChevronLeft className="mr-2 group-hover:-translate-x-1 transition-transform" />
-            {language === 'en'
-              ? 'Back to Projects'
-              : language === 'pt'
-                ? 'Voltar para Projetos'
-                : 'Zurück zu Projekten'}
+            {translations['projects.backToProjects'][language] || translations['projects.backToProjects'].en}
           </Link>
         </motion.div>
 
@@ -52,7 +48,7 @@ export default function ProjectHeader({ project, language, gradient }: ProjectHe
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-white border border-white/30 text-xs font-black uppercase tracking-widest mb-6">
-            Case Study
+            {translations['projects.project'][language] || translations['projects.project'].en}
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 tracking-tighter leading-none">
             {project.title[language] || project.title.en}
