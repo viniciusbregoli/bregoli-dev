@@ -22,9 +22,9 @@ export default function Header() {
   return (
     <header className="term-titlebar flex-col sm:flex-row gap-3 sm:gap-4">
       <div className="flex items-center gap-2 self-start sm:self-auto">
-        <span className="term-dot" style={{ background: '#ff5f57' }} />
-        <span className="term-dot" style={{ background: '#febc2e' }} />
-        <span className="term-dot" style={{ background: '#28c840' }} />
+        <span className="term-dot red" />
+        <span className="term-dot yellow" />
+        <span className="term-dot green" />
       </div>
 
       <span className="text-muted text-xs hidden md:block">

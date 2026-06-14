@@ -399,6 +399,38 @@ export const translations = {
     pt: 'Presente',
     de: 'Aktuell',
   },
+
+  // Terminal shell
+  'terminal.welcome': {
+    en: 'bregoli-sh — interactive shell.',
+    pt: 'bregoli-sh — shell interativo.',
+    de: 'bregoli-sh — interaktive Shell.',
+  },
+  'terminal.tipPrefix': {
+    en: 'tip',
+    pt: 'dica',
+    de: 'Tipp',
+  },
+  'terminal.helpHint': {
+    en: 'type {help} to get started.',
+    pt: 'digite {help} para começar.',
+    de: 'gib {help} ein, um zu starten.',
+  },
+  'terminal.whoamiTip': {
+    en: 'type {help} to see what else you can run.',
+    pt: 'digite {help} para ver o que mais você pode executar.',
+    de: 'gib {help} ein, um zu sehen, was du sonst noch ausführen kannst.',
+  },
+  'terminal.projectsHint': {
+    en: 'open one above, or browse {~/projects}.',
+    pt: 'abra um acima, ou navegue em {~/projects}.',
+    de: 'öffne eins oben, oder durchsuche {~/projects}.',
+  },
+  'terminal.contactHint': {
+    en: 'prefer a form? run {~/contact} from the tabs above.',
+    pt: 'prefere um formulário? execute {~/contact} nas abas acima.',
+    de: 'lieber ein Formular? führe {~/contact} in den Tabs oben aus.',
+  },
 } satisfies Record<string, TranslationEntry>;
 
 export type TranslationKey = keyof typeof translations;

@@ -16,28 +16,34 @@
   --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SFMono-Regular', monospace;
 }
 
-/* Terminal theme — dark-first, modelled on the Claude Code CLI:
-   warm coral accent, terminal-green prompt, muted grays. */
+/* Catppuccin Latte (light) — mauve accent, green prompt. */
 :root {
-  --background: #f4f1ea;
-  --foreground: #1a1a17;
-  --surface: #ffffff;
-  --muted: #6b6862;
-  --line: #d8d3c8;
-  --primary: #c25a39;
-  --secondary: #3f7a4d;
-  --accent: #c25a39;
+  --background: #e6e9ef; /* mantle */
+  --foreground: #4c4f69; /* text */
+  --surface: #eff1f5; /* base */
+  --muted: #6c6f85; /* subtext0 */
+  --line: #ccd0da; /* surface0 */
+  --primary: #8839ef; /* mauve */
+  --secondary: #40a02b; /* green */
+  --accent: #8839ef; /* mauve */
+  --dot-red: #d20f39;
+  --dot-yellow: #df8e1d;
+  --dot-green: #40a02b;
 }
 
+/* Catppuccin Mocha (dark). */
 .dark {
-  --background: #0b0c0c;
-  --foreground: #d6d4cf;
-  --surface: #131414;
-  --muted: #807d77;
-  --line: #2b2b2d;
-  --primary: #d97757;
-  --secondary: #7fae86;
-  --accent: #d97757;
+  --background: #11111b; /* crust */
+  --foreground: #cdd6f4; /* text */
+  --surface: #1e1e2e; /* base */
+  --muted: #9399b2; /* overlay2 */
+  --line: #313244; /* surface0 */
+  --primary: #cba6f7; /* mauve */
+  --secondary: #a6e3a1; /* green */
+  --accent: #cba6f7; /* mauve */
+  --dot-red: #f38ba8;
+  --dot-yellow: #f9e2af;
+  --dot-green: #a6e3a1;
 }
 
 body {
@@ -75,6 +81,16 @@ body {
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 9999px;
+}
+
+.term-dot.red {
+  background: var(--dot-red);
+}
+.term-dot.yellow {
+  background: var(--dot-yellow);
+}
+.term-dot.green {
+  background: var(--dot-green);
 }
 
 /* A bordered output box (├─ cat output ─┤ style). */
