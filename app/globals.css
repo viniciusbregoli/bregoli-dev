@@ -12,76 +12,110 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jetbrains-mono), ui-monospace, monospace;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SFMono-Regular', monospace;
 }
 
-/* Light mode is kept but secondary — the design is tuned dark-first. */
+/* Terminal theme — dark-first, modelled on the Claude Code CLI:
+   warm coral accent, terminal-green prompt, muted grays. */
 :root {
-  --background: #fbfbfd;
-  --foreground: #0b0b0f;
+  --background: #f4f1ea;
+  --foreground: #1a1a17;
   --surface: #ffffff;
-  --muted: #56565f;
-  --line: rgba(10, 10, 15, 0.1);
-  --primary: #0d9488;
-  --secondary: #0e7490;
-  --accent: #047857;
+  --muted: #6b6862;
+  --line: #d8d3c8;
+  --primary: #c25a39;
+  --secondary: #3f7a4d;
+  --accent: #c25a39;
 }
 
 .dark {
-  --background: #08090b;
-  --foreground: #e9e9ee;
-  --surface: #101216;
-  --muted: #9a9aa6;
-  --line: rgba(255, 255, 255, 0.09);
-  --primary: #2dd4bf;
-  --secondary: #22d3ee;
-  --accent: #34d399;
+  --background: #0b0c0c;
+  --foreground: #d6d4cf;
+  --surface: #131414;
+  --muted: #807d77;
+  --line: #2b2b2d;
+  --primary: #d97757;
+  --secondary: #7fae86;
+  --accent: #d97757;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
 }
 
-/* ── Design-system utilities ───────────────────────────────────────────── */
+/* ── Terminal utilities ────────────────────────────────────────────────── */
 
-/* Subtle technical grid backdrop, fading toward the edges. */
+/* The window frame that wraps the whole app. */
+.term-window {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+}
+
+/* Title bar with traffic-light dots. */
+.term-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in oklab, var(--surface) 80%, var(--background));
+}
+
+.term-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 9999px;
+}
+
+/* A bordered output box (├─ cat output ─┤ style). */
+.term-box {
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+}
+
+/* Blinking block cursor. */
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  background: var(--primary);
+  translate: 0 0.15em;
+  animation: blink 1.1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Subtle scanline/grid texture behind the window. */
 .bg-grid {
   background-color: var(--background);
   background-image:
     linear-gradient(to right, var(--line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--line) 1px, transparent 1px);
-  background-size: 56px 56px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+  background-size: 48px 48px;
+  opacity: 1;
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, #000 20%, transparent 90%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, #000 20%, transparent 90%);
 }
 
-/* Bordered surface panel — the core card primitive of the new look. */
-.panel {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-}
-
-/* Restrained accent glow for hero / focal points. */
-.glow-accent {
-  background: radial-gradient(circle at center, color-mix(in oklab, var(--accent) 35%, transparent), transparent 70%);
-}
-
-/* Monospace eyebrow label, e.g. "// experience". */
-.mono-label {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-}
-
-/* Hide scrollbars on horizontally scrollable strips (e.g. mobile nav). */
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -92,6 +126,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+
   *,
   *::before,
   *::after {

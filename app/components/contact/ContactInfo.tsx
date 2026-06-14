@@ -1,59 +1,36 @@
 'use client';
 
-import { FaEnvelope, FaMapMarkerAlt, FaLinkedin } from 'react-icons/fa';
 import { useLanguage } from '../../(core)/i18n/context';
 
 export default function ContactInfo() {
   const { t } = useLanguage();
 
   const items = [
-    {
-      icon: <FaEnvelope className="h-5 w-5" />,
-      title: t('contact.email'),
-      value: 'me@viniciusbregoli.dev',
-      href: 'mailto:me@viniciusbregoli.dev',
-    },
-    {
-      icon: <FaLinkedin className="h-5 w-5" />,
-      title: 'LinkedIn',
-      value: 'linkedin.com/in/viniciusbregoli',
-      href: 'https://linkedin.com/in/viniciusbregoli',
-    },
-    {
-      icon: <FaMapMarkerAlt className="h-5 w-5" />,
-      title: t('contact.location'),
-      value: 'Curitiba, PR - Brazil',
-      href: null,
-    },
+    { key: 'email', label: t('contact.email'), value: 'me@viniciusbregoli.dev', href: 'mailto:me@viniciusbregoli.dev' },
+    { key: 'linkedin', label: 'linkedin', value: 'linkedin.com/in/viniciusbregoli', href: 'https://linkedin.com/in/viniciusbregoli' },
+    { key: 'location', label: t('contact.location'), value: 'Curitiba, PR - Brazil', href: null },
   ];
 
   return (
-    <div className="panel p-8 md:p-10 h-full">
-      <h2 className="mono-label mb-4">{t('contact.getInTouch')}</h2>
-      <p className="mb-10 text-muted leading-relaxed">{t('contact.description')}</p>
-
-      <div className="space-y-6">
-        {items.map((item, index) => (
-          <div key={index} className="flex items-center gap-4">
-            <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-primary/10 text-primary shrink-0">
-              {item.icon}
-            </div>
-            <div>
-              <h3 className="mono-label text-muted mb-0.5">{item.title}</h3>
-              {item.href ? (
-                <a
-                  href={item.href}
-                  target={item.href.startsWith('http') ? '_blank' : undefined}
-                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="font-medium text-foreground hover:text-primary transition-colors"
-                >
-                  {item.value}
-                </a>
-              ) : (
-                <p className="font-medium text-foreground">{item.value}</p>
-              )}
-            </div>
-          </div>
+    <div className="space-y-3">
+      <p className="text-foreground">{t('contact.description')}</p>
+      <div className="space-y-1">
+        {items.map((item) => (
+          <p key={item.key} className="flex flex-wrap items-baseline gap-2 text-sm">
+            <span className="text-secondary w-24 shrink-0">{item.label}</span>
+            {item.href ? (
+              <a
+                href={item.href}
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="text-foreground/90 hover:text-primary transition-colors"
+              >
+                {item.value}
+              </a>
+            ) : (
+              <span className="text-foreground/90">{item.value}</span>
+            )}
+          </p>
         ))}
       </div>
     </div>

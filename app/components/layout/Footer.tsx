@@ -8,31 +8,27 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line mt-24">
-      <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="font-mono text-sm text-muted">
-          © {currentYear} Vinícius Bregoli — {t('footer.rights')}
-        </p>
-        <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/viniciusbregoli"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="text-muted hover:text-primary transition-colors"
-          >
-            <FaGithub className="h-5 w-5" />
-          </a>
-          <a
-            href="https://linkedin.com/in/viniciusbregoli"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-muted hover:text-primary transition-colors"
-          >
-            <FaLinkedin className="h-5 w-5" />
-          </a>
-        </div>
+    <footer className="border-t border-line px-5 sm:px-8 py-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+      <p className="text-muted">
+        <span className="text-secondary">●</span> {currentYear} Vinícius Bregoli — {t('footer.rights')}
+      </p>
+      <div className="flex items-center gap-4">
+        <a
+          href="https://github.com/viniciusbregoli"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-muted hover:text-primary transition-colors"
+        >
+          <FaGithub /> github
+        </a>
+        <a
+          href="https://linkedin.com/in/viniciusbregoli"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-muted hover:text-primary transition-colors"
+        >
+          <FaLinkedin /> linkedin
+        </a>
       </div>
     </footer>
   );

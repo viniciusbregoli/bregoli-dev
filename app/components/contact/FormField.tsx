@@ -36,7 +36,7 @@ export default function FormField({
 
   return (
     <div>
-      <label htmlFor={id} className="mono-label text-muted block mb-2">
+      <label htmlFor={id} className="block mb-2 text-sm text-secondary">
         {label}
       </label>
       {type === 'textarea' ? (
