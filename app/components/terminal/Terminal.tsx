@@ -17,6 +17,9 @@ function commonPrefix(values: string[]): string {
   });
 }
 
+// Tappable starter commands — discoverability on desktop, no-typing nav on mobile.
+const QUICK = ['help', 'projects', 'skills', 'contact', 'cv'];
+
 const Prompt = () => (
   <span className="text-secondary shrink-0">
     vinicius@bregoli-dev<span className="text-muted">:</span>
@@ -71,8 +74,16 @@ export default function Terminal() {
     ? COMMAND_NAMES.filter((n) => n.startsWith(trimmed) && n !== trimmed).slice(0, 6)
     : [];
 
+  // Only auto-focus on devices with a fine pointer (mouse). On touch this would
+  // pop the on-screen keyboard on load and after every command.
+  const focusInput = () => {
+    if (window.matchMedia('(pointer: fine)').matches) {
+      inputRef.current?.focus({ preventScroll: true });
+    }
+  };
+
   useEffect(() => {
-    inputRef.current?.focus({ preventScroll: true });
+    focusInput();
     // After a command runs, follow the output to the bottom so the fresh prompt
     // is always in view. rAF lets the new output lay out before we measure.
     requestAnimationFrame(() => {
@@ -157,10 +168,7 @@ export default function Terminal() {
   };
 
   return (
-    <div
-      className="space-y-6 leading-relaxed min-h-[60vh]"
-      onClick={() => inputRef.current?.focus()}
-    >
+    <div className="space-y-6 leading-relaxed min-h-[60vh]" onClick={focusInput}>
       <p className="text-muted text-sm">
         {t('terminal.welcome')} {withTokens(t('terminal.helpHint'))}
       </p>
@@ -211,6 +219,22 @@ export default function Terminal() {
                 </button>
               );
             })}
+          </div>
+        )}
+
+        {!trimmed && (
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
+            <span className="text-muted">try:</span>
+            {QUICK.map((name) => (
+              <button
+                key={name}
+                type="button"
+                onClick={() => dispatch(name)}
+                className="px-2.5 py-1 rounded-md border border-line text-primary hover:bg-primary/10 transition-colors"
+              >
+                {name}
+              </button>
+            ))}
           </div>
         )}
       </div>

@@ -143,6 +143,14 @@ body {
   display: none;
 }
 
+/* Prevent iOS Safari from zooming in when focusing small inputs on mobile. */
+@media (max-width: 640px) {
+  input,
+  textarea {
+    font-size: 16px;
+  }
+}
+
 /* ── Classic (HR) mode utilities ───────────────────────────────────────── */
 
 /* Bordered surface card — the core primitive of the clean layout. */
