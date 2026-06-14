@@ -72,8 +72,12 @@ export default function Terminal() {
     : [];
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ block: 'end' });
-    inputRef.current?.focus();
+    inputRef.current?.focus({ preventScroll: true });
+    // After a command runs, follow the output to the bottom so the fresh prompt
+    // is always in view. rAF lets the new output lay out before we measure.
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+    });
   }, [entries]);
 
   const dispatch = (raw: string) => {
