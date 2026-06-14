@@ -10,6 +10,8 @@ const languages: { code: Language; label: string }[] = [
   { code: 'en', label: 'EN' },
   { code: 'de', label: 'DE' },
   { code: 'pt', label: 'PT' },
+  { code: 'es', label: 'ES' },
+  { code: 'zh', label: 'ZH' },
 ];
 
 export default function LanguageSelector() {

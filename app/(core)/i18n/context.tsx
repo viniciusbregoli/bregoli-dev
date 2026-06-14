@@ -11,7 +11,7 @@ type LanguageContextType = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-const SUPPORTED: Language[] = ['en', 'pt', 'de'];
+const SUPPORTED: Language[] = ['en', 'pt', 'de', 'es', 'zh'];
 const STORAGE_KEY = 'language';
 
 function resolveInitialLanguage(): Language {

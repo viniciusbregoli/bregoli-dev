@@ -5,7 +5,7 @@ dark-first "dev/techy" design, a multilingual interface, and a dynamic project s
 
 ## Features
 
-- **Multilingual Support**: English, Portuguese, and German, with the selection persisted across visits
+- **Multilingual Support**: English, Portuguese, German, Spanish, and Chinese, with the selection persisted across visits
 - **Dark-first Design**: Class-based theme toggle with a pre-paint script so there's no flash on load
 - **Responsive**: Optimized for mobile, tablet, and desktop, and respects `prefers-reduced-motion`
 - **Dynamic Project Showcase**: Easy-to-update project cards and detail pages

@@ -320,10 +320,10 @@ export const COMMANDS: Command[] = [
   },
   {
     name: 'lang',
-    description: 'set language (en | pt | de)',
+    description: 'set language (en | pt | de | es | zh)',
     run: (ctx, args) => {
       const arg = args[0]?.toLowerCase();
-      if (arg === 'en' || arg === 'pt' || arg === 'de') {
+      if (arg === 'en' || arg === 'pt' || arg === 'de' || arg === 'es' || arg === 'zh') {
         ctx.setLanguage(arg);
         return (
           <p className="text-muted">
@@ -334,7 +334,7 @@ export const COMMANDS: Command[] = [
       return (
         <p className="text-muted">
           current: <span className="text-primary">{ctx.language}</span> · usage:{' '}
-          <span className="text-foreground/90">lang en|pt|de</span>
+          <span className="text-foreground/90">lang en|pt|de|es|zh</span>
         </p>
       );
     },

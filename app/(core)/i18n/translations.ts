@@ -1,389 +1,370 @@
-export type Language = 'en' | 'pt' | 'de';
+export type Language = 'en' | 'pt' | 'de' | 'es' | 'zh';
 
 export type TranslationEntry = Partial<Record<Language, string>>;
 
+/** A piece of localized content; missing languages fall back to English at the call site. */
+export type LocalizedText = Partial<Record<Language, string>>;
+
 export const translations = {
   // Navigation
-  'nav.home': {
-    en: 'Home',
-    pt: 'Início',
-    de: 'Startseite',
-  },
-  'nav.about': {
-    en: 'About me',
-    pt: 'Sobre mim',
-    de: 'Über mich',
-  },
-  'nav.projects': {
-    en: 'Projects',
-    pt: 'Projetos',
-    de: 'Projekte',
-  },
-  'nav.contact': {
-    en: 'Contact',
-    pt: 'Contato',
-    de: 'Kontakt',
-  },
+  'nav.home': { en: 'Home', pt: 'Início', de: 'Startseite', es: 'Inicio', zh: '首页' },
+  'nav.about': { en: 'About me', pt: 'Sobre mim', de: 'Über mich', es: 'Sobre mí', zh: '关于我' },
+  'nav.projects': { en: 'Projects', pt: 'Projetos', de: 'Projekte', es: 'Proyectos', zh: '项目' },
+  'nav.contact': { en: 'Contact', pt: 'Contato', de: 'Kontakt', es: 'Contacto', zh: '联系' },
 
   // Hero Section
-  'hero.greeting': {
-    en: 'Hello!',
-    pt: 'Olá!',
-    de: 'Hallo!',
-  },
+  'hero.greeting': { en: 'Hello!', pt: 'Olá!', de: 'Hallo!', es: '¡Hola!', zh: '你好！' },
   'hero.name': {
     en: "I'm Vinícius",
     pt: 'Meu nome é Vinícius',
     de: 'Ich bin Vinícius',
+    es: 'Soy Vinícius',
+    zh: '我是 Vinícius',
   },
   'hero.professionalClaim': {
     en: 'Building innovative solutions through technology',
     pt: 'Construindo soluções inovadoras através da tecnologia',
     de: 'Innovative Lösungen durch Technologie entwickeln',
+    es: 'Construyendo soluciones innovadoras a través de la tecnología',
+    zh: '用技术打造创新的解决方案',
   },
   'hero.description': {
     en: 'I am a Computer Engineer with hands-on experience in programming, fullstack development, IT infrastructure and AI. Skilled in tools like Python, React, source control and SQL, with a strong foundation in Linux and robotics. I also completed an exchange program at Technische Hochschule Ingolstadt, focusing on Computer Science and AI.',
     pt: 'Sou Engenheiro de Computação com experiência prática em programação, desenvolvimento fullstack, infraestrutura de TI e IA. Habilidades em ferramentas como Python, React, controle de versão e SQL, com uma base sólida em Linux e robótica. Também conclui um programa de intercâmbio na Technische Hochschule Ingolstadt, focado em Ciência da Computação e IA.',
     de: 'Ich bin Informatikingenieur mit praktischer Erfahrung in Programmierung, Fullstack-Entwicklung, IT-Infrastruktur und KI. Kenntnisse in Tools wie Python, React, Quellcodeverwaltung und SQL, mit einer soliden Grundlage in Linux und Robotik. Ich habe außerdem ein Austauschprogramm an der Technischen Hochschule Ingolstadt mit Schwerpunkt Informatik und KI absolviert.',
+    es: 'Soy Ingeniero en Computación con experiencia práctica en programación, desarrollo fullstack, infraestructura de TI e IA. Manejo herramientas como Python, React, control de versiones y SQL, con una base sólida en Linux y robótica. También completé un programa de intercambio en la Technische Hochschule Ingolstadt, enfocado en Ciencias de la Computación e IA.',
+    zh: '我是一名计算机工程师，在编程、全栈开发、IT 基础设施和人工智能方面拥有实战经验。熟练使用 Python、React、版本控制和 SQL 等工具，并在 Linux 和机器人技术方面有扎实基础。我还在英戈尔施塔特应用技术大学（Technische Hochschule Ingolstadt）完成了交换项目，专注于计算机科学与人工智能。',
   },
   'hero.cta': {
     en: 'Download Resume',
     pt: 'Baixar Currículo',
     de: 'Lebenslauf Herunterladen',
+    es: 'Descargar CV',
+    zh: '下载简历',
   },
   'hero.viewExperience': {
     en: 'View Experience',
     pt: 'Ver Experiência',
     de: 'Erfahrung Ansehen',
+    es: 'Ver Experiencia',
+    zh: '查看经历',
   },
 
   // Goals Section
-  'goals.title': {
-    en: 'My Mission',
-    pt: 'Minha Missão',
-    de: 'Meine Mission',
-  },
-  'goals.shortTerm': {
-    en: 'Vision',
-    pt: 'Visão',
-    de: 'Vision',
-  },
+  'goals.title': { en: 'My Mission', pt: 'Minha Missão', de: 'Meine Mission', es: 'Mi Misión', zh: '我的使命' },
+  'goals.shortTerm': { en: 'Vision', pt: 'Visão', de: 'Vision', es: 'Visión', zh: '愿景' },
   'goals.shortTermDesc': {
     en: 'Build useful tools. Solve real problems. Keep learning. I enjoy taking on technical challenges and finding solutions that actually work, not just in theory.',
     pt: 'Construir ferramentas úteis. Resolver problemas reais. Continuar aprendendo. Gosto de encarar desafios técnicos e encontrar soluções que realmente funcionam, não apenas na teoria.',
     de: 'Nützliche Tools bauen. Echte Probleme lösen. Weiter lernen. Ich mag es, technische Herausforderungen anzunehmen und Lösungen zu finden, die wirklich funktionieren, nicht nur in der Theorie.',
+    es: 'Crear herramientas útiles. Resolver problemas reales. Seguir aprendiendo. Me gusta asumir retos técnicos y encontrar soluciones que de verdad funcionen, no solo en la teoría.',
+    zh: '打造有用的工具。解决真实的问题。持续学习。我喜欢迎接技术挑战，寻找真正可行的解决方案，而不只是停留在理论上。',
   },
-  'goals.longTerm': {
-    en: 'Approach',
-    pt: 'Abordagem',
-    de: 'Ansatz',
-  },
+  'goals.longTerm': { en: 'Approach', pt: 'Abordagem', de: 'Ansatz', es: 'Enfoque', zh: '方法' },
   'goals.longTermDesc': {
     en: 'I prefer working close to the code - debugging, experimenting, and iterating until things work right. Currently exploring AI and computer vision, always looking for the next thing to learn.',
     pt: 'Prefiro trabalhar perto do código - debugando, experimentando e iterando até que as coisas funcionem. Atualmente explorando IA e visão computacional, sempre buscando a próxima coisa para aprender.',
     de: 'Ich arbeite am liebsten nah am Code - debuggen, experimentieren und iterieren, bis alles richtig funktioniert. Aktuell erforsche ich KI und Computer Vision, immer auf der Suche nach dem nächsten Lernziel.',
+    es: 'Prefiero trabajar cerca del código: depurar, experimentar e iterar hasta que las cosas funcionen bien. Actualmente exploro IA y visión por computadora, siempre buscando lo próximo que aprender.',
+    zh: '我更喜欢贴近代码工作——调试、实验、不断迭代，直到一切运行正常。目前正在探索人工智能和计算机视觉，始终在寻找下一个学习目标。',
   },
 
   // About Section
-  'about.title': {
-    en: 'About me',
-    pt: 'Sobre mim',
-    de: 'Über mich',
-  },
+  'about.title': { en: 'About me', pt: 'Sobre mim', de: 'Über mich', es: 'Sobre mí', zh: '关于我' },
 
   // Experience Section
-  'experience.title': {
-    en: 'Experience',
-    pt: 'Experiência',
-    de: 'Erfahrung',
-  },
+  'experience.title': { en: 'Experience', pt: 'Experiência', de: 'Erfahrung', es: 'Experiencia', zh: '工作经历' },
 
   // Education Section
-  'education.title': {
-    en: 'Education',
-    pt: 'Educação',
-    de: 'Bildung',
-  },
+  'education.title': { en: 'Education', pt: 'Educação', de: 'Bildung', es: 'Educación', zh: '教育背景' },
 
   // Skills Section
-  'skills.title': {
-    en: 'My Skills',
-    pt: 'Minhas Habilidades',
-    de: 'Meine Fähigkeiten',
-  },
+  'skills.title': { en: 'My Skills', pt: 'Minhas Habilidades', de: 'Meine Fähigkeiten', es: 'Mis Habilidades', zh: '我的技能' },
   'skills.technical': {
     en: 'Technical Skills',
     pt: 'Habilidades Técnicas',
     de: 'Technische Fähigkeiten',
+    es: 'Habilidades Técnicas',
+    zh: '技术技能',
   },
   'skills.soft': {
     en: 'Soft Skills',
     pt: 'Habilidades Interpessoais',
     de: 'Soziale Kompetenzen',
+    es: 'Habilidades Blandas',
+    zh: '软技能',
   },
   'skills.soft.communication': {
     en: 'Communication',
     pt: 'Comunicação',
     de: 'Kommunikation',
+    es: 'Comunicación',
+    zh: '沟通',
   },
-  'skills.soft.leadership': {
-    en: 'Leadership',
-    pt: 'Liderança',
-    de: 'Führung',
-  },
-  'skills.soft.innovation': {
-    en: 'Innovation',
-    pt: 'Inovação',
-    de: 'Innovation',
-  },
+  'skills.soft.leadership': { en: 'Leadership', pt: 'Liderança', de: 'Führung', es: 'Liderazgo', zh: '领导力' },
+  'skills.soft.innovation': { en: 'Innovation', pt: 'Inovação', de: 'Innovation', es: 'Innovación', zh: '创新' },
   'skills.soft.professional': {
     en: 'Professional',
     pt: 'Profissional',
     de: 'Beruflich',
+    es: 'Profesional',
+    zh: '职业素养',
   },
   'skills.soft.teamCollaboration': {
     en: 'Team Collaboration',
     pt: 'Colaboração em Equipe',
     de: 'Teamarbeit',
+    es: 'Colaboración en Equipo',
+    zh: '团队协作',
   },
   'skills.soft.clientCommunication': {
     en: 'Client Communication',
     pt: 'Comunicação com Clientes',
     de: 'Kundenkommunikation',
+    es: 'Comunicación con Clientes',
+    zh: '客户沟通',
   },
   'skills.soft.problemSolving': {
     en: 'Problem Solving',
     pt: 'Resolução de Problemas',
     de: 'Problemlösung',
+    es: 'Resolución de Problemas',
+    zh: '问题解决',
   },
   'skills.soft.projectManagement': {
     en: 'Project Management',
     pt: 'Gerenciamento de Projetos',
     de: 'Projektmanagement',
+    es: 'Gestión de Proyectos',
+    zh: '项目管理',
   },
   'skills.soft.teamLeadership': {
     en: 'Team Leadership',
     pt: 'Liderança de Equipe',
     de: 'Teamführung',
+    es: 'Liderazgo de Equipos',
+    zh: '团队领导',
   },
   'skills.soft.strategicPlanning': {
     en: 'Strategic Planning',
     pt: 'Planejamento Estratégico',
     de: 'Strategische Planung',
+    es: 'Planificación Estratégica',
+    zh: '战略规划',
   },
   'skills.soft.creativeThinking': {
     en: 'Creative Thinking',
     pt: 'Pensamento Criativo',
     de: 'Kreatives Denken',
+    es: 'Pensamiento Creativo',
+    zh: '创造性思维',
   },
   'skills.soft.processOptimization': {
     en: 'Process Optimization',
     pt: 'Otimização de Processos',
     de: 'Prozessoptimierung',
+    es: 'Optimización de Procesos',
+    zh: '流程优化',
   },
   'skills.soft.technicalInnovation': {
     en: 'Technical Innovation',
     pt: 'Inovação Técnica',
     de: 'Technische Innovation',
+    es: 'Innovación Técnica',
+    zh: '技术创新',
   },
   'skills.soft.agileMethodologies': {
     en: 'Agile Methodologies',
     pt: 'Metodologias Ágeis',
     de: 'Agile Methoden',
+    es: 'Metodologías Ágiles',
+    zh: '敏捷方法论',
   },
   'skills.soft.riskManagement': {
     en: 'Risk Management',
     pt: 'Gerenciamento de Riscos',
     de: 'Risikomanagement',
+    es: 'Gestión de Riesgos',
+    zh: '风险管理',
   },
   'skills.soft.qualityAssurance': {
     en: 'Quality Assurance',
     pt: 'Garantia de Qualidade',
     de: 'Qualitätssicherung',
+    es: 'Aseguramiento de Calidad',
+    zh: '质量保证',
   },
-  'skills.languages': {
-    en: 'Languages',
-    pt: 'Idiomas',
-    de: 'Sprachen',
-  },
+  'skills.languages': { en: 'Languages', pt: 'Idiomas', de: 'Sprachen', es: 'Idiomas', zh: '语言' },
 
   // Projects Section
-  'projects.title': {
-    en: 'My Projects',
-    pt: 'Meus Projetos',
-    de: 'Meine Projekte',
-  },
+  'projects.title': { en: 'My Projects', pt: 'Meus Projetos', de: 'Meine Projekte', es: 'Mis Proyectos', zh: '我的项目' },
   'projects.subtitle': {
     en: 'A selection of my technical work and contributions',
     pt: 'Uma seleção do meu trabalho técnico e contribuições',
     de: 'Eine Auswahl meiner technischen Arbeiten und Beiträge',
+    es: 'Una selección de mi trabajo técnico y contribuciones',
+    zh: '我的部分技术作品与贡献',
   },
-  'projects.viewDetails': {
-    en: 'View details',
-    pt: 'Ver detalhes',
-    de: 'Details anzeigen',
-  },
+  'projects.viewDetails': { en: 'View details', pt: 'Ver detalhes', de: 'Details anzeigen', es: 'Ver detalles', zh: '查看详情' },
   'projects.viewProject': {
     en: 'View Project',
     pt: 'Ver Projeto',
     de: 'Projekt Ansehen',
+    es: 'Ver Proyecto',
+    zh: '查看项目',
   },
-  'projects.project': {
-    en: 'Project',
-    pt: 'Projeto',
-    de: 'Projekt',
-  },
+  'projects.project': { en: 'Project', pt: 'Projeto', de: 'Projekt', es: 'Proyecto', zh: '项目' },
   'projects.backToProjects': {
     en: 'Back to Projects',
     pt: 'Voltar para Projetos',
     de: 'Zurück zu Projekten',
+    es: 'Volver a Proyectos',
+    zh: '返回项目',
   },
   'projects.aboutProject': {
     en: 'About this Project',
     pt: 'Sobre este Projeto',
     de: 'Über dieses Projekt',
+    es: 'Sobre este Proyecto',
+    zh: '关于此项目',
   },
   'projects.projectInfo': {
     en: 'Project Information',
     pt: 'Informações do Projeto',
     de: 'Projektinformationen',
+    es: 'Información del Proyecto',
+    zh: '项目信息',
   },
   'projects.projectType': {
     en: 'Project Type',
     pt: 'Tipo de Projeto',
     de: 'Projekttyp',
+    es: 'Tipo de Proyecto',
+    zh: '项目类型',
   },
-  'projects.timeline': {
-    en: 'Timeline',
-    pt: 'Período',
-    de: 'Zeitraum',
-  },
+  'projects.timeline': { en: 'Timeline', pt: 'Período', de: 'Zeitraum', es: 'Cronología', zh: '时间线' },
   'projects.technologies': {
     en: 'Technologies',
     pt: 'Tecnologias',
     de: 'Technologien',
+    es: 'Tecnologías',
+    zh: '技术栈',
   },
   'projects.notFound': {
     en: 'Project Not Found',
     pt: 'Projeto Não Encontrado',
     de: 'Projekt Nicht Gefunden',
+    es: 'Proyecto No Encontrado',
+    zh: '未找到项目',
   },
   'projects.notFoundDesc': {
     en: 'The project you are looking for does not exist.',
     pt: 'O projeto que você está procurando não existe.',
     de: 'Das gesuchte Projekt existiert nicht.',
+    es: 'El proyecto que buscas no existe.',
+    zh: '您查找的项目不存在。',
   },
 
   // Contact Section
-  'contact.title': {
-    en: 'Contact Me',
-    pt: 'Entre em Contato',
-    de: 'Kontaktiere Mich',
-  },
+  'contact.title': { en: 'Contact Me', pt: 'Entre em Contato', de: 'Kontaktiere Mich', es: 'Contáctame', zh: '联系我' },
   'contact.getInTouch': {
     en: 'Get in Touch',
     pt: 'Entre em Contato',
     de: 'Kontaktaufnahme',
+    es: 'Ponte en Contacto',
+    zh: '取得联系',
   },
   'contact.description': {
     en: 'Feel free to reach out to me for job opportunities, collaborations, or just to say hello!',
     pt: 'Sinta-se à vontade para entrar em contato comigo para oportunidades de trabalho, colaborações ou apenas para dizer olá!',
     de: 'Kontaktieren Sie mich gerne für Jobangebote, Kooperationen oder einfach nur, um Hallo zu sagen!',
+    es: '¡No dudes en escribirme para oportunidades laborales, colaboraciones o simplemente para saludar!',
+    zh: '欢迎就工作机会、合作或只是打个招呼与我联系！',
   },
-  'contact.email': {
-    en: 'Email',
-    pt: 'E-mail',
-    de: 'E-Mail',
-  },
-  'contact.location': {
-    en: 'Location',
-    pt: 'Localização',
-    de: 'Standort',
-  },
+  'contact.email': { en: 'Email', pt: 'E-mail', de: 'E-Mail', es: 'Correo', zh: '邮箱' },
+  'contact.location': { en: 'Location', pt: 'Localização', de: 'Standort', es: 'Ubicación', zh: '所在地' },
   'contact.social': {
     en: 'Social Profiles',
     pt: 'Perfis Sociais',
     de: 'Soziale Profile',
+    es: 'Perfiles Sociales',
+    zh: '社交主页',
   },
   'contact.sendMessage': {
     en: 'Send Me a Message',
     pt: 'Envie-me uma Mensagem',
     de: 'Sende mir eine Nachricht',
+    es: 'Envíame un Mensaje',
+    zh: '给我留言',
   },
-  'contact.name': {
-    en: 'Your Name',
-    pt: 'Seu Nome',
-    de: 'Ihr Name',
-  },
-  'contact.emailField': {
-    en: 'Your Email',
-    pt: 'Seu E-mail',
-    de: 'Ihre E-Mail',
-  },
-  'contact.message': {
-    en: 'Your Message',
-    pt: 'Sua Mensagem',
-    de: 'Ihre Nachricht',
-  },
-  'contact.send': {
-    en: 'Send Message',
-    pt: 'Enviar Mensagem',
-    de: 'Nachricht Senden',
-  },
-  'contact.sending': {
-    en: 'Sending...',
-    pt: 'Enviando...',
-    de: 'Senden...',
-  },
+  'contact.name': { en: 'Your Name', pt: 'Seu Nome', de: 'Ihr Name', es: 'Tu Nombre', zh: '您的姓名' },
+  'contact.emailField': { en: 'Your Email', pt: 'Seu E-mail', de: 'Ihre E-Mail', es: 'Tu Correo', zh: '您的邮箱' },
+  'contact.message': { en: 'Your Message', pt: 'Sua Mensagem', de: 'Ihre Nachricht', es: 'Tu Mensaje', zh: '您的留言' },
+  'contact.send': { en: 'Send Message', pt: 'Enviar Mensagem', de: 'Nachricht Senden', es: 'Enviar Mensaje', zh: '发送留言' },
+  'contact.sending': { en: 'Sending...', pt: 'Enviando...', de: 'Senden...', es: 'Enviando...', zh: '发送中...' },
   'contact.submitSuccess': {
     en: 'Thank you! Your message has been sent successfully. I will get back to you soon.',
     pt: 'Obrigado! Sua mensagem foi enviada com sucesso. Entrarei em contato em breve.',
     de: 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Ich werde mich bald bei Ihnen melden.',
+    es: '¡Gracias! Tu mensaje se envió correctamente. Me pondré en contacto contigo pronto.',
+    zh: '谢谢！您的留言已成功发送。我会尽快回复您。',
   },
   'contact.submitError': {
     en: 'There was a problem sending your message. Please try again later.',
     pt: 'Houve um problema ao enviar sua mensagem. Por favor, tente novamente mais tarde.',
     de: 'Beim Senden Ihrer Nachricht ist ein Problem aufgetreten. Bitte versuchen Sie es später erneut.',
+    es: 'Hubo un problema al enviar tu mensaje. Inténtalo de nuevo más tarde.',
+    zh: '发送留言时出现问题，请稍后再试。',
   },
   'contact.validation.nameRequired': {
     en: 'Name is required',
     pt: 'Nome é obrigatório',
     de: 'Name ist erforderlich',
+    es: 'El nombre es obligatorio',
+    zh: '请填写姓名',
   },
   'contact.validation.emailRequired': {
     en: 'Email is required',
     pt: 'Email é obrigatório',
     de: 'E-Mail ist erforderlich',
+    es: 'El correo es obligatorio',
+    zh: '请填写邮箱',
   },
   'contact.validation.emailInvalid': {
     en: 'Please enter a valid email address',
     pt: 'Por favor, insira um endereço de email válido',
     de: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
+    es: 'Introduce una dirección de correo válida',
+    zh: '请输入有效的邮箱地址',
   },
   'contact.validation.messageRequired': {
     en: 'Message is required',
     pt: 'Mensagem é obrigatória',
     de: 'Nachricht ist erforderlich',
+    es: 'El mensaje es obligatorio',
+    zh: '请填写留言',
   },
   'contact.validation.messageTooShort': {
     en: 'Message must be at least 10 characters long',
     pt: 'A mensagem deve ter pelo menos 10 caracteres',
     de: 'Die Nachricht muss mindestens 10 Zeichen lang sein',
+    es: 'El mensaje debe tener al menos 10 caracteres',
+    zh: '留言至少需要 10 个字符',
   },
-  'contact.placeholder.name': {
-    en: 'Your name',
-    pt: 'Seu nome',
-    de: 'Ihr Name',
-  },
+  'contact.placeholder.name': { en: 'Your name', pt: 'Seu nome', de: 'Ihr Name', es: 'Tu nombre', zh: '您的姓名' },
   'contact.placeholder.email': {
     en: 'your-email@example.com',
     pt: 'seu-email@exemplo.com',
     de: 'ihre-email@beispiel.de',
+    es: 'tu-correo@ejemplo.com',
+    zh: '您的邮箱@example.com',
   },
   'contact.placeholder.message': {
     en: 'Your message here...',
     pt: 'Sua mensagem aqui...',
     de: 'Ihre Nachricht hier...',
+    es: 'Tu mensaje aquí...',
+    zh: '在此输入您的留言...',
   },
 
   // Footer
@@ -391,45 +372,49 @@ export const translations = {
     en: 'All rights reserved.',
     pt: 'Todos os direitos reservados.',
     de: 'Alle Rechte vorbehalten.',
+    es: 'Todos los derechos reservados.',
+    zh: '保留所有权利。',
   },
 
   // Common
-  'time.present': {
-    en: 'Present',
-    pt: 'Presente',
-    de: 'Aktuell',
-  },
+  'time.present': { en: 'Present', pt: 'Presente', de: 'Aktuell', es: 'Actual', zh: '至今' },
 
   // Terminal shell
   'terminal.welcome': {
     en: 'bregoli-sh — interactive shell.',
     pt: 'bregoli-sh — shell interativo.',
     de: 'bregoli-sh — interaktive Shell.',
+    es: 'bregoli-sh — shell interactivo.',
+    zh: 'bregoli-sh — 交互式终端。',
   },
-  'terminal.tipPrefix': {
-    en: 'tip',
-    pt: 'dica',
-    de: 'Tipp',
-  },
+  'terminal.tipPrefix': { en: 'tip', pt: 'dica', de: 'Tipp', es: 'consejo', zh: '提示' },
   'terminal.helpHint': {
     en: 'type {help} to get started.',
     pt: 'digite {help} para começar.',
     de: 'gib {help} ein, um zu starten.',
+    es: 'escribe {help} para empezar.',
+    zh: '输入 {help} 开始。',
   },
   'terminal.whoamiTip': {
     en: 'type {help} to see what else you can run.',
     pt: 'digite {help} para ver o que mais você pode executar.',
     de: 'gib {help} ein, um zu sehen, was du sonst noch ausführen kannst.',
+    es: 'escribe {help} para ver qué más puedes ejecutar.',
+    zh: '输入 {help} 查看还能运行哪些命令。',
   },
   'terminal.projectsHint': {
     en: 'open one above, or browse {~/projects}.',
     pt: 'abra um acima, ou navegue em {~/projects}.',
     de: 'öffne eins oben, oder durchsuche {~/projects}.',
+    es: 'abre uno arriba, o navega por {~/projects}.',
+    zh: '点击上方任意项目，或浏览 {~/projects}。',
   },
   'terminal.contactHint': {
     en: 'prefer a form? run {~/contact} from the tabs above.',
     pt: 'prefere um formulário? execute {~/contact} nas abas acima.',
     de: 'lieber ein Formular? führe {~/contact} in den Tabs oben aus.',
+    es: '¿prefieres un formulario? ejecuta {~/contact} en las pestañas de arriba.',
+    zh: '想用表单？在上方标签中运行 {~/contact}。',
   },
 } satisfies Record<string, TranslationEntry>;
 

@@ -11,7 +11,14 @@ interface SuccessMessageProps {
 export default function SuccessMessage({ message }: SuccessMessageProps) {
   const { language } = useLanguage();
 
-  const title = language === 'en' ? 'Thank you!' : language === 'pt' ? 'Obrigado!' : 'Vielen Dank!';
+  const titles: Record<string, string> = {
+    en: 'Thank you!',
+    pt: 'Obrigado!',
+    de: 'Vielen Dank!',
+    es: '¡Gracias!',
+    zh: '谢谢！',
+  };
+  const title = titles[language] ?? titles.en;
 
   return (
     <motion.div

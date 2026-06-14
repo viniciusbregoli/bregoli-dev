@@ -30,13 +30,13 @@ export default function Terminal() {
   const { theme, toggleTheme } = useTheme();
 
   const downloadCV = () => {
-    const cvPaths: Record<Language, string> = {
+    const cvPaths: Partial<Record<Language, string>> = {
       en: '/CV - English.pdf',
       pt: '/CV - Portugues.pdf',
       de: '/CV - Deutsch.pdf',
     };
     const link = document.createElement('a');
-    link.href = cvPaths[language] || cvPaths.en;
+    link.href = cvPaths[language] || cvPaths.en || '';
     link.setAttribute('download', `Vinicius_Bregoli_CV_${language.toUpperCase()}.pdf`);
     document.body.appendChild(link);
     link.click();

@@ -21,6 +21,8 @@ export function getEducationData(): EducationType[] {
         en: 'Computer Science and AI (Exchange Program)',
         pt: 'Ciência da Computação e IA (Programa de Intercâmbio)',
         de: 'Informatik und KI (Austauschprogramm)',
+        es: 'Ciencias de la Computación e IA (Programa de Intercambio)',
+        zh: '计算机科学与人工智能（交换项目）',
       },
       period: {
         en: '10/2024 - 07/2025',
@@ -36,6 +38,8 @@ export function getEducationData(): EducationType[] {
         en: 'Computer Engineering',
         pt: 'Engenharia da Computação',
         de: 'Technische Informatik',
+        es: 'Ingeniería en Computación',
+        zh: '计算机工程',
       },
       period: {
         en: '2020 - 2025',
