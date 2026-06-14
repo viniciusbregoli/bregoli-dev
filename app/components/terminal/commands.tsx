@@ -10,8 +10,6 @@ export type CommandContext = {
   t: (key: TranslationKey) => string;
   language: Language;
   setLanguage: (lang: Language) => void;
-  theme: 'light' | 'dark';
-  setTheme: (theme: 'light' | 'dark') => void;
   downloadCV: () => void;
 };
 
@@ -31,11 +29,17 @@ export function withTokens(text: string): ReactNode {
 export type Command = {
   name: string;
   aliases?: string[];
-  description: string;
+  /** Translation key for the command's description (shown in help/autosuggest). */
+  descriptionKey?: TranslationKey;
+  /**
+   * Hidden commands work when typed but are kept out of `help` and the
+   * autosuggest — classic-Linux easter eggs, a nice touch for those who poke.
+   */
+  hidden?: boolean;
   /**
    * Pure commands only render content (no side effects), so the terminal can
    * re-run them on every render — that keeps their output in sync with the
-   * current language/theme. Action commands (cv, theme, lang, …) run once.
+   * current language. Action commands (cv, lang, …) run once.
    */
   pure?: boolean;
   /** Returns the output to print, or null for commands that only have side effects. */
@@ -246,7 +250,7 @@ function Neofetch({ ctx }: { ctx: CommandContext }) {
   const info: [string, string][] = [
     ['user', 'vinicius'],
     ['role', ctx.t('hero.name').replace(/^I'?m\s*/i, '') + ' — Computer Engineer'],
-    ['os', `catppuccin ${ctx.theme === 'dark' ? 'mocha' : 'latte'}`],
+    ['os', 'catppuccin mocha'],
     ['shell', 'bregoli-sh'],
     ['lang', ctx.language],
     ['stack', 'Next.js · React · TypeScript · Tailwind'],
@@ -270,74 +274,67 @@ function Neofetch({ ctx }: { ctx: CommandContext }) {
 export const COMMANDS: Command[] = [
   {
     name: 'help',
-    description: 'list available commands',
+    descriptionKey: 'terminal.cmd.help',
     pure: true,
-    run: () => (
+    run: (ctx) => (
       <div className="space-y-0.5">
-        {COMMANDS.map((c) => (
+        {COMMANDS.filter((c) => !c.hidden).map((c) => (
           <p key={c.name} className="flex gap-3 text-sm">
             <span className="text-primary w-28 shrink-0">{c.name}</span>
-            <span className="text-muted">{c.description}</span>
+            <span className="text-muted">{c.descriptionKey ? ctx.t(c.descriptionKey) : ''}</span>
           </p>
         ))}
         <p className="text-muted text-sm pt-2">
-          <span className="text-secondary">Tab</span> completes · <span className="text-secondary">↑/↓</span>{' '}
-          history · <span className="text-secondary">Ctrl+L</span> clears
+          <span className="text-secondary">Tab</span> {ctx.t('terminal.help.completes')} ·{' '}
+          <span className="text-secondary">↑/↓</span> {ctx.t('terminal.help.history')} ·{' '}
+          <span className="text-secondary">Ctrl+L</span> {ctx.t('terminal.help.clears')}
         </p>
       </div>
     ),
   },
-  { name: 'whoami', description: 'who I am', pure: true, run: (ctx) => <WhoAmI ctx={ctx} /> },
-  { name: 'goals', description: 'what I am working toward', pure: true, run: (ctx) => <Goals ctx={ctx} /> },
+  { name: 'whoami', descriptionKey: 'terminal.cmd.whoami', pure: true, run: (ctx) => <WhoAmI ctx={ctx} /> },
+  { name: 'goals', descriptionKey: 'terminal.cmd.goals', pure: true, run: (ctx) => <Goals ctx={ctx} /> },
   {
     name: 'experience',
     aliases: ['exp', 'work'],
-    description: 'work history',
+    descriptionKey: 'terminal.cmd.experience',
     pure: true,
     run: (ctx) => <Experience ctx={ctx} />,
   },
   {
     name: 'skills',
     aliases: ['ls skills'],
-    description: 'tech, soft & spoken languages',
+    descriptionKey: 'terminal.cmd.skills',
     pure: true,
     run: (ctx) => <Skills ctx={ctx} />,
   },
-  { name: 'education', aliases: ['edu'], description: 'where I studied', pure: true, run: (ctx) => <Education ctx={ctx} /> },
+  {
+    name: 'education',
+    aliases: ['edu'],
+    descriptionKey: 'terminal.cmd.education',
+    pure: true,
+    run: (ctx) => <Education ctx={ctx} />,
+  },
   {
     name: 'projects',
     aliases: ['ls projects'],
-    description: "things I've built",
+    descriptionKey: 'terminal.cmd.projects',
     pure: true,
     run: (ctx) => <Projects ctx={ctx} />,
   },
-  { name: 'contact', description: 'how to reach me', pure: true, run: (ctx) => <Contact ctx={ctx} /> },
+  { name: 'contact', descriptionKey: 'terminal.cmd.contact', pure: true, run: (ctx) => <Contact ctx={ctx} /> },
   {
     name: 'cv',
     aliases: ['resume'],
-    description: 'download my resume',
+    descriptionKey: 'terminal.cmd.cv',
     run: (ctx) => {
       ctx.downloadCV();
       return <p className="text-muted">downloading resume ({ctx.language.toUpperCase()})…</p>;
     },
   },
   {
-    name: 'theme',
-    description: 'switch theme (mocha | latte)',
-    run: (ctx, args) => {
-      const arg = args[0]?.toLowerCase();
-      const next = arg === 'mocha' ? 'dark' : arg === 'latte' ? 'light' : ctx.theme === 'dark' ? 'light' : 'dark';
-      ctx.setTheme(next);
-      return (
-        <p className="text-muted">
-          theme → <span className="text-primary">{next === 'dark' ? 'mocha' : 'latte'}</span>
-        </p>
-      );
-    },
-  },
-  {
     name: 'lang',
-    description: 'set language (en | pt | de | es | zh)',
+    descriptionKey: 'terminal.cmd.lang',
     run: (ctx, args) => {
       const arg = args[0]?.toLowerCase();
       if (arg === 'en' || arg === 'pt' || arg === 'de' || arg === 'es' || arg === 'zh') {
@@ -356,10 +353,10 @@ export const COMMANDS: Command[] = [
       );
     },
   },
-  { name: 'neofetch', description: 'system info', pure: true, run: (ctx) => <Neofetch ctx={ctx} /> },
+  { name: 'neofetch', descriptionKey: 'terminal.cmd.neofetch', pure: true, run: (ctx) => <Neofetch ctx={ctx} /> },
   {
     name: 'github',
-    description: 'open my GitHub',
+    descriptionKey: 'terminal.cmd.github',
     run: () => {
       window.open('https://github.com/viniciusbregoli', '_blank', 'noopener');
       return <p className="text-muted">opening github.com/viniciusbregoli…</p>;
@@ -367,7 +364,7 @@ export const COMMANDS: Command[] = [
   },
   {
     name: 'linkedin',
-    description: 'open my LinkedIn',
+    descriptionKey: 'terminal.cmd.linkedin',
     run: () => {
       window.open('https://linkedin.com/in/viniciusbregoli', '_blank', 'noopener');
       return <p className="text-muted">opening linkedin.com/in/viniciusbregoli…</p>;
@@ -375,10 +372,130 @@ export const COMMANDS: Command[] = [
   },
   {
     name: 'sudo',
-    description: 'nice try',
+    descriptionKey: 'terminal.cmd.sudo',
     run: () => <p className="text-muted">vinicius is not in the sudoers file. This incident will be reported.</p>,
   },
-  { name: 'clear', aliases: ['cls'], description: 'clear the screen', run: () => null },
+  { name: 'clear', aliases: ['cls'], descriptionKey: 'terminal.cmd.clear', run: () => null },
+
+  // ── Hidden classic-Linux commands — easter eggs, kept out of help. ─────────
+  {
+    name: 'ls',
+    hidden: true,
+    run: () => (
+      <p className="flex flex-wrap gap-x-4 gap-y-1">
+        <span className="text-primary">experience/</span>
+        <span className="text-primary">education/</span>
+        <span className="text-primary">projects/</span>
+        <span className="text-foreground/80">about.txt</span>
+        <span className="text-foreground/80">skills.json</span>
+        <span className="text-foreground/80">contact.md</span>
+        <span className="text-secondary">cv.pdf</span>
+      </p>
+    ),
+  },
+  { name: 'pwd', hidden: true, run: () => <p className="text-foreground/90">/home/vinicius</p> },
+  {
+    name: 'cd',
+    hidden: true,
+    run: (_ctx, args) =>
+      !args.length || args[0] === '~' || args[0] === '/home/vinicius' ? null : (
+        <p className="text-muted">{`cd: ${args[0]}: No such file or directory`}</p>
+      ),
+  },
+  { name: 'echo', hidden: true, run: (_ctx, args) => <p className="text-foreground/90">{args.join(' ')}</p> },
+  { name: 'date', hidden: true, run: () => <p className="text-foreground/90">{new Date().toString()}</p> },
+  {
+    name: 'uname',
+    hidden: true,
+    run: (_ctx, args) => (
+      <p className="text-foreground/90">
+        {args.includes('-a') ? 'Linux bregoli-dev 6.6.0-bregoli #1 SMP x86_64 GNU/Linux' : 'Linux'}
+      </p>
+    ),
+  },
+  {
+    name: 'uptime',
+    hidden: true,
+    run: () => (
+      <p className="text-foreground/90">up since you opened this tab · load average: 0.42, 0.13, 0.07</p>
+    ),
+  },
+  {
+    name: 'cat',
+    hidden: true,
+    run: (_ctx, args) => {
+      if (!args.length) return <p className="text-muted">{'usage: cat <file>'}</p>;
+      if (args[0] === 'cv.pdf')
+        return <p className="text-muted">{'cat: cv.pdf: binary file — run `cv` to download it'}</p>;
+      return <p className="text-muted">{`cat: ${args[0]}: No such file or directory`}</p>;
+    },
+  },
+  {
+    name: 'man',
+    hidden: true,
+    run: (_ctx, args) =>
+      args.length ? (
+        <p className="text-muted">{`No manual entry for ${args[0]} — try help`}</p>
+      ) : (
+        <p className="text-muted">What manual page do you want?</p>
+      ),
+  },
+  {
+    name: 'vim',
+    aliases: ['vi'],
+    hidden: true,
+    run: () => <p className="text-muted">{'to exit vim, close the tab. (the only known method)'}</p>,
+  },
+  { name: 'nano', hidden: true, run: () => <p className="text-muted">{'nano? bold choice.'}</p> },
+  {
+    name: 'emacs',
+    hidden: true,
+    run: () => <p className="text-muted">{'a fine operating system, lacking only a decent editor.'}</p>,
+  },
+  {
+    name: 'rm',
+    hidden: true,
+    run: (_ctx, args) => {
+      const joined = args.join(' ');
+      if (joined.includes('-rf') && (joined.includes('/') || joined.includes('*')))
+        return <p className="text-muted">{'whoa — nice try. this portfolio is read-only. 🙂'}</p>;
+      return (
+        <p className="text-muted">{`rm: cannot remove '${args[0] ?? ''}': Operation not permitted`}</p>
+      );
+    },
+  },
+  {
+    name: 'exit',
+    aliases: ['logout', 'quit'],
+    hidden: true,
+    run: () => <p className="text-muted">{'there is no escape — but thanks for visiting.'}</p>,
+  },
+  {
+    name: 'top',
+    aliases: ['htop'],
+    hidden: true,
+    run: () => <p className="text-muted">{'all systems nominal. (1 process: curiosity, 99% CPU)'}</p>,
+  },
+  {
+    name: 'cowsay',
+    hidden: true,
+    run: (_ctx, args) => {
+      const text = args.join(' ') || 'moo';
+      const bar = '-'.repeat(text.length + 2);
+      const cow = [
+        '        \\   ^__^',
+        '         \\  (oo)\\_______',
+        '            (__)\\       )\\/\\',
+        '                ||----w |',
+        '                ||     ||',
+      ].join('\n');
+      return (
+        <pre className="text-foreground/90 leading-tight text-xs sm:text-sm">
+          {` _${bar}_\n< ${text} >\n -${bar}-\n${cow}`}
+        </pre>
+      );
+    },
+  },
 ];
 
 /** Resolves a typed command (name or alias) to its definition. */
@@ -387,5 +504,8 @@ export function resolveCommand(input: string): Command | undefined {
   return COMMANDS.find((c) => c.name === name || c.aliases?.includes(name));
 }
 
-/** All names + aliases, for autosuggest. */
-export const COMMAND_NAMES: string[] = COMMANDS.flatMap((c) => [c.name, ...(c.aliases ?? [])]);
+/** Visible names + aliases, for autosuggest (hidden easter eggs are excluded). */
+export const COMMAND_NAMES: string[] = COMMANDS.filter((c) => !c.hidden).flatMap((c) => [
+  c.name,
+  ...(c.aliases ?? []),
+]);

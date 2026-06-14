@@ -2,20 +2,18 @@
 
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../../(core)/i18n/context';
-import { useTheme } from '../../(core)/theme/context';
 import { Language } from '../../(core)/i18n/translations';
 import { COMMAND_NAMES, CommandContext, resolveCommand, withTokens } from './commands';
+import Cursor from './Cursor';
+
+// Command auto-typed on first load, like a shell running its startup line.
+const BOOT_COMMAND = 'whoami';
 
 type Entry = { id: number; command: string; render: (ctx: CommandContext) => ReactNode };
 
-function commonPrefix(values: string[]): string {
-  if (values.length === 0) return '';
-  return values.reduce((prefix, value) => {
-    let i = 0;
-    while (i < prefix.length && i < value.length && prefix[i] === value[i]) i++;
-    return prefix.slice(0, i);
-  });
-}
+// Tab-completion cycling state: the frozen suggestion list, the highlighted
+// index, and the prefix the user originally typed (kept bold while cycling).
+type Cycle = { list: string[]; index: number; prefix: string };
 
 // Tappable starter commands — discoverability on desktop, no-typing nav on mobile.
 const QUICK = ['help', 'projects', 'skills', 'contact', 'cv'];
@@ -30,7 +28,6 @@ const Prompt = () => (
 
 export default function Terminal() {
   const { t, language, setLanguage } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
 
   const downloadCV = () => {
     const cvPaths: Partial<Record<Language, string>> = {
@@ -50,21 +47,20 @@ export default function Terminal() {
     t,
     language,
     setLanguage,
-    theme,
-    setTheme: (next) => {
-      if (next !== theme) toggleTheme();
-    },
     downloadCV,
   };
 
   const idRef = useRef(1);
-  // Auto-print whoami on first load so there's content + the help hint.
-  const [entries, setEntries] = useState<Entry[]>(() => [
-    { id: 0, command: 'whoami', render: (c) => resolveCommand('whoami')!.run(c, []) },
-  ]);
+  // entries start empty; the boot sequence types `whoami` then commits its output.
+  const [entries, setEntries] = useState<Entry[]>([]);
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<string[]>([]);
   const [histCursor, setHistCursor] = useState<number | null>(null);
+  const [cycle, setCycle] = useState<Cycle | null>(null);
+
+  // Boot animation: type out BOOT_COMMAND char-by-char, then run it.
+  const [booting, setBooting] = useState(true);
+  const [bootText, setBootText] = useState('');
 
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -82,19 +78,56 @@ export default function Terminal() {
     }
   };
 
+  // Run the startup typing animation once on mount.
+  const commitBoot = () => {
+    setEntries([
+      { id: 0, command: BOOT_COMMAND, render: (c) => resolveCommand(BOOT_COMMAND)!.run(c, []) },
+    ]);
+    setBooting(false);
+    setBootText('');
+  };
+
   useEffect(() => {
+    // Respect reduced-motion (and SSR safety): skip the animation, show output.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      commitBoot();
+      return;
+    }
+    let i = 0;
+    let runTimeout = 0;
+    const tick = () => {
+      i += 1;
+      setBootText(BOOT_COMMAND.slice(0, i));
+      if (i >= BOOT_COMMAND.length) {
+        clearInterval(id);
+        // Brief beat after typing, as if hitting Enter, then run it.
+        runTimeout = window.setTimeout(commitBoot, 450);
+      }
+    };
+    // The whole view (frame + content) fades in together via the CSS .view-fade,
+    // so typing can start right away — it's never "outside" the window.
+    const id = window.setInterval(tick, 95);
+    return () => {
+      clearInterval(id);
+      clearTimeout(runTimeout);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (booting) return;
     focusInput();
     // After a command runs, follow the output to the bottom so the fresh prompt
     // is always in view. rAF lets the new output lay out before we measure.
     requestAnimationFrame(() => {
       window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
     });
-  }, [entries]);
+  }, [entries, booting]);
 
   const dispatch = (raw: string) => {
     const value = raw.trim();
     setInput('');
     setHistCursor(null);
+    setCycle(null);
     if (!value) {
       setEntries((e) => [...e, { id: idRef.current++, command: '', render: () => null }]);
       return;
@@ -142,16 +175,30 @@ export default function Terminal() {
       dispatch(input);
     } else if (e.key === 'Tab') {
       e.preventDefault();
-      if (suggestions.length === 1) setInput(suggestions[0]);
-      else if (suggestions.length > 1) setInput(commonPrefix(suggestions));
+      if (cycle) {
+        // Step the highlight through the open menu (Shift+Tab goes back).
+        const dir = e.shiftKey ? -1 : 1;
+        const index = (cycle.index + dir + cycle.list.length) % cycle.list.length;
+        setCycle({ ...cycle, index });
+        setInput(cycle.list[index]);
+      } else if (suggestions.length > 0) {
+        // Open the menu, highlight the first (or last with Shift+Tab).
+        const index = e.shiftKey ? suggestions.length - 1 : 0;
+        setCycle({ list: suggestions, index, prefix: trimmed });
+        setInput(suggestions[index]);
+      }
+    } else if (e.key === 'Escape') {
+      setCycle(null);
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
+      setCycle(null);
       if (history.length === 0) return;
       const next = histCursor === null ? history.length - 1 : Math.max(0, histCursor - 1);
       setHistCursor(next);
       setInput(history[next]);
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
+      setCycle(null);
       if (histCursor === null) return;
       const next = histCursor + 1;
       if (next >= history.length) {
@@ -176,7 +223,7 @@ export default function Terminal() {
       {entries.map((entry) => {
         const output = entry.render(ctx);
         return (
-          <div key={entry.id}>
+          <div key={entry.id} className="term-entry">
             <p className="flex flex-wrap items-baseline gap-x-2">
               <Prompt />
               <span className="text-foreground">{entry.command}</span>
@@ -186,14 +233,26 @@ export default function Terminal() {
         );
       })}
 
+      {/* Boot typing line — shown only while the startup command types itself. */}
+      {booting && (
+        <p className="flex flex-wrap items-baseline gap-x-2">
+          <Prompt />
+          <span className="text-foreground">{bootText}</span>
+          <Cursor />
+        </p>
+      )}
+
       {/* Live prompt */}
-      <div>
+      <div className={booting ? 'hidden' : undefined}>
         <div className="flex items-baseline gap-x-2">
           <Prompt />
           <input
             ref={inputRef}
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => {
+              setCycle(null);
+              setInput(e.target.value);
+            }}
             onKeyDown={handleKeyDown}
             spellCheck={false}
             autoComplete="off"
@@ -203,19 +262,30 @@ export default function Terminal() {
           />
         </div>
 
-        {suggestions.length > 0 && (
-          <div className="mt-2 term-box bg-surface inline-block min-w-[16rem] py-1">
-            {suggestions.map((name) => {
+        {(cycle ? cycle.list : suggestions).length > 0 && (
+          <div className="mt-2 space-y-0.5">
+            {(cycle ? cycle.list : suggestions).map((name, i) => {
               const cmd = resolveCommand(name);
+              const boldLen = cycle ? cycle.prefix.length : trimmed.length;
+              const selected = cycle?.index === i;
               return (
                 <button
                   key={name}
                   type="button"
                   onClick={() => dispatch(name)}
-                  className="flex w-full gap-3 px-3 py-1 text-left text-sm hover:bg-primary/10 transition-colors"
+                  className={`flex w-full items-baseline gap-3 rounded px-1 py-0.5 text-left text-sm transition-colors ${
+                    selected ? 'bg-primary/20' : 'hover:bg-primary/10'
+                  }`}
                 >
-                  <span className="text-primary w-28 shrink-0">{name}</span>
-                  <span className="text-muted">{cmd?.description}</span>
+                  <span className="w-36 shrink-0">
+                    <span className="font-semibold text-foreground">{name.slice(0, boldLen)}</span>
+                    <span className="text-muted">{name.slice(boldLen)}</span>
+                  </span>
+                  {cmd?.descriptionKey && (
+                    <span className="italic" style={{ color: 'var(--dot-yellow)' }}>
+                      ({t(cmd.descriptionKey)})
+                    </span>
+                  )}
                 </button>
               );
             })}

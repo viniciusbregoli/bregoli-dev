@@ -416,6 +416,113 @@ export const translations = {
     es: '¿prefieres un formulario? ejecuta {~/contact} en las pestañas de arriba.',
     zh: '想用表单？在上方标签中运行 {~/contact}。',
   },
+
+  // Command descriptions (shown in `help` and the autosuggest). The command
+  // names stay English; only their descriptions are translated.
+  'terminal.cmd.help': {
+    en: 'list available commands',
+    pt: 'listar comandos disponíveis',
+    de: 'verfügbare Befehle auflisten',
+    es: 'listar comandos disponibles',
+    zh: '列出可用命令',
+  },
+  'terminal.cmd.whoami': { en: 'who I am', pt: 'quem eu sou', de: 'wer ich bin', es: 'quién soy', zh: '我是谁' },
+  'terminal.cmd.goals': {
+    en: 'what I am working toward',
+    pt: 'o que busco alcançar',
+    de: 'woran ich arbeite',
+    es: 'hacia qué trabajo',
+    zh: '我的目标',
+  },
+  'terminal.cmd.experience': {
+    en: 'work history',
+    pt: 'histórico profissional',
+    de: 'Berufserfahrung',
+    es: 'experiencia laboral',
+    zh: '工作经历',
+  },
+  'terminal.cmd.skills': {
+    en: 'tech, soft & spoken languages',
+    pt: 'técnicas, comportamentais e idiomas',
+    de: 'Tech-, Soft-Skills & Sprachen',
+    es: 'técnicas, blandas e idiomas',
+    zh: '技术、软技能和语言',
+  },
+  'terminal.cmd.education': {
+    en: 'where I studied',
+    pt: 'onde estudei',
+    de: 'wo ich studiert habe',
+    es: 'dónde estudié',
+    zh: '我的学历',
+  },
+  'terminal.cmd.projects': {
+    en: "things I've built",
+    pt: 'coisas que construí',
+    de: 'was ich gebaut habe',
+    es: 'cosas que he creado',
+    zh: '我做过的项目',
+  },
+  'terminal.cmd.contact': {
+    en: 'how to reach me',
+    pt: 'como me contatar',
+    de: 'wie du mich erreichst',
+    es: 'cómo contactarme',
+    zh: '如何联系我',
+  },
+  'terminal.cmd.cv': {
+    en: 'download my resume',
+    pt: 'baixar meu currículo',
+    de: 'meinen Lebenslauf herunterladen',
+    es: 'descargar mi currículum',
+    zh: '下载我的简历',
+  },
+  'terminal.cmd.lang': {
+    en: 'set language (en | pt | de | es | zh)',
+    pt: 'definir idioma (en | pt | de | es | zh)',
+    de: 'Sprache festlegen (en | pt | de | es | zh)',
+    es: 'definir idioma (en | pt | de | es | zh)',
+    zh: '设置语言 (en | pt | de | es | zh)',
+  },
+  'terminal.cmd.neofetch': {
+    en: 'system info',
+    pt: 'informações do sistema',
+    de: 'Systeminfo',
+    es: 'información del sistema',
+    zh: '系统信息',
+  },
+  'terminal.cmd.github': {
+    en: 'open my GitHub',
+    pt: 'abrir meu GitHub',
+    de: 'mein GitHub öffnen',
+    es: 'abrir mi GitHub',
+    zh: '打开我的 GitHub',
+  },
+  'terminal.cmd.linkedin': {
+    en: 'open my LinkedIn',
+    pt: 'abrir meu LinkedIn',
+    de: 'mein LinkedIn öffnen',
+    es: 'abrir mi LinkedIn',
+    zh: '打开我的 LinkedIn',
+  },
+  'terminal.cmd.sudo': {
+    en: 'nice try',
+    pt: 'boa tentativa',
+    de: 'netter Versuch',
+    es: 'buen intento',
+    zh: '想得美',
+  },
+  'terminal.cmd.clear': {
+    en: 'clear the screen',
+    pt: 'limpar a tela',
+    de: 'Bildschirm leeren',
+    es: 'limpiar la pantalla',
+    zh: '清屏',
+  },
+
+  // `help` keyboard-shortcut hints (the keystroke labels stay literal).
+  'terminal.help.completes': { en: 'completes', pt: 'completa', de: 'vervollständigt', es: 'completa', zh: '补全' },
+  'terminal.help.history': { en: 'history', pt: 'histórico', de: 'Verlauf', es: 'historial', zh: '历史' },
+  'terminal.help.clears': { en: 'clears', pt: 'limpa', de: 'leert', es: 'limpia', zh: '清屏' },
 } satisfies Record<string, TranslationEntry>;
 
 export type TranslationKey = keyof typeof translations;
