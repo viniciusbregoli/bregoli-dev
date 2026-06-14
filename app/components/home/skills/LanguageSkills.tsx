@@ -1,25 +1,10 @@
 'use client';
 
 import { useLanguage } from '../../../(core)/i18n/context';
-
-const levelWidth: Record<string, string> = {
-  Native: '100%',
-  Fluent: '95%',
-  Advanced: '80%',
-  Intermediate: '60%',
-  Basic: '35%',
-};
+import { spokenLanguages as languages, levelWidth } from './skillsData';
 
 export default function LanguageSkills() {
   const { t } = useLanguage();
-
-  const languages = [
-    { name: 'English', level: 'Fluent', flag: '🇺🇸' },
-    { name: 'Portuguese', level: 'Native', flag: '🇧🇷' },
-    { name: 'Spanish', level: 'Advanced', flag: '🇪🇸' },
-    { name: 'German', level: 'Intermediate', flag: '🇩🇪' },
-    { name: 'Mandarin', level: 'Basic', flag: '🇨🇳' },
-  ];
 
   return (
     <div className="panel p-8">

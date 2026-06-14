@@ -4,6 +4,7 @@ import { Language, TranslationKey } from '../../(core)/i18n/translations';
 import { getExperienceData } from '../home/experience/experienceData';
 import { getEducationData } from '../home/education/educationData';
 import { projects } from '../../(features)/projects/projectData';
+import { technicalSkills, softSkillGroups, spokenLanguages } from '../home/skills/skillsData';
 
 export type CommandContext = {
   t: (key: TranslationKey) => string;
@@ -40,21 +41,6 @@ export type Command = {
   /** Returns the output to print, or null for commands that only have side effects. */
   run: (ctx: CommandContext, args: string[]) => ReactNode;
 };
-
-const technicalSkills = [
-  { category: 'languages', skills: ['Python', 'Java', 'JavaScript', 'C', 'PHP'] },
-  { category: 'frameworks', skills: ['Next.js', 'React', 'Vue.js', 'NodeJS'] },
-  { category: 'infra', skills: ['PostgreSQL', 'Docker', 'AWS', 'Linux'] },
-  { category: 'tools', skills: ['Git', 'VS Code', 'IntelliJ', 'Postman'] },
-];
-
-const spokenLanguages = [
-  { name: 'Portuguese', level: 'native' },
-  { name: 'English', level: 'fluent' },
-  { name: 'Spanish', level: 'advanced' },
-  { name: 'German', level: 'intermediate' },
-  { name: 'Mandarin', level: 'basic' },
-];
 
 // ── Output renderers ──────────────────────────────────────────────────────
 
@@ -127,28 +113,53 @@ function Experience({ ctx }: { ctx: CommandContext }) {
   );
 }
 
-function Skills() {
+function Skills({ ctx }: { ctx: CommandContext }) {
+  const { t } = ctx;
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4">
-      {technicalSkills.map((cat) => (
-        <div key={cat.category}>
-          <p className="text-secondary">{cat.category}/</p>
-          <div className="pl-4">
-            {cat.skills.map((skill) => (
-              <p key={skill} className="text-muted">
-                <span className="text-line">└─</span> <span className="text-foreground/90">{skill}</span>
-              </p>
-            ))}
+    <div className="space-y-6">
+      {/* technical */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4">
+        {technicalSkills.map((cat) => (
+          <div key={cat.category}>
+            <p className="text-secondary">{cat.category}/</p>
+            <div className="pl-4">
+              {cat.skills.map((skill) => (
+                <p key={skill} className="text-muted">
+                  <span className="text-line">└─</span> <span className="text-foreground/90">{skill}</span>
+                </p>
+              ))}
+            </div>
           </div>
+        ))}
+      </div>
+
+      {/* soft */}
+      <div>
+        <p className="text-secondary">{t('skills.soft').toLowerCase()}/</p>
+        <div className="pl-4 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3 mt-1">
+          {softSkillGroups.map((g) => (
+            <div key={g.categoryKey}>
+              <p className="text-foreground/90">{t(g.categoryKey)}/</p>
+              <div className="pl-4">
+                {g.skillKeys.map((k) => (
+                  <p key={k} className="text-muted">
+                    <span className="text-line">└─</span> <span className="text-foreground/90">{t(k)}</span>
+                  </p>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-      <div className="sm:col-span-2">
+      </div>
+
+      {/* spoken */}
+      <div>
         <p className="text-secondary">spoken/</p>
         <div className="pl-4 flex flex-wrap gap-x-6">
           {spokenLanguages.map((l) => (
             <p key={l.name} className="text-muted">
               <span className="text-foreground/90">{l.name}</span>{' '}
-              <span className="text-primary">[{l.level}]</span>
+              <span className="text-primary">[{l.level.toLowerCase()}]</span>
             </p>
           ))}
         </div>
@@ -285,7 +296,13 @@ export const COMMANDS: Command[] = [
     pure: true,
     run: (ctx) => <Experience ctx={ctx} />,
   },
-  { name: 'skills', aliases: ['ls skills'], description: 'tech & spoken languages', pure: true, run: () => <Skills /> },
+  {
+    name: 'skills',
+    aliases: ['ls skills'],
+    description: 'tech, soft & spoken languages',
+    pure: true,
+    run: (ctx) => <Skills ctx={ctx} />,
+  },
   { name: 'education', aliases: ['edu'], description: 'where I studied', pure: true, run: (ctx) => <Education ctx={ctx} /> },
   {
     name: 'projects',

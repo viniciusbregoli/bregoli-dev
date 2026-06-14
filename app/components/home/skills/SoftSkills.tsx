@@ -2,48 +2,23 @@
 
 import { useLanguage } from '../../../(core)/i18n/context';
 import { FiUsers, FiTrendingUp, FiZap, FiCheckCircle } from 'react-icons/fi';
+import { softSkillGroups } from './skillsData';
+
+const icons = [
+  <FiUsers key="users" className="w-5 h-5 text-primary" />,
+  <FiTrendingUp key="trend" className="w-5 h-5 text-primary" />,
+  <FiZap key="zap" className="w-5 h-5 text-primary" />,
+  <FiCheckCircle key="check" className="w-5 h-5 text-primary" />,
+];
 
 export default function SoftSkills() {
   const { t } = useLanguage();
 
-  const softSkills = [
-    {
-      category: t('skills.soft.communication'),
-      icon: <FiUsers className="w-5 h-5 text-primary" />,
-      skills: [
-        t('skills.soft.teamCollaboration'),
-        t('skills.soft.clientCommunication'),
-        t('skills.soft.problemSolving'),
-      ],
-    },
-    {
-      category: t('skills.soft.leadership'),
-      icon: <FiTrendingUp className="w-5 h-5 text-primary" />,
-      skills: [
-        t('skills.soft.projectManagement'),
-        t('skills.soft.teamLeadership'),
-        t('skills.soft.strategicPlanning'),
-      ],
-    },
-    {
-      category: t('skills.soft.innovation'),
-      icon: <FiZap className="w-5 h-5 text-primary" />,
-      skills: [
-        t('skills.soft.creativeThinking'),
-        t('skills.soft.processOptimization'),
-        t('skills.soft.technicalInnovation'),
-      ],
-    },
-    {
-      category: t('skills.soft.professional'),
-      icon: <FiCheckCircle className="w-5 h-5 text-primary" />,
-      skills: [
-        t('skills.soft.agileMethodologies'),
-        t('skills.soft.riskManagement'),
-        t('skills.soft.qualityAssurance'),
-      ],
-    },
-  ];
+  const softSkills = softSkillGroups.map((group, i) => ({
+    category: t(group.categoryKey),
+    icon: icons[i % icons.length],
+    skills: group.skillKeys.map((k) => t(k)),
+  }));
 
   return (
     <div className="panel p-8">

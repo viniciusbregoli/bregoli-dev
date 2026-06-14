@@ -2,27 +2,18 @@
 
 import { useLanguage } from '../../../(core)/i18n/context';
 import { FiCode, FiServer, FiTool } from 'react-icons/fi';
+import { technicalSkills as data } from './skillsData';
+
+const icons = [
+  <FiCode key="code" className="w-5 h-5 text-primary" />,
+  <FiServer key="server" className="w-5 h-5 text-primary" />,
+  <FiTool key="tool" className="w-5 h-5 text-primary" />,
+];
 
 export default function TechnicalSkills() {
   const { t } = useLanguage();
 
-  const technicalSkills = [
-    {
-      category: 'Programming',
-      icon: <FiCode className="w-5 h-5 text-primary" />,
-      skills: ['Python', 'Java', 'JavaScript', 'Next.js', 'C', 'PHP'],
-    },
-    {
-      category: 'Infrastructure & Databases',
-      icon: <FiServer className="w-5 h-5 text-primary" />,
-      skills: ['SQL', 'PostgreSQL', 'Windows', 'Linux', 'Docker', 'AWS'],
-    },
-    {
-      category: 'Tools',
-      icon: <FiTool className="w-5 h-5 text-primary" />,
-      skills: ['Git', 'VS Code', 'IntelliJ', 'Postman', 'YouTrack', 'Jira'],
-    },
-  ];
+  const technicalSkills = data.map((group, i) => ({ ...group, icon: icons[i % icons.length] }));
 
   return (
     <div className="panel p-8">
