@@ -3,9 +3,11 @@
 import { motion, type Variants, type Transition } from 'framer-motion';
 import { ReactNode } from 'react';
 
+// Transform only (no opacity): an animated opacity on these wrappers would
+// disable `backdrop-filter` on the glass panels inside them mid-reveal.
 const variants: Variants = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
+  initial: { y: 24 },
+  animate: { y: 0 },
 };
 
 const transition: Transition = {

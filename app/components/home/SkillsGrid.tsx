@@ -10,7 +10,7 @@ export default function SkillsSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-8">
       <div className="max-w-5xl mx-auto px-6">
         <SectionTitle eyebrow="skills" className="mb-10">
           {t('skills.title')}

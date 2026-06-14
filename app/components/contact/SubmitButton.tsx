@@ -12,7 +12,7 @@ export default function SubmitButton({ isSubmitting, label }: SubmitButtonProps)
     <button
       type="submit"
       disabled={isSubmitting}
-      className="w-full flex items-center justify-center gap-2 bg-primary text-background font-mono text-sm font-semibold py-3.5 px-6 rounded-lg transition-opacity hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
+      className="w-full flex items-center justify-center gap-2 border border-primary/40 bg-primary/15 text-primary font-mono text-sm font-semibold py-3.5 px-6 rounded-lg backdrop-blur-sm transition-colors hover:bg-primary/25 hover:border-primary/60 disabled:opacity-60 disabled:cursor-not-allowed"
     >
       {isSubmitting && <FiLoader className="animate-spin" />}
       {label}

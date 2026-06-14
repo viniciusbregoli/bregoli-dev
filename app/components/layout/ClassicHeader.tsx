@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import LanguageSelector from './LanguageSelector';
-import ThemeToggle from './ThemeToggleButton';
 import ViewModeToggle from './ViewModeToggle';
+import TrafficLights from './TrafficLights';
 import { useLanguage } from '../../(core)/i18n/context';
 import { cn } from '../../(core)/utils/cn';
 
@@ -20,29 +20,31 @@ export default function ClassicHeader() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 p-4">
-      <nav className="max-w-5xl mx-auto panel rounded-full px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-3 backdrop-blur-sm bg-surface/80">
-        <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200',
-                router === item.href
-                  ? 'bg-primary/10 text-primary'
-                  : 'text-muted hover:text-foreground hover:bg-foreground/5',
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
+    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-5 pt-4 sm:pt-8">
+      <nav className="max-w-7xl mx-auto panel rounded-full px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-3 !bg-surface/30 backdrop-blur-xl">
+        <div className="flex items-center gap-3">
+          <TrafficLights className="hidden sm:flex" />
+          <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200',
+                  router === item.href
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-muted hover:text-foreground hover:bg-foreground/5',
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
         </div>
 
         <div className="flex items-center gap-3">
           <ViewModeToggle />
           <div className="flex items-center gap-2 border-l border-line pl-3">
-            <ThemeToggle />
             <LanguageSelector />
           </div>
           <div className="flex items-center gap-3 border-l border-line pl-3">

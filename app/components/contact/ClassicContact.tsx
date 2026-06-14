@@ -6,14 +6,16 @@ import ContactInfo from './ContactInfo';
 import ContactForm from './ContactForm';
 import SectionTitle from '../common/SectionTitle';
 
+// Transform only (no opacity) so the glass panels keep their `backdrop-filter`
+// during the reveal.
 const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+  hidden: { y: 20 },
+  visible: { y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
 export default function ClassicContact() {

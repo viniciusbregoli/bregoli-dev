@@ -6,10 +6,11 @@ import ExperienceCard from './experience/ExperienceCard';
 import { getExperienceData } from './experience/experienceData';
 import SectionTitle from '../common/SectionTitle';
 
+// Transform only (no opacity) so the cards' `backdrop-filter` stays active
+// during the staggered reveal.
 const containerVariants: Variants = {
-  hidden: { opacity: 0 },
+  hidden: {},
   visible: {
-    opacity: 1,
     transition: {
       staggerChildren: 0.15,
     },
@@ -17,9 +18,8 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { y: 20 },
   visible: {
-    opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
@@ -33,7 +33,7 @@ export default function ExperienceSection() {
   const experiences = getExperienceData();
 
   return (
-    <section id="experience" className="py-20">
+    <section id="experience" className="py-8">
       <div className="max-w-5xl mx-auto px-6">
         <SectionTitle eyebrow="experience" className="mb-12">
           {t('experience.title')}

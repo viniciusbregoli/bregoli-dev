@@ -6,10 +6,11 @@ import SectionTitle from '../common/SectionTitle';
 import EducationCard from './education/EducationCard';
 import { getEducationData } from './education/educationData';
 
+// Transform only (no opacity) so the cards' `backdrop-filter` stays active
+// during the staggered reveal.
 const containerVariants: Variants = {
-  hidden: { opacity: 0 },
+  hidden: {},
   visible: {
-    opacity: 1,
     transition: {
       staggerChildren: 0.2,
     },
@@ -17,9 +18,8 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { y: 30 },
   visible: {
-    opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
@@ -35,7 +35,7 @@ export default function EducationSection() {
   const title = t('education.title');
 
   return (
-    <section id="education" className="py-20">
+    <section id="education" className="py-8">
       <div className="max-w-5xl mx-auto px-6">
         <SectionTitle eyebrow="education" className="mb-10">
           {title}

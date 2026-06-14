@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LanguageSelector from './LanguageSelector';
-import ThemeToggle from './ThemeToggleButton';
 import ViewModeToggle from './ViewModeToggle';
+import TrafficLights from './TrafficLights';
 import { useLanguage } from '../../(core)/i18n/context';
 import { cn } from '../../(core)/utils/cn';
 
@@ -22,11 +22,7 @@ export default function Header() {
 
   return (
     <header className="term-titlebar flex-col sm:flex-row gap-3 sm:gap-4">
-      <div className="flex items-center gap-2 self-start sm:self-auto">
-        <span className="term-dot red" />
-        <span className="term-dot yellow" />
-        <span className="term-dot green" />
-      </div>
+      <TrafficLights className="self-start sm:self-auto" />
 
       <span className="text-muted text-xs hidden md:block">
         vinicius@bregoli-dev: {active.path}
@@ -51,7 +47,6 @@ export default function Header() {
 
       <div className="flex items-center gap-1 border-l border-line pl-2 sm:pl-3">
         <ViewModeToggle />
-        <ThemeToggle />
         <LanguageSelector />
       </div>
     </header>

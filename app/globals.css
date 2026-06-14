@@ -1,7 +1,5 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -16,23 +14,8 @@
   --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SFMono-Regular', monospace;
 }
 
-/* Catppuccin Latte (light) — mauve accent, green prompt. */
+/* Catppuccin Mocha — the site's single (dark) theme. */
 :root {
-  --background: #e6e9ef; /* mantle */
-  --foreground: #4c4f69; /* text */
-  --surface: #eff1f5; /* base */
-  --muted: #6c6f85; /* subtext0 */
-  --line: #ccd0da; /* surface0 */
-  --primary: #8839ef; /* mauve */
-  --secondary: #40a02b; /* green */
-  --accent: #8839ef; /* mauve */
-  --dot-red: #d20f39;
-  --dot-yellow: #df8e1d;
-  --dot-green: #40a02b;
-}
-
-/* Catppuccin Mocha (dark). */
-.dark {
   --background: #11111b; /* crust */
   --foreground: #cdd6f4; /* text */
   --surface: #1e1e2e; /* base */
@@ -58,31 +41,55 @@ body {
 /* ── Terminal utilities ────────────────────────────────────────────────── */
 
 /* The window frame that wraps the whole app in terminal mode.
-   Scopes the monospace font + tighter size to terminal mode only. */
+   Scopes the monospace font + tighter size to terminal mode only.
+   Translucent + backdrop-blur for a Ghostty-style glass terminal: the
+   ambient color and grid behind it blur through the surface. */
 .term-window {
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--surface) 22%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid color-mix(in oklab, var(--line) 75%, transparent);
   border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 24px 60px -20px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 color-mix(in oklab, white 7%, transparent);
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
 }
 
-/* Title bar with traffic-light dots. */
+/* Title bar with traffic-light dots. Slightly more translucent so the
+   blur reads through the chrome too. */
 .term-titlebar {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.65rem 1rem;
-  border-bottom: 1px solid var(--line);
-  background: color-mix(in oklab, var(--surface) 80%, var(--background));
+  border-bottom: 1px solid color-mix(in oklab, var(--line) 70%, transparent);
+  background: color-mix(in oklab, var(--surface) 16%, transparent);
 }
 
 .term-dot {
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 0.75rem;
+  height: 0.75rem;
   border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Dark, translucent glyph like real macOS traffic lights. */
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* The close/minimize/zoom symbol inside each dot — revealed on cluster hover. */
+.term-dot-glyph {
+  width: 0.62rem;
+  height: 0.62rem;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.term-dots:hover .term-dot-glyph {
+  opacity: 1;
 }
 
 .term-dot.red {
@@ -122,16 +129,76 @@ body {
   }
 }
 
-/* Subtle scanline/grid texture behind the window. */
+/* Subtle scanline/grid texture behind the window. Transparent base so the
+   ambient aurora layer below shows through and gets blurred by the glass. */
 .bg-grid {
-  background-color: var(--background);
   background-image:
     linear-gradient(to right, var(--line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--line) 1px, transparent 1px);
   background-size: 48px 48px;
-  opacity: 1;
+  opacity: 0.25;
   -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, #000 20%, transparent 90%);
   mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, #000 20%, transparent 90%);
+}
+
+/* The nebula "wallpaper" the glass terminal + panels sit on. Slowly drifts so
+   the glass feels alive — oversized + center origin so the transform never
+   exposes an edge. */
+.bg-aurora {
+  background-color: var(--background);
+  background-image: url('/wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+  animation: aurora-drift 30s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes aurora-drift {
+  0% {
+    transform: scale(1.2) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.3) translate3d(2.5%, -2%, 0);
+  }
+  100% {
+    transform: scale(1.25) translate3d(-2.5%, 2%, 0);
+  }
+}
+
+/* View-switch entrance. Applied per view via a `key`, so it replays on each
+   switch (and on first load). Transform — NOT opacity — because an animated
+   opacity on an ancestor disables `backdrop-filter` on descendants (the glass
+   would render crisp, then snap to blurred). No fill-mode so the transform
+   reverts to none afterward, keeping the classic header's `position: fixed`. */
+.view-fade {
+  animation: view-fade-in 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes view-fade-in {
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Each command's output fades + lifts in as it prints. */
+.term-entry {
+  animation: entry-in 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes entry-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .no-scrollbar {
@@ -153,10 +220,13 @@ body {
 
 /* ── Classic (HR) mode utilities ───────────────────────────────────────── */
 
-/* Bordered surface card — the core primitive of the clean layout. */
+/* Bordered surface card — the core primitive of the clean layout. Translucent
+   + blur so the wallpaper behind reads through, matching the glass terminal. */
 .panel {
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--surface) 72%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid color-mix(in oklab, var(--line) 80%, transparent);
   border-radius: 1rem;
 }
 
