@@ -1,22 +1,11 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
 import { useLanguage } from './(core)/i18n/context';
 import { getExperienceData } from './components/home/experience/experienceData';
 import { getEducationData } from './components/home/education/educationData';
 import CommandLine from './components/terminal/CommandLine';
 import Cursor from './components/terminal/Cursor';
 import { FiDownload } from 'react-icons/fi';
-
-const block: Variants = {
-  hidden: { opacity: 0, y: 8 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } },
-};
-
-const container: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
 
 const technicalSkills = [
   { category: 'languages', skills: ['Python', 'Java', 'JavaScript', 'C', 'PHP'] },
@@ -49,14 +38,9 @@ export default function Home() {
   };
 
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      className="space-y-10 leading-relaxed"
-    >
+    <div className="space-y-10 leading-relaxed">
       {/* whoami */}
-      <motion.div variants={block}>
+      <div>
         <CommandLine command="whoami">
           <div className="space-y-2">
             <p className="text-xl text-primary font-semibold">{t('hero.name')}</p>
@@ -70,10 +54,10 @@ export default function Home() {
             </button>
           </div>
         </CommandLine>
-      </motion.div>
+      </div>
 
       {/* goals */}
-      <motion.div variants={block}>
+      <div>
         <CommandLine command="cat goals.txt">
           <div className="space-y-3 text-muted">
             <p>
@@ -86,10 +70,10 @@ export default function Home() {
             </p>
           </div>
         </CommandLine>
-      </motion.div>
+      </div>
 
       {/* experience */}
-      <motion.div variants={block}>
+      <div>
         <CommandLine command="git log --oneline experience/">
           <div className="space-y-6">
             {experiences.map((exp, i) => {
@@ -99,22 +83,27 @@ export default function Home() {
                   <p className="flex flex-wrap items-baseline gap-2">
                     <span className="text-primary">{hash}</span>
                     <span className="text-foreground font-semibold">{exp.company}</span>
-                    <span className="text-muted">— {exp.position[language] || exp.position.en}</span>
+                    <span className="text-muted">
+                      — {exp.position[language] || exp.position.en}
+                    </span>
                   </p>
                   <div className="pl-4 border-l border-line ml-1 mt-1 space-y-1 text-sm">
                     <p className="text-muted">
-                      <span className="text-secondary">├</span> {exp.period[language] || exp.period.en} ·{' '}
-                      {exp.location}
+                      <span className="text-secondary">├</span>{' '}
+                      {exp.period[language] || exp.period.en} · {exp.location}
                     </p>
                     <p className="text-muted">
-                      <span className="text-secondary">├</span> {exp.description[language] || exp.description.en}
+                      <span className="text-secondary">├</span>{' '}
+                      {exp.description[language] || exp.description.en}
                     </p>
                     <p className="text-muted flex flex-wrap gap-x-2 gap-y-1">
                       <span className="text-secondary">└</span>
                       {exp.technologies.map((tech, ti) => (
                         <span key={ti} className="text-foreground/80">
                           {tech[language] || tech.en}
-                          {ti < exp.technologies.length - 1 && <span className="text-muted"> ·</span>}
+                          {ti < exp.technologies.length - 1 && (
+                            <span className="text-muted"> ·</span>
+                          )}
                         </span>
                       ))}
                     </p>
@@ -124,10 +113,10 @@ export default function Home() {
             })}
           </div>
         </CommandLine>
-      </motion.div>
+      </div>
 
       {/* skills */}
-      <motion.div variants={block}>
+      <div>
         <CommandLine command="ls -R skills/">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4">
             {technicalSkills.map((cat) => (
@@ -136,7 +125,8 @@ export default function Home() {
                 <div className="pl-4">
                   {cat.skills.map((skill) => (
                     <p key={skill} className="text-muted">
-                      <span className="text-line">└─</span> <span className="text-foreground/90">{skill}</span>
+                      <span className="text-line">└─</span>{' '}
+                      <span className="text-foreground/90">{skill}</span>
                     </p>
                   ))}
                 </div>
@@ -155,10 +145,10 @@ export default function Home() {
             </div>
           </div>
         </CommandLine>
-      </motion.div>
+      </div>
 
       {/* education */}
-      <motion.div variants={block}>
+      <div>
         <CommandLine command="cat education.md">
           <div className="space-y-3">
             {educations.map((edu, i) => (
@@ -167,17 +157,17 @@ export default function Home() {
                   <span className="text-primary">#</span> {edu.institution}
                 </p>
                 <p className="pl-4 text-muted text-sm">
-                  {edu.program[language] || edu.program.en} · {edu.period[language] || edu.period.en} ·{' '}
-                  {edu.location}
+                  {edu.program[language] || edu.program.en} ·{' '}
+                  {edu.period[language] || edu.period.en} · {edu.location}
                 </p>
               </div>
             ))}
           </div>
         </CommandLine>
-      </motion.div>
+      </div>
 
       {/* prompt */}
-      <motion.div variants={block}>
+      <div>
         <p className="flex items-center gap-2">
           <span className="text-secondary">
             vinicius@bregoli-dev<span className="text-muted">:</span>
@@ -186,7 +176,7 @@ export default function Home() {
           <span className="text-muted">$</span>
           <Cursor />
         </p>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }

@@ -56,13 +56,14 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <ThemeProvider>
-            <div className="bg-grid min-h-screen">
-              <div className="max-w-5xl mx-auto px-3 sm:px-5 py-4 sm:py-8 min-h-screen flex flex-col">
-                <div className="term-window flex flex-col flex-grow">
-                  <Header />
-                  <main className="flex-grow p-5 sm:p-8 md:p-10">{children}</main>
-                  <Footer />
-                </div>
+            {/* Decorative grid sits behind everything; its fade-out mask
+                only affects this layer, never the page content. */}
+            <div className="bg-grid fixed inset-0 -z-10" aria-hidden="true" />
+            <div className="max-w-5xl mx-auto px-3 sm:px-5 py-4 sm:py-8 min-h-screen flex flex-col">
+              <div className="term-window flex flex-col flex-grow">
+                <Header />
+                <main className="flex-grow p-5 sm:p-8 md:p-10">{children}</main>
+                <Footer />
               </div>
             </div>
           </ThemeProvider>

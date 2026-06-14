@@ -1,19 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { motion, type Variants } from 'framer-motion';
 import { useLanguage } from '../../(core)/i18n/context';
 import { projects } from './projectData';
 import CommandLine from '../../components/terminal/CommandLine';
-
-const block: Variants = {
-  hidden: { opacity: 0, y: 8 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.3, ease: 'easeOut', delay: i * 0.08 },
-  }),
-};
 
 export default function Projects() {
   const { language } = useLanguage();
@@ -22,34 +12,38 @@ export default function Projects() {
     <div className="leading-relaxed">
       <CommandLine command="ls -l projects/">
         <div className="space-y-4 mt-2">
-          {projects.map((project, i) => (
-            <motion.div key={project.id} custom={i} variants={block} initial="hidden" animate="visible">
-              <Link href={`/projects/${project.id}`} className="group block term-box p-4 hover:border-primary/50 transition-colors">
-                <p className="flex flex-wrap items-baseline gap-2">
-                  <span className="text-muted text-xs">drwxr-xr-x</span>
-                  <span className="text-secondary group-hover:text-primary transition-colors">
-                    ./{project.id}/
+          {projects.map((project) => (
+            <Link
+              key={project.id}
+              href={`/projects/${project.id}`}
+              className="group block term-box p-4 hover:border-primary/50 transition-colors"
+            >
+              <p className="flex flex-wrap items-baseline gap-2">
+                <span className="text-muted text-xs">drwxr-xr-x</span>
+                <span className="text-secondary group-hover:text-primary transition-colors">
+                  ./{project.id}/
+                </span>
+                <span className="text-foreground font-semibold">
+                  {project.title[language] || project.title.en}
+                </span>
+                <span className="ml-auto text-muted group-hover:text-primary transition-colors">
+                  →
+                </span>
+              </p>
+              <p className="text-muted text-sm mt-2">
+                {project.description[language] || project.description.en}
+              </p>
+              <p className="mt-2 flex flex-wrap gap-x-2 text-xs text-foreground/70">
+                {project.technologies.slice(0, 5).map((tech, ti) => (
+                  <span key={ti}>
+                    {tech[language] || tech.en}
+                    {ti < Math.min(4, project.technologies.length - 1) && (
+                      <span className="text-muted"> ·</span>
+                    )}
                   </span>
-                  <span className="text-foreground font-semibold">
-                    {project.title[language] || project.title.en}
-                  </span>
-                  <span className="ml-auto text-muted group-hover:text-primary transition-colors">→</span>
-                </p>
-                <p className="text-muted text-sm mt-2">
-                  {project.description[language] || project.description.en}
-                </p>
-                <p className="mt-2 flex flex-wrap gap-x-2 text-xs text-foreground/70">
-                  {project.technologies.slice(0, 5).map((tech, ti) => (
-                    <span key={ti}>
-                      {tech[language] || tech.en}
-                      {ti < Math.min(4, project.technologies.length - 1) && (
-                        <span className="text-muted"> ·</span>
-                      )}
-                    </span>
-                  ))}
-                </p>
-              </Link>
-            </motion.div>
+                ))}
+              </p>
+            </Link>
           ))}
         </div>
       </CommandLine>
