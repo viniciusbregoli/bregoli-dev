@@ -4,6 +4,7 @@ import { Language } from '../../../(core)/i18n/translations';
 import { ExperienceType } from './experienceData';
 import TechnologyBadges from './TechnologyBadges';
 import ExperienceHeader from './ExperienceHeader';
+import WindowCard from '../../common/WindowCard';
 
 interface ExperienceCardProps {
   experience: ExperienceType;
@@ -25,7 +26,7 @@ export default function ExperienceCard({ experience, currentLanguage }: Experien
   };
 
   return (
-    <div className="panel p-6 hover:border-primary/40 transition-colors duration-300">
+    <WindowCard title={`~/experience/${experience.company.toLowerCase().replace(/\s+/g, '-')}`}>
       <div className="flex flex-col gap-5">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
@@ -61,6 +62,6 @@ export default function ExperienceCard({ experience, currentLanguage }: Experien
           <TechnologyBadges technologies={experience.technologies} currentLanguage={currentLanguage} />
         </div>
       </div>
-    </div>
+    </WindowCard>
   );
 }

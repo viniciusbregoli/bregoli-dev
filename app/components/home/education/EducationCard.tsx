@@ -2,6 +2,7 @@ import { EducationType } from './educationData';
 import { Language } from '../../../(core)/i18n/translations';
 import EducationLogo from './EducationLogo';
 import { FiCalendar, FiMapPin } from 'react-icons/fi';
+import WindowCard from '../../common/WindowCard';
 
 interface EducationCardProps {
   education: EducationType;
@@ -10,7 +11,10 @@ interface EducationCardProps {
 
 export default function EducationCard({ education, currentLanguage }: EducationCardProps) {
   return (
-    <div className="flex flex-col sm:flex-row items-start gap-5 panel p-6 hover:border-primary/40 transition-colors duration-300">
+    <WindowCard
+      title={`~/education/${education.institution.toLowerCase().replace(/\s+/g, '-')}`}
+      bodyClassName="p-6 flex flex-col sm:flex-row items-start gap-5"
+    >
       <EducationLogo logo={education.logo} institution={education.institution} />
 
       <div className="flex-grow space-y-3">
@@ -32,6 +36,6 @@ export default function EducationCard({ education, currentLanguage }: EducationC
           </span>
         </div>
       </div>
-    </div>
+    </WindowCard>
   );
 }

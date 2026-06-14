@@ -3,6 +3,7 @@
 import { useLanguage } from '../../../(core)/i18n/context';
 import { FiCode, FiServer, FiTool } from 'react-icons/fi';
 import { technicalSkills as data } from './skillsData';
+import WindowCard from '../../common/WindowCard';
 
 const icons = [
   <FiCode key="code" className="w-5 h-5 text-primary" />,
@@ -16,9 +17,7 @@ export default function TechnicalSkills() {
   const technicalSkills = data.map((group, i) => ({ ...group, icon: icons[i % icons.length] }));
 
   return (
-    <div className="panel p-8">
-      <h3 className="mono-label mb-8">{t('skills.technical')}</h3>
-
+    <WindowCard title={t('skills.technical')} bodyClassName="p-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {technicalSkills.map((category, index) => (
           <div key={index} className="space-y-4">
@@ -41,6 +40,6 @@ export default function TechnicalSkills() {
           </div>
         ))}
       </div>
-    </div>
+    </WindowCard>
   );
 }

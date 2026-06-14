@@ -3,6 +3,7 @@
 import { useLanguage } from '../../../(core)/i18n/context';
 import { FiUsers, FiTrendingUp, FiZap, FiCheckCircle } from 'react-icons/fi';
 import { softSkillGroups } from './skillsData';
+import WindowCard from '../../common/WindowCard';
 
 const icons = [
   <FiUsers key="users" className="w-5 h-5 text-primary" />,
@@ -21,9 +22,7 @@ export default function SoftSkills() {
   }));
 
   return (
-    <div className="panel p-8">
-      <h3 className="mono-label mb-8">{t('skills.soft')}</h3>
-
+    <WindowCard title={t('skills.soft')} bodyClassName="p-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {softSkills.map((category, index) => (
           <div key={index} className="space-y-4">
@@ -44,6 +43,6 @@ export default function SoftSkills() {
           </div>
         ))}
       </div>
-    </div>
+    </WindowCard>
   );
 }
