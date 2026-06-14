@@ -7,6 +7,7 @@ const levelWidth: Record<string, string> = {
   Fluent: '95%',
   Advanced: '80%',
   Intermediate: '60%',
+  Basic: '35%',
 };
 
 export default function LanguageSkills() {
@@ -17,6 +18,7 @@ export default function LanguageSkills() {
     { name: 'Portuguese', level: 'Native', flag: '🇧🇷' },
     { name: 'Spanish', level: 'Advanced', flag: '🇪🇸' },
     { name: 'German', level: 'Intermediate', flag: '🇩🇪' },
+    { name: 'Mandarin', level: 'Basic', flag: '🇨🇳' },
   ];
 
   return (
