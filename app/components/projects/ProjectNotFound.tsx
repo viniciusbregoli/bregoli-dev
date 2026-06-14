@@ -4,22 +4,20 @@ import Link from 'next/link';
 import { FiChevronLeft } from 'react-icons/fi';
 import { useLanguage } from '../../(core)/i18n/context';
 
-
 export default function ProjectNotFound() {
   const { t } = useLanguage();
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
+    <div className="min-h-[60vh] flex items-center justify-center px-6">
       <div className="text-center">
-        <h1 className="text-3xl font-bold mb-4 text-red-600 dark:text-red-400">
-          {t('projects.notFound')}
-        </h1>
-        <p className="text-gray-600 dark:text-gray-300 mb-6">{t('projects.notFoundDesc')}</p>
+        <p className="mono-label mb-4">{'// 404'}</p>
+        <h1 className="text-3xl font-bold mb-3 text-foreground">{t('projects.notFound')}</h1>
+        <p className="text-muted mb-8">{t('projects.notFoundDesc')}</p>
         <Link
           href="/projects"
-          className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium transition"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-primary text-background font-mono text-sm font-semibold hover:opacity-90 transition-opacity"
         >
-          <FiChevronLeft className="mr-2" />
+          <FiChevronLeft />
           {t('projects.backToProjects')}
         </Link>
       </div>

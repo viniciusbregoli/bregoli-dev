@@ -1,29 +1,47 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
-import { Language, translations } from './translations';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { Language, TranslationKey, translations } from './translations';
 
 type LanguageContextType = {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: (key: string) => string;
+  t: (key: TranslationKey) => string;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const SUPPORTED: Language[] = ['en', 'pt', 'de'];
+const STORAGE_KEY = 'language';
+
+function resolveInitialLanguage(): Language {
+  const stored = localStorage.getItem(STORAGE_KEY) as Language | null;
+  if (stored && SUPPORTED.includes(stored)) return stored;
+
+  const browser = navigator.language.slice(0, 2) as Language;
+  return SUPPORTED.includes(browser) ? browser : 'en';
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
+  // Default to 'en' on the server / first render to keep markup consistent,
+  // then resolve the saved/browser language after hydration.
+  const [language, setLanguageState] = useState<Language>('en');
 
-  const t = (key: string): string => {
-    if (key === 'language.code') {
-      return language;
-    }
+  useEffect(() => {
+    setLanguageState(resolveInitialLanguage());
+  }, []);
 
-    if (!translations[key]) {
-      console.warn(`Translation key "${key}" not found`);
-      return key;
-    }
-    return translations[key][language] || translations[key]['en'] || key;
+  const setLanguage = (next: Language) => {
+    setLanguageState(next);
+    localStorage.setItem(STORAGE_KEY, next);
+  };
+
+  // Keys are type-checked against the translation table, so a missing key is a
+  // compile error rather than a runtime warning. The fallback chain still
+  // guards against an entry that lacks the active language.
+  const t = (key: TranslationKey): string => {
+    const entry = translations[key];
+    return entry[language] || entry.en || key;
   };
 
   return (

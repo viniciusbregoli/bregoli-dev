@@ -1,12 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { useLanguage } from '../../(core)/i18n/context';
 import SectionTitle from '../common/SectionTitle';
 import EducationCard from './education/EducationCard';
 import { getEducationData } from './education/educationData';
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -16,7 +16,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -35,13 +35,10 @@ export default function EducationSection() {
   const title = t('education.title');
 
   return (
-    <div id="education" className="py-24 relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -z-10" />
-
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <SectionTitle className="text-gray-900 dark:text-white mb-20">
-          <span className="text-gradient-rose">{title}</span>
+    <section id="education" className="py-20">
+      <div className="max-w-5xl mx-auto px-6">
+        <SectionTitle eyebrow="education" className="mb-10">
+          {title}
         </SectionTitle>
 
         <motion.div
@@ -49,7 +46,7 @@ export default function EducationSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="space-y-12"
+          className="space-y-6"
         >
           {educations.map((education, index) => (
             <motion.div key={index} variants={itemVariants}>
@@ -58,6 +55,6 @@ export default function EducationSection() {
           ))}
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

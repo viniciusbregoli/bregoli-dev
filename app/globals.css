@@ -1,109 +1,103 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-html {
-  font-size: 125%;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SFMono-Regular', monospace;
 }
 
+/* Light mode is kept but secondary — the design is tuned dark-first. */
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #2563eb;
-  --secondary: #4f46e5;
-  --accent: #0891b2;
+  --background: #fbfbfd;
+  --foreground: #0b0b0f;
+  --surface: #ffffff;
+  --muted: #56565f;
+  --line: rgba(10, 10, 15, 0.1);
+  --primary: #0d9488;
+  --secondary: #0e7490;
+  --accent: #047857;
 }
 
 .dark {
-  --background: #020617;
-  --foreground: #f8fafc;
-  --primary: #60a5fa;
-  --secondary: #818cf8;
-  --accent: #22d3ee;
+  --background: #08090b;
+  --foreground: #e9e9ee;
+  --surface: #101216;
+  --muted: #9a9aa6;
+  --line: rgba(255, 255, 255, 0.09);
+  --primary: #2dd4bf;
+  --secondary: #22d3ee;
+  --accent: #34d399;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
 }
 
-@keyframes blob {
-  0% {
-    transform: translate(0px, 0px) scale(1);
-  }
+/* ── Design-system utilities ───────────────────────────────────────────── */
 
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-
-  100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-}
-
-.animate-blob {
-  animation: blob 7s infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
-/* Glassmorphism Classes */
-.glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.dark .glass {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.glass-morphism {
-  @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-white/10;
-}
-
-/* Gradient Text */
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
-}
-
-.text-gradient-accent {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500;
-}
-
-/* Legacy alias - same as accent now */
-.text-gradient-rose {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500;
-}
-
-/* Mesh Gradient Background */
-.mesh-gradient {
+/* Subtle technical grid backdrop, fading toward the edges. */
+.bg-grid {
   background-color: var(--background);
-  background-image: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.08) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(79, 70, 229, 0.08) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(8, 145, 178, 0.08) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(37, 99, 235, 0.08) 0px, transparent 50%);
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
 }
 
-.dark .mesh-gradient {
-  background-image: radial-gradient(at 0% 0%, rgba(96, 165, 250, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(129, 140, 248, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.12) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(96, 165, 250, 0.15) 0px, transparent 50%);
+/* Bordered surface panel — the core card primitive of the new look. */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+/* Restrained accent glow for hero / focal points. */
+.glow-accent {
+  background: radial-gradient(circle at center, color-mix(in oklab, var(--accent) 35%, transparent), transparent 70%);
+}
+
+/* Monospace eyebrow label, e.g. "// experience". */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* Hide scrollbars on horizontally scrollable strips (e.g. mobile nav). */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

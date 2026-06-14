@@ -1,60 +1,50 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useLanguage } from '../../(core)/i18n/context';
 import SectionTitle from '../common/SectionTitle';
-import { FaLightbulb, FaHandshake } from 'react-icons/fa';
+import { FiTarget, FiCompass } from 'react-icons/fi';
 
 export default function GoalsSection() {
   const { t } = useLanguage();
 
+  const goals = [
+    {
+      icon: FiTarget,
+      label: '01',
+      title: t('goals.shortTerm'),
+      desc: t('goals.shortTermDesc'),
+    },
+    {
+      icon: FiCompass,
+      label: '02',
+      title: t('goals.longTerm'),
+      desc: t('goals.longTermDesc'),
+    },
+  ];
+
   return (
-    <div id="goals" className="py-24 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <SectionTitle className="text-gray-900 dark:text-white">
-          <span className="text-gradient-rose">{t('goals.title')}</span>
-        </SectionTitle>
+    <section id="goals" className="py-20">
+      <div className="max-w-5xl mx-auto px-6">
+        <SectionTitle eyebrow="goals">{t('goals.title')}</SectionTitle>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -10 }}
-            className="group relative glass-morphism rounded-[2.5rem] p-10 shadow-2xl transition-all duration-500 border border-white/20 dark:border-white/10"
-          >
-            <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20 mb-8 transform -rotate-6 group-hover:rotate-0 transition-transform duration-300">
-              <FaLightbulb className="w-8 h-8 text-white" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+          {goals.map(({ icon: Icon, label, title, desc }) => (
+            <div
+              key={label}
+              className="group panel p-8 hover:border-primary/40 transition-colors duration-300"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary">
+                  <Icon className="w-6 h-6" />
+                </div>
+                <span className="mono-label text-muted">{label}</span>
+              </div>
+              <h3 className="text-2xl font-bold text-foreground mb-3">{title}</h3>
+              <p className="text-muted leading-relaxed">{desc}</p>
             </div>
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-              {t('goals.shortTerm')}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-xl leading-relaxed">
-              {t('goals.shortTermDesc')}
-            </p>
-            <div className="mt-8 h-1.5 w-24 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -10 }}
-            className="group relative glass-morphism rounded-[2.5rem] p-10 shadow-2xl transition-all duration-500 border border-white/20 dark:border-white/10"
-          >
-            <div className="w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-2xl flex items-center justify-center shadow-lg shadow-secondary/20 mb-8 transform rotate-6 group-hover:rotate-0 transition-transform duration-300">
-              <FaHandshake className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-              {t('goals.longTerm')}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-xl leading-relaxed">
-              {t('goals.longTermDesc')}
-            </p>
-            <div className="mt-8 h-1.5 w-24 bg-gradient-to-r from-secondary to-accent rounded-full"></div>
-          </motion.div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

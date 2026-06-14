@@ -1,24 +1,35 @@
 # Personal Portfolio Website
 
-A modern, responsive portfolio website built with Next.js and Tailwind CSS, featuring a multilingual interface and dynamic project showcase.
-
+A modern, responsive portfolio website built with Next.js and Tailwind CSS, featuring a
+dark-first "dev/techy" design, a multilingual interface, and a dynamic project showcase.
 
 ## Features
 
-- **Multilingual Support**: Available in English, Portuguese, and German
-- **Responsive Design**: Optimized for all devices and screen sizes
-- **Dark Mode**: Automatic dark mode support based on system preferences
-- **Dynamic Project Showcase**: Easy-to-update project cards
-- **Modern UI**: Beautiful gradients, animations, and interactive elements
-- **Performance Optimized**: Fast loading times and smooth transitions
+- **Multilingual Support**: English, Portuguese, and German, with the selection persisted across visits
+- **Dark-first Design**: Class-based theme toggle with a pre-paint script so there's no flash on load
+- **Responsive**: Optimized for mobile, tablet, and desktop, and respects `prefers-reduced-motion`
+- **Dynamic Project Showcase**: Easy-to-update project cards and detail pages
+- **Accessible Contact Form**: Validated form that emails via a serverless API route
 
 ## Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/) - React framework for production
-- **Language**: [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **UI**: [React 19](https://react.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) (CSS-first config)
+- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Email**: [Nodemailer](https://nodemailer.com/)
+- **Deployment**: [Vercel](https://vercel.com/)
 
-- **Deployment**: [Vercel](https://vercel.com/) - Cloud platform for static sites
+## Environment Variables
+
+The contact form (`app/api/contact/route.ts`) reads:
+
+| Variable            | Description                                              |
+| ------------------- | -------------------------------------------------------- |
+| `EMAIL_USER`        | Gmail account used to send mail                          |
+| `EMAIL_PASSWORD`    | App password for that account                            |
+| `CONTACT_RECIPIENT` | Where submissions are delivered (defaults to `EMAIL_USER`) |
 
 ## Prerequisites
 
@@ -58,12 +69,12 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS, feat
 ```
 bregoli-dev/
 ├── app/                  # Next.js app directory
-│   ├── (core)/           # Core functionality (i18n, etc.)
-│   ├── (features)/       # Feature-specific components
+│   ├── (core)/           # Core functionality (i18n, theme, utils)
+│   ├── (features)/       # Route pages (projects, contact)
+│   ├── api/              # Route handlers (contact)
 │   ├── components/       # Shared components
-│   └── ...
+│   └── globals.css       # Tailwind 4 theme tokens + design-system utilities
 ├── public/               # Static assets
-├── tailwind.config.ts    # Tailwind CSS configuration
 └── ...
 ```
 

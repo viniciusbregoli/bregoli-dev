@@ -1,12 +1,8 @@
 export type Language = 'en' | 'pt' | 'de';
 
-export type Translations = {
-  [key: string]: {
-    [key in Language]?: string;
-  };
-};
+export type TranslationEntry = Partial<Record<Language, string>>;
 
-export const translations: Translations = {
+export const translations = {
   // Navigation
   'nav.home': {
     en: 'Home',
@@ -403,4 +399,6 @@ export const translations: Translations = {
     pt: 'Presente',
     de: 'Aktuell',
   },
-};
+} satisfies Record<string, TranslationEntry>;
+
+export type TranslationKey = keyof typeof translations;

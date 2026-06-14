@@ -2,6 +2,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+/** Escapes HTML-special characters so user input can't inject markup into the email body. */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Parse the request body
@@ -22,10 +32,14 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeMessage = escapeHtml(message);
+
     // Set up email data
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'vinibregoli@gmail.com', // Your email address
+      to: process.env.CONTACT_RECIPIENT || process.env.EMAIL_USER,
       replyTo: email,
       subject: `Contact Form Message from ${name}`,
       text: `
@@ -36,10 +50,10 @@ export async function POST(request: NextRequest) {
       `,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Name:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
         <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${safeMessage.replace(/\n/g, '<br>')}</p>
       `,
     };
 

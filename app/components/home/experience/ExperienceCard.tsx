@@ -1,6 +1,4 @@
 // app/components/home/experience/ExperienceCard.tsx
-'use client';
-
 import { FiCalendar, FiMapPin, FiBriefcase, FiCode, FiServer, FiCpu } from 'react-icons/fi';
 import { Language } from '../../../(core)/i18n/translations';
 import { ExperienceType } from './experienceData';
@@ -16,57 +14,51 @@ export default function ExperienceCard({ experience, currentLanguage }: Experien
   const getIcon = () => {
     switch (experience.icon) {
       case 'robot':
-        return <FiCpu className="w-6 h-6 text-slate-600 dark:text-slate-400" />;
+        return <FiCpu className="w-5 h-5 text-primary" />;
       case 'code':
-        return <FiCode className="w-6 h-6 text-slate-600 dark:text-slate-400" />;
+        return <FiCode className="w-5 h-5 text-primary" />;
       case 'server':
-        return <FiServer className="w-6 h-6 text-slate-600 dark:text-slate-400" />;
+        return <FiServer className="w-5 h-5 text-primary" />;
       default:
-        return <FiBriefcase className="w-6 h-6 text-slate-600 dark:text-slate-400" />;
+        return <FiBriefcase className="w-5 h-5 text-primary" />;
     }
   };
 
   return (
-    <div className="glass-morphism rounded-3xl p-8 shadow-xl border border-white/20 dark:border-white/10 hover:shadow-primary/10 transition-all duration-500 group relative">
-      <div className="flex flex-col gap-6">
-        {/* Header Section */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="bg-primary/10 dark:bg-primary/20 rounded-2xl p-3 shadow-inner group-hover:scale-110 transition-transform duration-300">
+    <div className="panel p-6 hover:border-primary/40 transition-colors duration-300">
+      <div className="flex flex-col gap-5">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 shrink-0">
               {getIcon()}
             </div>
-            <div>
-              <ExperienceHeader
-                company={experience.company}
-                position={experience.position[currentLanguage] || experience.position.en || ''}
-              />
-            </div>
+            <ExperienceHeader
+              company={experience.company}
+              position={experience.position[currentLanguage] || experience.position.en || ''}
+            />
           </div>
 
-          <div className="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider">
-            <div className="flex items-center px-3 py-1.5 rounded-full bg-primary/5 text-primary border border-primary/10">
-              <FiCalendar className="mr-2" />
+          <div className="flex flex-wrap gap-2 font-mono text-xs text-muted">
+            <span className="flex items-center gap-1.5">
+              <FiCalendar />
               {experience.period[currentLanguage] || experience.period.en}
-            </div>
-            <div className="flex items-center px-3 py-1.5 rounded-full bg-secondary/5 text-secondary border border-secondary/10">
-              <FiMapPin className="mr-2" />
+            </span>
+            <span className="flex items-center gap-1.5">
+              <FiMapPin />
               {experience.location}
-            </div>
+            </span>
           </div>
         </div>
 
-        {/* Content Section */}
-        <div className="space-y-6">
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
-            {experience.description[currentLanguage] || experience.description.en}
-          </p>
+        {/* Description */}
+        <p className="text-muted leading-relaxed">
+          {experience.description[currentLanguage] || experience.description.en}
+        </p>
 
-          <div className="pt-4 border-t border-gray-100 dark:border-white/5">
-            <TechnologyBadges
-              technologies={experience.technologies}
-              currentLanguage={currentLanguage}
-            />
-          </div>
+        {/* Technologies */}
+        <div className="pt-4 border-t border-line">
+          <TechnologyBadges technologies={experience.technologies} currentLanguage={currentLanguage} />
         </div>
       </div>
     </div>

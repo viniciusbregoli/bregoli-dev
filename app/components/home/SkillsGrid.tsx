@@ -10,18 +10,18 @@ export default function SkillsSection() {
   const { t } = useLanguage();
 
   return (
-    <div id="skills" className="py-24 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4">
-        <SectionTitle className="text-gray-800 dark:text-cyan-300">
+    <section id="skills" className="py-20">
+      <div className="max-w-5xl mx-auto px-6">
+        <SectionTitle eyebrow="skills" className="mb-10">
           {t('skills.title')}
         </SectionTitle>
 
-        <div className="space-y-10 mt-12">
+        <div className="space-y-6">
           <TechnicalSkills />
           <SoftSkills />
           <LanguageSkills />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

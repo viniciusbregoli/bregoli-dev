@@ -1,5 +1,6 @@
 'use client';
 
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { useLanguage } from '../../(core)/i18n/context';
 
 export default function Footer() {
@@ -7,14 +8,30 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-blue-50 dark:bg-gray-900 text-gray-600 dark:text-gray-300 py-6">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <p className="text-sm">
-              © {currentYear} Vinícius Bregoli. {t('footer.rights')}
-            </p>
-          </div>
+    <footer className="border-t border-line mt-24">
+      <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="font-mono text-sm text-muted">
+          © {currentYear} Vinícius Bregoli — {t('footer.rights')}
+        </p>
+        <div className="flex items-center gap-4">
+          <a
+            href="https://github.com/viniciusbregoli"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="text-muted hover:text-primary transition-colors"
+          >
+            <FaGithub className="h-5 w-5" />
+          </a>
+          <a
+            href="https://linkedin.com/in/viniciusbregoli"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="text-muted hover:text-primary transition-colors"
+          >
+            <FaLinkedin className="h-5 w-5" />
+          </a>
         </div>
       </div>
     </footer>

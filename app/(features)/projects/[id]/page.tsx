@@ -11,7 +11,6 @@ import ProjectGallery from '../../../components/projects/ProjectGallery';
 import ProjectSidebar from '../../../components/projects/ProjectSidebar';
 import ProjectNotFound from '../../../components/projects/ProjectNotFound';
 import ProjectLoading from '../../../components/projects/ProjectLoading';
-import { getGradientByColor } from '../../../components/projects/GradientUtils';
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -39,17 +38,14 @@ export default function ProjectDetailPage() {
     return <ProjectNotFound />;
   }
 
-  // Get gradient for header based on project color
-  const gradient = getGradientByColor(project.color);
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-slate-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <ProjectHeader project={project} language={language} gradient={gradient} />
+    <div className="min-h-screen">
+      <ProjectHeader project={project} language={language} />
       {/* Content Section */}
-      <div className="max-w-6xl mx-auto px-4 py-12 md:py-16">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-6">
             <ProjectAbout project={project} language={language} />
 
             {/* Image Gallery */}
@@ -63,7 +59,7 @@ export default function ProjectDetailPage() {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <ProjectSidebar project={project} language={language} />
           </div>
         </div>

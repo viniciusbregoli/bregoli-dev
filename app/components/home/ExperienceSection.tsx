@@ -1,29 +1,28 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { motion, type Variants } from 'framer-motion';
 import { useLanguage } from '../../(core)/i18n/context';
 import ExperienceCard from './experience/ExperienceCard';
 import { getExperienceData } from './experience/experienceData';
 import SectionTitle from '../common/SectionTitle';
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
     },
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
       ease: 'easeOut',
     },
   },
@@ -34,59 +33,28 @@ export default function ExperienceSection() {
   const experiences = getExperienceData();
 
   return (
-    <div id="experience" className="py-24 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <SectionTitle className="text-gray-900 dark:text-white mb-24">
-          <span className="text-gradient-rose">{t('experience.title')}</span>
+    <section id="experience" className="py-20">
+      <div className="max-w-5xl mx-auto px-6">
+        <SectionTitle eyebrow="experience" className="mb-12">
+          {t('experience.title')}
         </SectionTitle>
 
-        <div className="relative">
-          {/* Main Timeline Line */}
-          <div className="absolute left-6 md:left-[50%] top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-accent opacity-20 dark:opacity-30 rounded-full -translate-x-1/2" />
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="space-y-24"
-          >
-            {experiences.map((experience, index) => (
-              <motion.div key={index} variants={itemVariants} className="relative">
-                {/* Timeline Node */}
-                <div className="absolute left-6 md:left-[50%] top-12 -translate-x-1/2 z-20">
-                  <div className="w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-4 border-primary shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
-                  <div className="absolute -inset-2 bg-primary/20 rounded-full animate-ping" />
-                </div>
-
-                <div className={`md:flex items-center gap-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                  {/* Card Content */}
-                  <div className="md:w-1/2 pl-16 md:pl-0">
-                    <ExperienceCard experience={experience} currentLanguage={language} />
-                  </div>
-
-                  {/* Visual/Image part (Optional but kept for balance) */}
-                  <div className="hidden md:block md:w-1/2">
-                    {experience.image && (
-                      <motion.div
-                        whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2 }}
-                        className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl glass-morphism p-2"
-                      >
-                        <Image
-                          src={experience.image}
-                          alt={`${experience.company} illustration`}
-                          fill
-                          className="object-cover rounded-2xl transition-all duration-700"
-                        />
-                      </motion.div>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="relative border-l border-line pl-8 md:pl-12 space-y-10"
+        >
+          {experiences.map((experience, index) => (
+            <motion.div key={index} variants={itemVariants} className="relative">
+              {/* Timeline node */}
+              <span className="absolute -left-[2.6rem] md:-left-[3.6rem] top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background" />
+              <ExperienceCard experience={experience} currentLanguage={language} />
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
