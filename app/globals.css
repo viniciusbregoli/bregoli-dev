@@ -12,7 +12,7 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
 
-  --font-sans: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SFMono-Regular', monospace;
 }
 
@@ -49,8 +49,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-family: var(--font-sans);
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
@@ -58,13 +57,16 @@ body {
 
 /* ── Terminal utilities ────────────────────────────────────────────────── */
 
-/* The window frame that wraps the whole app. */
+/* The window frame that wraps the whole app in terminal mode.
+   Scopes the monospace font + tighter size to terminal mode only. */
 .term-window {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 0.75rem;
   overflow: hidden;
   box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
 }
 
 /* Title bar with traffic-light dots. */
@@ -139,6 +141,40 @@ body {
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* ── Classic (HR) mode utilities ───────────────────────────────────────── */
+
+/* Bordered surface card — the core primitive of the clean layout. */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+/* Monospace eyebrow label, e.g. "// experience". */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* Restrained accent glow for hero / focal points. */
+.glow-accent {
+  background: radial-gradient(
+    circle at center,
+    color-mix(in oklab, var(--accent) 35%, transparent),
+    transparent 70%
+  );
+}
+
+/* Accent gradient text. */
+.text-gradient,
+.text-gradient-accent,
+.text-gradient-rose {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, var(--accent), var(--secondary));
 }
 
 @media (prefers-reduced-motion: reduce) {

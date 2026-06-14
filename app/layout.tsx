@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
-import Header from './components/layout/Header';
 import { LanguageProvider } from './(core)/i18n/context';
 import { ThemeProvider } from './(core)/theme/context';
-import Footer from './components/layout/Footer';
+import { ViewModeProvider } from './(core)/view/context';
+import AppChrome from './components/chrome/AppChrome';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -56,16 +56,9 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <ThemeProvider>
-            {/* Decorative grid sits behind everything; its fade-out mask
-                only affects this layer, never the page content. */}
-            <div className="bg-grid fixed inset-0 -z-10" aria-hidden="true" />
-            <div className="max-w-5xl mx-auto px-3 sm:px-5 py-4 sm:py-8 min-h-screen flex flex-col">
-              <div className="term-window flex flex-col flex-grow">
-                <Header />
-                <main className="flex-grow p-5 sm:p-8 md:p-10">{children}</main>
-                <Footer />
-              </div>
-            </div>
+            <ViewModeProvider>
+              <AppChrome>{children}</AppChrome>
+            </ViewModeProvider>
           </ThemeProvider>
         </LanguageProvider>
       </body>

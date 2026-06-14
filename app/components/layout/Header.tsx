@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LanguageSelector from './LanguageSelector';
 import ThemeToggle from './ThemeToggleButton';
+import ViewModeToggle from './ViewModeToggle';
 import { useLanguage } from '../../(core)/i18n/context';
 import { cn } from '../../(core)/utils/cn';
 
@@ -49,6 +50,7 @@ export default function Header() {
       </nav>
 
       <div className="flex items-center gap-1 border-l border-line pl-2 sm:pl-3">
+        <ViewModeToggle />
         <ThemeToggle />
         <LanguageSelector />
       </div>
