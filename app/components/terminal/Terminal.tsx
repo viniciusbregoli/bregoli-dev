@@ -34,6 +34,8 @@ export default function Terminal() {
       en: '/CV - English.pdf',
       pt: '/CV - Portugues.pdf',
       de: '/CV - Deutsch.pdf',
+      es: '/CV - Espanol.pdf',
+      zh: '/CV - Chinese.pdf',
     };
     const link = document.createElement('a');
     link.href = cvPaths[language] || cvPaths.en || '';
