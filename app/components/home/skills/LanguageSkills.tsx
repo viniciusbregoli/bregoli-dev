@@ -1,14 +1,9 @@
-'use client';
-
-import { useLanguage } from '../../../(core)/i18n/context';
 import { spokenLanguages as languages, levelWidth } from './skillsData';
 import WindowCard from '../../common/WindowCard';
 
 export default function LanguageSkills() {
-  const { t } = useLanguage();
-
   return (
-    <WindowCard title={t('skills.languages')} bodyClassName="p-8">
+    <WindowCard title="~/skills/languages" bodyClassName="p-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {languages.map((language, index) => (
           <div key={index} className="space-y-3">

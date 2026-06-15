@@ -22,7 +22,7 @@ export default function SoftSkills() {
   }));
 
   return (
-    <WindowCard title={t('skills.soft')} bodyClassName="p-8">
+    <WindowCard title="~/skills/soft" bodyClassName="p-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {softSkills.map((category, index) => (
           <div key={index} className="space-y-4">
@@ -34,8 +34,8 @@ export default function SoftSkills() {
             </div>
             <ul className="space-y-2">
               {category.skills.map((skill, skillIndex) => (
-                <li key={skillIndex} className="flex items-start gap-2 text-sm text-muted">
-                  <span className="text-primary mt-1">›</span>
+                <li key={skillIndex} className="flex items-start gap-2.5 text-sm text-muted">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                   {skill}
                 </li>
               ))}

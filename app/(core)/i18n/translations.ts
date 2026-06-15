@@ -29,11 +29,11 @@ export const translations = {
     zh: '用技术打造创新的解决方案',
   },
   'hero.description': {
-    en: 'I am a Computer Engineer with hands-on experience in programming, fullstack development, IT infrastructure and AI. Skilled in tools like Python, React, source control and SQL, with a strong foundation in Linux and robotics. I also completed an exchange program at Technische Hochschule Ingolstadt, focusing on Computer Science and AI.',
-    pt: 'Sou Engenheiro de Computação com experiência prática em programação, desenvolvimento fullstack, infraestrutura de TI e IA. Habilidades em ferramentas como Python, React, controle de versão e SQL, com uma base sólida em Linux e robótica. Também conclui um programa de intercâmbio na Technische Hochschule Ingolstadt, focado em Ciência da Computação e IA.',
-    de: 'Ich bin Informatikingenieur mit praktischer Erfahrung in Programmierung, Fullstack-Entwicklung, IT-Infrastruktur und KI. Kenntnisse in Tools wie Python, React, Quellcodeverwaltung und SQL, mit einer soliden Grundlage in Linux und Robotik. Ich habe außerdem ein Austauschprogramm an der Technischen Hochschule Ingolstadt mit Schwerpunkt Informatik und KI absolviert.',
-    es: 'Soy Ingeniero en Computación con experiencia práctica en programación, desarrollo fullstack, infraestructura de TI e IA. Manejo herramientas como Python, React, control de versiones y SQL, con una base sólida en Linux y robótica. También completé un programa de intercambio en la Technische Hochschule Ingolstadt, enfocado en Ciencias de la Computación e IA.',
-    zh: '我是一名计算机工程师，在编程、全栈开发、IT 基础设施和人工智能方面拥有实战经验。熟练使用 Python、React、版本控制和 SQL 等工具，并在 Linux 和机器人技术方面有扎实基础。我还在英戈尔施塔特应用技术大学（Technische Hochschule Ingolstadt）完成了交换项目，专注于计算机科学与人工智能。',
+    en: "I'm a Computer Engineer leading a small AI team. Day to day I build agentic AI systems and Python APIs and services on AWS, work with databases, and live in the terminal. I also build web apps with React. I completed an exchange program at Technische Hochschule Ingolstadt, focused on Computer Science and AI.",
+    pt: 'Sou Engenheiro de Computação liderando uma pequena equipe de IA. No dia a dia construo sistemas de IA agêntica e APIs e serviços em Python na AWS, trabalho com bancos de dados e vivo no terminal. Também desenvolvo aplicações web com React. Concluí um programa de intercâmbio na Technische Hochschule Ingolstadt, focado em Ciência da Computação e IA.',
+    de: 'Ich bin Informatikingenieur und leite ein kleines KI-Team. Im Alltag baue ich agentische KI-Systeme sowie APIs und Services in Python auf AWS, arbeite mit Datenbanken und lebe im Terminal. Außerdem entwickle ich Web-Apps mit React. Ich habe ein Austauschprogramm an der Technischen Hochschule Ingolstadt mit Schwerpunkt Informatik und KI absolviert.',
+    es: 'Soy Ingeniero en Computación y lidero un pequeño equipo de IA. En el día a día construyo sistemas de IA agéntica y APIs y servicios en Python sobre AWS, trabajo con bases de datos y vivo en la terminal. También desarrollo aplicaciones web con React. Completé un programa de intercambio en la Technische Hochschule Ingolstadt, enfocado en Ciencias de la Computación e IA.',
+    zh: '我是一名计算机工程师，带领着一支小型 AI 团队。日常工作中我在 AWS 上构建智能体（agentic）AI 系统以及 Python 接口和服务，处理数据库，并长时间泡在终端里。我也用 React 开发 Web 应用。我曾在英戈尔施塔特应用技术大学（Technische Hochschule Ingolstadt）完成交换项目，专注于计算机科学与人工智能。',
   },
   'hero.cta': {
     en: 'Download Resume',
@@ -62,11 +62,11 @@ export const translations = {
   },
   'goals.longTerm': { en: 'Approach', pt: 'Abordagem', de: 'Ansatz', es: 'Enfoque', zh: '方法' },
   'goals.longTermDesc': {
-    en: 'I prefer working close to the code - debugging, experimenting, and iterating until things work right. Currently exploring AI and computer vision, always looking for the next thing to learn.',
-    pt: 'Prefiro trabalhar perto do código - debugando, experimentando e iterando até que as coisas funcionem. Atualmente explorando IA e visão computacional, sempre buscando a próxima coisa para aprender.',
-    de: 'Ich arbeite am liebsten nah am Code - debuggen, experimentieren und iterieren, bis alles richtig funktioniert. Aktuell erforsche ich KI und Computer Vision, immer auf der Suche nach dem nächsten Lernziel.',
-    es: 'Prefiero trabajar cerca del código: depurar, experimentar e iterar hasta que las cosas funcionen bien. Actualmente exploro IA y visión por computadora, siempre buscando lo próximo que aprender.',
-    zh: '我更喜欢贴近代码工作——调试、实验、不断迭代，直到一切运行正常。目前正在探索人工智能和计算机视觉，始终在寻找下一个学习目标。',
+    en: 'I like working close to the code — in the terminal, building Python services and agentic AI, iterating until things genuinely work. Lately that means leading a small AI team and going deep on AWS, databases and agentic coding.',
+    pt: 'Gosto de trabalhar perto do código — no terminal, construindo serviços em Python e IA agêntica, iterando até as coisas realmente funcionarem. Ultimamente isso significa liderar uma pequena equipe de IA e me aprofundar em AWS, bancos de dados e codificação agêntica.',
+    de: 'Ich arbeite am liebsten nah am Code — im Terminal, baue Python-Services und agentische KI und iteriere, bis alles wirklich funktioniert. In letzter Zeit heißt das, ein kleines KI-Team zu leiten und tief in AWS, Datenbanken und agentisches Programmieren einzutauchen.',
+    es: 'Me gusta trabajar cerca del código — en la terminal, creando servicios en Python e IA agéntica, iterando hasta que las cosas funcionen de verdad. Últimamente eso significa liderar un pequeño equipo de IA y profundizar en AWS, bases de datos y codificación agéntica.',
+    zh: '我喜欢贴近代码工作——在终端里构建 Python 服务和智能体 AI，不断迭代直到真正跑通。最近这意味着带领一支小型 AI 团队，并深入钻研 AWS、数据库和智能体编程。',
   },
 
   // About Section

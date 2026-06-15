@@ -1,6 +1,3 @@
-'use client';
-
-import { useLanguage } from '../../../(core)/i18n/context';
 import { FiCode, FiServer, FiTool } from 'react-icons/fi';
 import { technicalSkills as data } from './skillsData';
 import WindowCard from '../../common/WindowCard';
@@ -12,12 +9,10 @@ const icons = [
 ];
 
 export default function TechnicalSkills() {
-  const { t } = useLanguage();
-
   const technicalSkills = data.map((group, i) => ({ ...group, icon: icons[i % icons.length] }));
 
   return (
-    <WindowCard title={t('skills.technical')} bodyClassName="p-8">
+    <WindowCard title="~/skills/technical" bodyClassName="p-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {technicalSkills.map((category, index) => (
           <div key={index} className="space-y-4">

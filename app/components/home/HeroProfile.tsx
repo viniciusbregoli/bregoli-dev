@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../(core)/i18n/context';
-import { FiDownload, FiArrowRight } from 'react-icons/fi';
+import { FiDownload } from 'react-icons/fi';
 
 export default function HeroSection() {
   const { t, language } = useLanguage();
@@ -12,6 +12,8 @@ export default function HeroSection() {
       en: '/CV - English.pdf',
       pt: '/CV - Portugues.pdf',
       de: '/CV - Deutsch.pdf',
+      es: '/CV - Espanol.pdf',
+      zh: '/CV - Chinese.pdf',
     };
 
     const cvPath = cvPaths[language] || cvPaths.en;
@@ -53,14 +55,6 @@ export default function HeroSection() {
               <FiDownload className="transition-transform group-hover:-translate-y-0.5" />
               {t('hero.cta')}
             </button>
-
-            <a
-              href="#experience"
-              className="group inline-flex items-center gap-2 px-6 py-3 font-mono text-sm rounded-lg panel text-foreground hover:border-primary/40 hover:text-primary transition-colors"
-            >
-              {t('hero.viewExperience')}
-              <FiArrowRight className="transition-transform group-hover:translate-x-0.5" />
-            </a>
           </div>
         </motion.div>
       </div>

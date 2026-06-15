@@ -4,9 +4,9 @@
 import { TranslationKey } from '../../../(core)/i18n/translations';
 
 export const technicalSkills: { category: string; skills: string[] }[] = [
-  { category: 'Programming', skills: ['Python', 'Java', 'JavaScript', 'Next.js', 'C', 'PHP'] },
-  { category: 'Infrastructure & Databases', skills: ['SQL', 'PostgreSQL', 'Windows', 'Linux', 'Docker', 'AWS'] },
-  { category: 'Tools', skills: ['Git', 'VS Code', 'IntelliJ', 'Postman', 'YouTrack', 'Jira'] },
+  { category: 'Programming & AI', skills: ['Python', 'Agentic AI', 'LLMs', 'Computer Vision', 'REST APIs', 'React'] },
+  { category: 'Cloud & Databases', skills: ['AWS', 'PostgreSQL', 'SQL', 'Docker', 'Linux'] },
+  { category: 'Tools & Workflow', skills: ['Git', 'Terminal / CLI', 'Agentic Coding', 'Postman', 'Jira'] },
 ];
 
 export const softSkillGroups: { categoryKey: TranslationKey; skillKeys: TranslationKey[] }[] = [
