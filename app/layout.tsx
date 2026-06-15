@@ -16,13 +16,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Vinícius Bregoli — Computer Engineer',
+  title: 'bregoli_dev',
   description:
-    'Portfolio of Vinícius Bregoli, a Computer Engineer working in programming, fullstack development, IT infrastructure and AI.',
+    'Portfolio of Vinícius Bregoli — a Computer Engineer leading a small AI team, building agentic AI systems and Python services on AWS.',
   openGraph: {
-    title: 'Vinícius Bregoli — Computer Engineer',
+    title: 'bregoli_dev',
     description:
-      'Portfolio of Vinícius Bregoli, a Computer Engineer working in programming, fullstack development, IT infrastructure and AI.',
+      'Portfolio of Vinícius Bregoli — a Computer Engineer leading a small AI team, building agentic AI systems and Python services on AWS.',
     type: 'website',
   },
 };
