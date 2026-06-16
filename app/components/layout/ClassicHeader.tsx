@@ -17,11 +17,12 @@ export default function ClassicHeader() {
     { name: t('nav.home'), href: '/' },
     { name: t('nav.projects'), href: '/projects' },
     { name: t('nav.contact'), href: '/contact' },
+    { name: t('nav.chat'), href: '/chat' },
   ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-5 pt-4 sm:pt-8">
-      <nav className="max-w-7xl mx-auto panel rounded-full px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-3 !bg-surface/30 backdrop-blur-xl">
+      <nav className="max-w-[1600px] mx-auto panel rounded-full px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-3 !bg-surface/30 backdrop-blur-xl">
         <div className="flex items-center gap-3">
           <TrafficLights className="hidden sm:flex" />
           <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">

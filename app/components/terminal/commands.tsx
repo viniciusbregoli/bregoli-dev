@@ -5,6 +5,7 @@ import { getExperienceData } from '../home/experience/experienceData';
 import { getEducationData } from '../home/education/educationData';
 import { projects } from '../../(features)/projects/projectData';
 import { technicalSkills, softSkillGroups, spokenLanguages } from '../home/skills/skillsData';
+import ChatAnswer from './ChatAnswer';
 
 export type CommandContext = {
   t: (key: TranslationKey) => string;
@@ -293,6 +294,18 @@ export const COMMANDS: Command[] = [
     ),
   },
   { name: 'whoami', descriptionKey: 'terminal.cmd.whoami', pure: true, run: (ctx) => <WhoAmI ctx={ctx} /> },
+  {
+    name: 'ask',
+    aliases: ['chat'],
+    descriptionKey: 'terminal.cmd.ask',
+    // Not pure: it must run once (fires a network request), not re-run on every
+    // render. The returned component owns the streaming lifecycle.
+    run: (ctx, args) => {
+      const question = args.join(' ').trim();
+      if (!question) return <p className="text-muted">{withTokens(ctx.t('terminal.askUsage'))}</p>;
+      return <ChatAnswer question={question} language={ctx.language} errorText={ctx.t('assistant.error')} />;
+    },
+  },
   { name: 'goals', descriptionKey: 'terminal.cmd.goals', pure: true, run: (ctx) => <Goals ctx={ctx} /> },
   {
     name: 'experience',

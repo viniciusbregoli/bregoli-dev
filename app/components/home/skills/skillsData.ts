@@ -42,7 +42,7 @@ export const spokenLanguages: { name: string; level: string; flag: string }[] = 
 
 export const levelWidth: Record<string, string> = {
   Native: '100%',
-  Fluent: '95%',
+  Fluent: '100%',
   Advanced: '80%',
   Intermediate: '60%',
   Basic: '35%',

@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from './(core)/i18n/context';
 import { ViewModeProvider } from './(core)/view/context';
+import { AssistantChatProvider } from './components/chat/useAssistantChat';
 import AppChrome from './components/chrome/AppChrome';
 
-const inter = Inter({
-  variable: '--font-inter',
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
   subsets: ['latin'],
 });
 
@@ -35,11 +36,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground`}
+        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground`}
       >
         <LanguageProvider>
           <ViewModeProvider>
-            <AppChrome>{children}</AppChrome>
+            <AssistantChatProvider>
+              <AppChrome>{children}</AppChrome>
+            </AssistantChatProvider>
           </ViewModeProvider>
         </LanguageProvider>
       </body>

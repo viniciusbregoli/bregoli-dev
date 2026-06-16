@@ -28,7 +28,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6 py-10">
+      <div className="max-w-[1600px] mx-auto px-6 py-10">
         <motion.div
           initial={{ y: 20 }}
           animate={{ y: 0 }}
@@ -37,15 +37,15 @@ export default function HeroSection() {
         >
           <p className="mono-label">{t('hero.greeting')}</p>
 
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-foreground">
             {t('hero.name')}
           </h1>
 
-          <p className="text-xl md:text-2xl text-foreground/90 font-medium leading-relaxed max-w-xl">
+          <p className="text-2xl md:text-3xl text-foreground/90 font-medium leading-relaxed max-w-2xl">
             {t('hero.professionalClaim')}
           </p>
 
-          <p className="text-base text-muted leading-relaxed max-w-xl">{t('hero.description')}</p>
+          <p className="text-lg text-muted leading-relaxed max-w-2xl">{t('hero.description')}</p>
 
           <div className="flex flex-wrap gap-3 pt-2">
             <button

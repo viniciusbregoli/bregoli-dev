@@ -16,7 +16,7 @@ type Entry = { id: number; command: string; render: (ctx: CommandContext) => Rea
 type Cycle = { list: string[]; index: number; prefix: string };
 
 // Tappable starter commands — discoverability on desktop, no-typing nav on mobile.
-const QUICK = ['help', 'projects', 'skills', 'contact', 'cv'];
+const QUICK = ['help', 'ask', 'projects', 'skills', 'contact', 'cv'];
 
 const Prompt = () => (
   <span className="text-secondary shrink-0">

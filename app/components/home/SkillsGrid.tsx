@@ -11,7 +11,7 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" className="py-8">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-[1600px] mx-auto px-6">
         <SectionTitle eyebrow="skills" className="mb-10">
           {t('skills.title')}
         </SectionTitle>

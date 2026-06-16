@@ -27,7 +27,7 @@ export default function GoalsSection() {
 
   return (
     <section id="goals" className="py-8">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-[1600px] mx-auto px-6">
         <SectionTitle eyebrow="goals">{t('goals.title')}</SectionTitle>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">

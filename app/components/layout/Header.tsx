@@ -16,6 +16,7 @@ export default function Header() {
     { name: t('nav.home'), href: '/', path: '~' },
     { name: t('nav.projects'), href: '/projects', path: '~/projects' },
     { name: t('nav.contact'), href: '/contact', path: '~/contact' },
+    { name: t('nav.chat'), href: '/chat', path: '~/chat' },
   ];
 
   const active = navigation.find((item) => item.href === pathname) ?? navigation[0];
