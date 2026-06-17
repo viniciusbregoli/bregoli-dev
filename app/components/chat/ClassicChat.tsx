@@ -55,9 +55,19 @@ export default function ClassicChat() {
         {/* Messages */}
         <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto px-5 py-6">
           {!started && (
-            <div className="space-y-4">
-              <p className="text-muted">{t('assistant.greeting')}</p>
-              <div className="flex flex-wrap gap-2">
+            <div className="flex h-full flex-col items-center justify-center gap-6 text-center">
+              <h1
+                aria-label="viniGPT"
+                className="select-none text-3xl leading-none tracking-tight text-foreground sm:text-4xl md:text-5xl"
+                style={{
+                  fontFamily: 'var(--font-pixel)',
+                  textShadow: '0.09em 0.09em 0 var(--background)',
+                }}
+              >
+                viniGPT
+              </h1>
+              <p className="max-w-md text-muted">{t('assistant.greeting')}</p>
+              <div className="flex flex-wrap justify-center gap-2">
                 {SUGGESTIONS.map((key) => (
                   <button
                     key={key}
