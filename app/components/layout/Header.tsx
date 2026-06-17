@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import LanguageSelector from './LanguageSelector';
 import ViewModeToggle from './ViewModeToggle';
 import TrafficLights from './TrafficLights';
@@ -19,36 +20,53 @@ export default function Header() {
     { name: t('nav.chat'), href: '/chat', path: '~/chat' },
   ];
 
-  const active = navigation.find((item) => item.href === pathname) ?? navigation[0];
-
   return (
-    <header className="term-titlebar flex-col sm:flex-row gap-3 sm:gap-4">
-      <TrafficLights className="self-start sm:self-auto" />
+    <header className="term-titlebar flex-col items-start sm:flex-row sm:items-center gap-3 sm:gap-4">
+      <div className="flex items-center gap-3 overflow-x-auto no-scrollbar">
+        <TrafficLights />
+        <nav className="flex items-center gap-1">
+          {navigation.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                'rounded-md px-3 py-1.5 text-sm transition-colors whitespace-nowrap',
+                item.href === pathname
+                  ? 'bg-primary/15 text-primary'
+                  : 'text-muted hover:text-foreground hover:bg-foreground/5',
+              )}
+            >
+              {item.path}
+            </Link>
+          ))}
+        </nav>
+      </div>
 
-      <span className="text-muted text-xs hidden md:block">
-        vinicius@bregoli-dev: {active.path}
-      </span>
-
-      <nav className="flex items-center gap-1 overflow-x-auto no-scrollbar sm:ml-auto">
-        {navigation.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={cn(
-              'rounded-md px-3 py-1 text-sm transition-colors whitespace-nowrap',
-              item.href === pathname
-                ? 'bg-primary/15 text-primary'
-                : 'text-muted hover:text-foreground hover:bg-foreground/5',
-            )}
-          >
-            {item.path}
-          </Link>
-        ))}
-      </nav>
-
-      <div className="flex items-center gap-1 border-l border-line pl-2 sm:pl-3">
+      <div className="flex items-center gap-3 sm:ml-auto">
         <ViewModeToggle />
-        <LanguageSelector />
+        <div className="flex items-center border-l border-line pl-3">
+          <LanguageSelector />
+        </div>
+        <div className="flex items-center gap-3 border-l border-line pl-3">
+          <a
+            href="https://github.com/viniciusbregoli"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="text-muted hover:text-primary transition-colors"
+          >
+            <FaGithub className="h-5 w-5" />
+          </a>
+          <a
+            href="https://linkedin.com/in/viniciusbregoli"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="text-muted hover:text-primary transition-colors"
+          >
+            <FaLinkedin className="h-5 w-5" />
+          </a>
+        </div>
       </div>
     </header>
   );

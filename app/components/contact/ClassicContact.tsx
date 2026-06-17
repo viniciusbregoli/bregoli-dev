@@ -23,7 +23,7 @@ export default function ClassicContact() {
 
   return (
     <section className="min-h-screen pt-12 pb-20">
-      <div className="max-w-[1600px] mx-auto px-6">
+      <div className="max-w-[1500px] mx-auto px-6 md:px-16 lg:px-24">
         <SectionTitle eyebrow="contact" className="mb-12">
           {t('contact.title')}
         </SectionTitle>

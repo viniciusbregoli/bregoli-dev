@@ -36,7 +36,7 @@ export default function EducationSection() {
 
   return (
     <section id="education" className="py-8">
-      <div className="max-w-[1600px] mx-auto px-6">
+      <div className="max-w-[1500px] mx-auto px-6 md:px-16 lg:px-24">
         <SectionTitle eyebrow="education" className="mb-10">
           {title}
         </SectionTitle>

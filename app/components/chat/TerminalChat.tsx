@@ -5,14 +5,6 @@ import { useLanguage } from '../../(core)/i18n/context';
 import { MODELS } from '../../(core)/assistant/models';
 import { SUGGESTIONS, useAssistantChat } from './useAssistantChat';
 
-// "viniGPT" wordmark (ANSI Shadow figlet), OpenCode-style hero logo.
-const WORDMARK = `██╗   ██╗██╗███╗   ██╗██╗ ██████╗ ██████╗ ████████╗
-██║   ██║██║████╗  ██║██║██╔════╝ ██╔══██╗╚══██╔══╝
-██║   ██║██║██╔██╗ ██║██║██║  ███╗██████╔╝   ██║
-╚██╗ ██╔╝██║██║╚██╗██║██║██║   ██║██╔═══╝    ██║
- ╚████╔╝ ██║██║ ╚████║██║╚██████╔╝██║        ██║
-  ╚═══╝  ╚═╝╚═╝  ╚═══╝╚═╝ ╚═════╝ ╚═╝        ╚═╝`;
-
 // Distinct accent colors for the starter words (à la OpenCode's colored options).
 const STARTER_COLORS = ['var(--primary)', 'var(--secondary)', 'var(--dot-yellow)', 'var(--foreground)'];
 
@@ -40,7 +32,7 @@ export default function TerminalChat() {
   };
 
   return (
-    <div className="flex min-h-[62vh] flex-col text-sm">
+    <div className="flex flex-1 min-h-[62vh] flex-col text-sm">
       {/* Hero wordmark (empty) OR the REPL-style conversation */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto">
         {started ? (
@@ -52,19 +44,12 @@ export default function TerminalChat() {
                   <span className="whitespace-pre-wrap text-foreground">{m.content}</span>
                 </p>
               ) : (
-                <div key={i}>
-                  <p className="whitespace-pre-wrap pl-4 text-foreground/90">
-                    {m.content}
-                    {busy && i === messages.length - 1 && (
-                      <span className="ml-0.5 inline-block animate-pulse text-primary">▋</span>
-                    )}
-                  </p>
-                  {m.model && (
-                    <p className="pl-4 text-[0.7rem] text-muted">
-                      {t('assistant.via')} {m.model}
-                    </p>
+                <p key={i} className="whitespace-pre-wrap pl-4 text-foreground/90">
+                  {m.content}
+                  {busy && i === messages.length - 1 && (
+                    <span className="ml-0.5 inline-block animate-pulse text-primary">▋</span>
                   )}
-                </div>
+                </p>
               ),
             )}
             {error && (
@@ -74,26 +59,62 @@ export default function TerminalChat() {
             )}
           </div>
         ) : (
-          <div className="flex h-full flex-col items-center justify-center gap-6 py-10 text-center">
-            <pre
-              aria-hidden="true"
-              className="max-w-full overflow-x-auto leading-none text-[0.5rem] sm:text-xs md:text-sm"
+          <div className="flex h-full flex-col items-center justify-center gap-8 py-10 text-center">
+            <h1
+              aria-label="viniGPT"
+              className="select-none text-3xl leading-none tracking-tight text-foreground sm:text-5xl md:text-6xl"
               style={{
-                backgroundImage: 'linear-gradient(90deg, var(--muted), var(--foreground))',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
+                fontFamily: 'var(--font-pixel)',
+                textShadow: '0.09em 0.09em 0 var(--background)',
               }}
             >
-              {WORDMARK}
-            </pre>
+              viniGPT
+            </h1>
             <p className="max-w-md text-muted">{t('assistant.greeting')}</p>
           </div>
         )}
       </div>
 
-      {/* Input box — OpenCode-style left accent bar */}
-      <div className="mt-4">
+      {/* Bottom dock: starters + meta on top, input box pinned at the very bottom. */}
+      <div className="mt-4 space-y-3">
+        {/* Starter suggestions (hero only) on the left, model selector on the right. */}
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+          {!started && (
+            <div className="flex flex-wrap gap-x-5 gap-y-1">
+              {SUGGESTIONS.map((key, idx) => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => send(t(key))}
+                  className="transition-opacity hover:opacity-70"
+                  style={{ color: STARTER_COLORS[idx % STARTER_COLORS.length] }}
+                >
+                  {t(key)}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <label
+            className="ml-auto flex items-center gap-2 text-sm text-muted"
+            title={t('assistant.modelHint')}
+          >
+            <span className="text-secondary">{t('assistant.model').toLowerCase()}:</span>
+            <select
+              value={model}
+              onChange={(e) => setModel(e.target.value)}
+              className="cursor-pointer rounded-md border border-line bg-surface/40 px-3 py-2 text-foreground outline-none transition-colors hover:border-primary/50 focus:border-primary"
+            >
+              {MODELS.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.id}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        {/* Input box — OpenCode-style left accent bar, at the very bottom */}
         <div className="flex items-center gap-3 rounded-md border border-line border-l-2 border-l-primary bg-surface/30 px-4 py-3">
           <span className="text-primary">❯</span>
           <input
@@ -107,44 +128,6 @@ export default function TerminalChat() {
             autoComplete="off"
             className="min-w-0 flex-1 bg-transparent text-foreground caret-primary outline-none placeholder:text-muted"
           />
-        </div>
-
-        {/* Colored starter suggestions (hero only) */}
-        {!started && (
-          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
-            {SUGGESTIONS.map((key, idx) => (
-              <button
-                key={key}
-                type="button"
-                onClick={() => send(t(key))}
-                className="transition-opacity hover:opacity-70"
-                style={{ color: STARTER_COLORS[idx % STARTER_COLORS.length] }}
-              >
-                {t(key)}
-              </button>
-            ))}
-          </div>
-        )}
-
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-xs text-muted">
-          <span>{t('assistant.terminalHint')}</span>
-          <div className="flex items-center gap-4">
-            <label className="flex items-center gap-1.5" title={t('assistant.modelHint')}>
-              <span className="text-secondary">{t('assistant.model').toLowerCase()}:</span>
-              <select
-                value={model}
-                onChange={(e) => setModel(e.target.value)}
-                className="border-b border-line bg-transparent text-foreground outline-none focus:border-primary"
-              >
-                {MODELS.map((m) => (
-                  <option key={m.id} value={m.id}>
-                    {m.id}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <span>bregoli-sh v1.0</span>
-          </div>
         </div>
       </div>
     </div>

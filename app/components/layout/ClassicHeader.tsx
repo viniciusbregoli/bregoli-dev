@@ -21,8 +21,8 @@ export default function ClassicHeader() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-5 pt-4 sm:pt-8">
-      <nav className="max-w-[1600px] mx-auto panel rounded-full px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-3 !bg-surface/30 backdrop-blur-xl">
+    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-5 md:px-16 lg:px-24 pt-4 sm:pt-8">
+      <nav className="max-w-[1500px] mx-auto panel rounded-full px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-3 !bg-surface/30 backdrop-blur-xl">
         <div className="flex items-center gap-3">
           <TrafficLights className="hidden sm:flex" />
           <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
@@ -31,9 +31,9 @@ export default function ClassicHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200',
+                  'rounded-md px-3 py-1.5 text-sm transition-colors whitespace-nowrap',
                   router === item.href
-                    ? 'bg-primary/10 text-primary'
+                    ? 'bg-primary/15 text-primary'
                     : 'text-muted hover:text-foreground hover:bg-foreground/5',
                 )}
               >
@@ -45,7 +45,7 @@ export default function ClassicHeader() {
 
         <div className="flex items-center gap-3">
           <ViewModeToggle />
-          <div className="flex items-center gap-2 border-l border-line pl-3">
+          <div className="flex items-center border-l border-line pl-3">
             <LanguageSelector />
           </div>
           <div className="flex items-center gap-3 border-l border-line pl-3">
@@ -54,7 +54,7 @@ export default function ClassicHeader() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="text-muted hover:text-primary transition-colors duration-200"
+              className="text-muted hover:text-primary transition-colors"
             >
               <FaGithub className="h-5 w-5" />
             </a>
@@ -63,7 +63,7 @@ export default function ClassicHeader() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="text-muted hover:text-primary transition-colors duration-200"
+              className="text-muted hover:text-primary transition-colors"
             >
               <FaLinkedin className="h-5 w-5" />
             </a>

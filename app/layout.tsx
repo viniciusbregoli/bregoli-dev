@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import { Space_Grotesk, JetBrains_Mono, Press_Start_2P } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from './(core)/i18n/context';
 import { ViewModeProvider } from './(core)/view/context';
@@ -13,6 +13,13 @@ const spaceGrotesk = Space_Grotesk({
 
 const jetbrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
+  subsets: ['latin'],
+});
+
+// Pixel/bitmap font for the chat wordmark — crisp blocky logo, no ASCII-art seams.
+const pressStart = Press_Start_2P({
+  weight: '400',
+  variable: '--font-pixel',
   subsets: ['latin'],
 });
 
@@ -36,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground`}
+        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${pressStart.variable} antialiased bg-background text-foreground`}
       >
         <LanguageProvider>
           <ViewModeProvider>

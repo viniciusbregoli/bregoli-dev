@@ -28,7 +28,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="max-w-[1600px] mx-auto px-6 py-10">
+      <div className="max-w-[1500px] mx-auto px-6 md:px-16 lg:px-24 py-10">
         <motion.div
           initial={{ y: 20 }}
           animate={{ y: 0 }}

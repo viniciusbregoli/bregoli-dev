@@ -34,7 +34,7 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="py-8">
-      <div className="max-w-[1600px] mx-auto px-6">
+      <div className="max-w-[1500px] mx-auto px-6 md:px-16 lg:px-24">
         <SectionTitle eyebrow="experience" className="mb-12">
           {t('experience.title')}
         </SectionTitle>

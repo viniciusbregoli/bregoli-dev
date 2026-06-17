@@ -30,7 +30,7 @@ export default function ClassicChat() {
   };
 
   return (
-    <div className="mx-auto max-w-[1600px] px-4 sm:px-6 pb-10">
+    <div className="mx-auto max-w-[1500px] px-4 sm:px-6 md:px-16 lg:px-24 pb-10">
       <div className="panel flex h-[calc(100dvh-9rem)] min-h-[26rem] flex-col overflow-hidden">
         {/* Header */}
         <div className="term-titlebar flex items-center gap-2 px-5 py-3">
@@ -80,18 +80,13 @@ export default function ClassicChat() {
                 </span>
               </div>
             ) : (
-              <div key={i} className="flex flex-col items-start">
+              <div key={i} className="flex justify-start">
                 <span className="max-w-[46rem] whitespace-pre-wrap rounded-2xl rounded-bl-sm bg-surface/60 px-4 py-2.5 text-foreground/90">
                   {m.content}
                   {busy && i === messages.length - 1 && (
                     <span className="ml-0.5 inline-block animate-pulse text-primary">▋</span>
                   )}
                 </span>
-                {m.model && (
-                  <span className="mt-1 pl-1 text-[0.65rem] text-muted">
-                    {t('assistant.via')} {m.model}
-                  </span>
-                )}
               </div>
             ),
           )}
