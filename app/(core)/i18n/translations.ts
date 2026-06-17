@@ -526,6 +526,13 @@ export const translations = {
     es: 'limpiar la pantalla',
     zh: '清屏',
   },
+  'terminal.cmd.cowsay': {
+    en: 'make a cow say something',
+    pt: 'fazer uma vaca dizer algo',
+    de: 'eine Kuh etwas sagen lassen',
+    es: 'haz que una vaca diga algo',
+    zh: '让一头牛说点什么',
+  },
 
   // `help` keyboard-shortcut hints (the keystroke labels stay literal).
   'terminal.help.completes': { en: 'completes', pt: 'completa', de: 'vervollständigt', es: 'completa', zh: '补全' },

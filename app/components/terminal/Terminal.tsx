@@ -68,9 +68,26 @@ export default function Terminal() {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const trimmed = input.trim().toLowerCase();
-  const suggestions = trimmed
-    ? COMMAND_NAMES.filter((n) => n.startsWith(trimmed) && n !== trimmed).slice(0, 6)
-    : [];
+  // After "command " we complete arguments (cat <file>, ls <folder>, man <cmd>);
+  // otherwise we complete command names. Every command is completable now.
+  const segments = input.replace(/^\s+/, '').split(/\s+/);
+  const suggestions: string[] =
+    segments.length > 1
+      ? (() => {
+          const cmdName = segments[0].toLowerCase();
+          const cmd = resolveCommand(cmdName);
+          if (!cmd?.complete) return [];
+          const partial = segments[segments.length - 1].toLowerCase();
+          return cmd
+            .complete()
+            .filter((o) => o.toLowerCase().startsWith(partial))
+            .map((o) => `${cmdName} ${o}`)
+            .filter((s) => s !== trimmed)
+            .slice(0, 6);
+        })()
+      : trimmed
+        ? COMMAND_NAMES.filter((n) => n.startsWith(trimmed) && n !== trimmed).slice(0, 6)
+        : [];
 
   // Only auto-focus on devices with a fine pointer (mouse). On touch this would
   // pop the on-screen keyboard on load and after every command.

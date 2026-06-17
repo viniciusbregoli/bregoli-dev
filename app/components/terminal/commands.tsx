@@ -43,6 +43,8 @@ export type Command = {
    * current language. Action commands (cv, lang, …) run once.
    */
   pure?: boolean;
+  /** Argument values offered in autocomplete (e.g. `cat <file>`, `ls <folder>`). */
+  complete?: () => string[];
   /** Returns the output to print, or null for commands that only have side effects. */
   run: (ctx: CommandContext, args: string[]) => ReactNode;
 };
@@ -270,6 +272,22 @@ function Neofetch({ ctx }: { ctx: CommandContext }) {
   );
 }
 
+// Virtual filesystem shared by ls / cd / cat. Folders render their section;
+// files render their content. Keeps the toy shell internally consistent.
+const FOLDERS: Record<string, (ctx: CommandContext) => ReactNode> = {
+  experience: (ctx) => <Experience ctx={ctx} />,
+  education: (ctx) => <Education ctx={ctx} />,
+  projects: (ctx) => <Projects ctx={ctx} />,
+};
+const FILES: Record<string, (ctx: CommandContext) => ReactNode> = {
+  'about.txt': (ctx) => <WhoAmI ctx={ctx} />,
+  'skills.json': (ctx) => <Skills ctx={ctx} />,
+  'contact.md': (ctx) => <Contact ctx={ctx} />,
+  'cv.pdf': () => <p className="text-muted">{'cat: cv.pdf: binary file — run `cv` to download it'}</p>,
+};
+const FOLDER_NAMES = Object.keys(FOLDERS);
+const FILE_NAMES = Object.keys(FILES);
+
 // ── Command registry ───────────────────────────────────────────────────────
 
 export const COMMANDS: Command[] = [
@@ -316,7 +334,6 @@ export const COMMANDS: Command[] = [
   },
   {
     name: 'skills',
-    aliases: ['ls skills'],
     descriptionKey: 'terminal.cmd.skills',
     pure: true,
     run: (ctx) => <Skills ctx={ctx} />,
@@ -330,7 +347,6 @@ export const COMMANDS: Command[] = [
   },
   {
     name: 'projects',
-    aliases: ['ls projects'],
     descriptionKey: 'terminal.cmd.projects',
     pure: true,
     run: (ctx) => <Projects ctx={ctx} />,
@@ -394,26 +410,40 @@ export const COMMANDS: Command[] = [
   {
     name: 'ls',
     hidden: true,
-    run: () => (
-      <p className="flex flex-wrap gap-x-4 gap-y-1">
-        <span className="text-primary">experience/</span>
-        <span className="text-primary">education/</span>
-        <span className="text-primary">projects/</span>
-        <span className="text-foreground/80">about.txt</span>
-        <span className="text-foreground/80">skills.json</span>
-        <span className="text-foreground/80">contact.md</span>
-        <span className="text-secondary">cv.pdf</span>
-      </p>
-    ),
+    pure: true,
+    complete: () => FOLDER_NAMES,
+    run: (ctx, args) => {
+      const target = args.find((a) => !a.startsWith('-'))?.replace(/\/$/, '');
+      if (!target) {
+        return (
+          <p className="flex flex-wrap gap-x-4 gap-y-1">
+            <span className="text-primary">experience/</span>
+            <span className="text-primary">education/</span>
+            <span className="text-primary">projects/</span>
+            <span className="text-foreground/80">about.txt</span>
+            <span className="text-foreground/80">skills.json</span>
+            <span className="text-foreground/80">contact.md</span>
+            <span className="text-secondary">cv.pdf</span>
+          </p>
+        );
+      }
+      if (FOLDERS[target]) return FOLDERS[target](ctx);
+      if (FILE_NAMES.includes(target)) return <p className="text-foreground/80">{target}</p>;
+      return <p className="text-muted">{`ls: cannot access '${target}': No such file or directory`}</p>;
+    },
   },
   { name: 'pwd', hidden: true, run: () => <p className="text-foreground/90">/home/vinicius</p> },
   {
     name: 'cd',
     hidden: true,
-    run: (_ctx, args) =>
-      !args.length || args[0] === '~' || args[0] === '/home/vinicius' ? null : (
-        <p className="text-muted">{`cd: ${args[0]}: No such file or directory`}</p>
-      ),
+    pure: true,
+    complete: () => FOLDER_NAMES,
+    run: (ctx, args) => {
+      const target = (args[0] ?? '').replace(/\/$/, '');
+      if (!target || target === '~' || target === '/home/vinicius') return null;
+      if (FOLDERS[target]) return FOLDERS[target](ctx);
+      return <p className="text-muted">{`cd: ${args[0]}: No such file or directory`}</p>;
+    },
   },
   { name: 'echo', hidden: true, run: (_ctx, args) => <p className="text-foreground/90">{args.join(' ')}</p> },
   { name: 'date', hidden: true, run: () => <p className="text-foreground/90">{new Date().toString()}</p> },
@@ -436,34 +466,39 @@ export const COMMANDS: Command[] = [
   {
     name: 'cat',
     hidden: true,
-    run: (_ctx, args) => {
-      if (!args.length) return <p className="text-muted">{'usage: cat <file>'}</p>;
-      if (args[0] === 'cv.pdf')
-        return <p className="text-muted">{'cat: cv.pdf: binary file — run `cv` to download it'}</p>;
-      return <p className="text-muted">{`cat: ${args[0]}: No such file or directory`}</p>;
+    pure: true,
+    complete: () => FILE_NAMES,
+    run: (ctx, args) => {
+      const target = args[0]?.replace(/^\.\//, '');
+      if (!target) return <p className="text-muted">{'usage: cat <file>'}</p>;
+      if (FILES[target]) return FILES[target](ctx);
+      if (FOLDER_NAMES.includes(target.replace(/\/$/, '')))
+        return <p className="text-muted">{`cat: ${target}: Is a directory`}</p>;
+      return <p className="text-muted">{`cat: ${target}: No such file or directory`}</p>;
     },
   },
   {
     name: 'man',
     hidden: true,
-    run: (_ctx, args) =>
-      args.length ? (
-        <p className="text-muted">{`No manual entry for ${args[0]} — try help`}</p>
-      ) : (
-        <p className="text-muted">What manual page do you want?</p>
-      ),
-  },
-  {
-    name: 'vim',
-    aliases: ['vi'],
-    hidden: true,
-    run: () => <p className="text-muted">{'to exit vim, close the tab. (the only known method)'}</p>,
-  },
-  { name: 'nano', hidden: true, run: () => <p className="text-muted">{'nano? bold choice.'}</p> },
-  {
-    name: 'emacs',
-    hidden: true,
-    run: () => <p className="text-muted">{'a fine operating system, lacking only a decent editor.'}</p>,
+    pure: true,
+    complete: () => COMMANDS.map((c) => c.name),
+    run: (ctx, args) => {
+      if (!args.length) return <p className="text-muted">What manual page do you want?</p>;
+      const cmd = resolveCommand(args[0]);
+      if (!cmd) return <p className="text-muted">{`No manual entry for ${args[0]}`}</p>;
+      return (
+        <div className="space-y-1 text-sm">
+          <p className="text-secondary">NAME</p>
+          <p className="pl-4 text-foreground/90">
+            {cmd.name}
+            {cmd.descriptionKey ? ` — ${ctx.t(cmd.descriptionKey)}` : ''}
+          </p>
+          {cmd.aliases?.length ? (
+            <p className="pl-4 text-muted">aliases: {cmd.aliases.join(', ')}</p>
+          ) : null}
+        </div>
+      );
+    },
   },
   {
     name: 'rm',
@@ -491,7 +526,7 @@ export const COMMANDS: Command[] = [
   },
   {
     name: 'cowsay',
-    hidden: true,
+    descriptionKey: 'terminal.cmd.cowsay',
     run: (_ctx, args) => {
       const text = args.join(' ') || 'moo';
       const bar = '-'.repeat(text.length + 2);
@@ -517,8 +552,5 @@ export function resolveCommand(input: string): Command | undefined {
   return COMMANDS.find((c) => c.name === name || c.aliases?.includes(name));
 }
 
-/** Visible names + aliases, for autosuggest (hidden easter eggs are excluded). */
-export const COMMAND_NAMES: string[] = COMMANDS.filter((c) => !c.hidden).flatMap((c) => [
-  c.name,
-  ...(c.aliases ?? []),
-]);
+/** All command names + aliases, for autosuggest (every command is completable). */
+export const COMMAND_NAMES: string[] = COMMANDS.flatMap((c) => [c.name, ...(c.aliases ?? [])]);
