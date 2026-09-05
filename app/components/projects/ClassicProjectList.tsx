@@ -1,48 +1,18 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
-import { Language } from '../../(core)/i18n/translations';
 import { useLanguage } from '../../(core)/i18n/context';
-import ProjectCard from './ProjectCard';
 import { projects } from '../../(features)/projects/projectData';
 import SectionTitle from '../common/SectionTitle';
-
-// Transform only (no opacity) so the project cards keep their `backdrop-filter`
-// during the staggered reveal.
-const containerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const itemVariants: Variants = {
-  hidden: { y: 20 },
-  visible: { y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
+import StudioProjectList from './StudioProjectList';
 
 export default function ClassicProjectList() {
-  const { t, language } = useLanguage();
-
+  const { t } = useLanguage();
   return (
-    <section className="min-h-screen pt-12 pb-20">
-      <div className="max-w-[1500px] mx-auto px-6 md:px-16 lg:px-24">
-        <SectionTitle eyebrow="projects" className="mb-12">
-          {t('projects.title')}
-        </SectionTitle>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
-          {projects.map((project, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <ProjectCard project={project} language={language as Language} />
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+    <section className="studio-container studio-section min-h-[65vh]">
+      <SectionTitle eyebrow={t('nav.projects')} className="mb-12">
+        {t('projects.title')}
+      </SectionTitle>
+      <StudioProjectList projects={projects} />
     </section>
   );
 }

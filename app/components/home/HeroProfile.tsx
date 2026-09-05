@@ -1,62 +1,70 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { FiArrowUpRight, FiDownload, FiTerminal } from 'react-icons/fi';
 import { useLanguage } from '../../(core)/i18n/context';
-import { FiDownload } from 'react-icons/fi';
+import { useViewMode } from '../../(core)/view/context';
+import { getExperienceData } from './experience/experienceData';
 
 export default function HeroSection() {
+  const reduced = useReducedMotion();
   const { t, language } = useLanguage();
-
-  const handleDownloadCV = () => {
-    const cvPaths: Record<string, string> = {
-      en: '/CV - English.pdf',
-      pt: '/CV - Portugues.pdf',
-      de: '/CV - Deutsch.pdf',
-      es: '/CV - Espanol.pdf',
-      zh: '/CV - Chinese.pdf',
-    };
-
-    const cvPath = cvPaths[language] || cvPaths.en;
-
-    const link = document.createElement('a');
-    link.href = cvPath;
-    link.setAttribute('download', `Vinicius_Bregoli_CV_${language.toUpperCase()}.pdf`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const { setMode } = useViewMode();
+  const current = getExperienceData()[0];
+  const cvPaths = {
+    en: '/CV - English.pdf',
+    pt: '/CV - Portugues.pdf',
+    de: '/CV - Deutsch.pdf',
+    es: '/CV - Espanol.pdf',
+    zh: '/CV - Chinese.pdf',
   };
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="max-w-[1500px] mx-auto px-6 md:px-16 lg:px-24 py-10">
-        <motion.div
-          initial={{ y: 20 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="space-y-6"
-        >
-          <p className="mono-label">{t('hero.greeting')}</p>
-
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-foreground">
-            {t('hero.name')}
-          </h1>
-
-          <p className="text-2xl md:text-3xl text-foreground/90 font-medium leading-relaxed max-w-2xl">
-            {t('hero.professionalClaim')}
-          </p>
-
-          <p className="text-lg text-muted leading-relaxed max-w-2xl">{t('hero.description')}</p>
-
-          <div className="flex flex-wrap gap-3 pt-2">
-            <button
-              onClick={handleDownloadCV}
-              className="group inline-flex items-center gap-2 px-6 py-3 font-mono text-sm rounded-lg border border-primary/40 bg-primary/15 text-primary font-semibold backdrop-blur-sm hover:bg-primary/25 hover:border-primary/60 transition-colors"
-            >
-              <FiDownload className="transition-transform group-hover:-translate-y-0.5" />
-              {t('hero.cta')}
+    <section className="studio-container" aria-labelledby="hero-title">
+      <div className="studio-hero">
+        <div className="studio-hero-copy">
+          <p className="mono-label">{t('studio.discipline')}</p>
+          <motion.h1 id="hero-title" className="studio-name"
+            initial={false}
+            animate={reduced ? { y: 0 } : { y: [24, 0] }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Vinícius <em>Bregoli.</em>
+          </motion.h1>
+          <p className="studio-role">{t('studio.role')}</p>
+          <p className="studio-intro">{t('studio.intro')}</p>
+          <div className="studio-actions">
+            <a className="studio-button" href="#work">
+              {t('studio.work')} <FiArrowUpRight aria-hidden />
+            </a>
+            <button className="studio-text-link" onClick={() => setMode('terminal')}>
+              {t('studio.terminal')} <FiTerminal aria-hidden />
             </button>
           </div>
-        </motion.div>
+        </div>
+        <aside className="studio-hero-aside">
+          <p className="mono-label">{t('studio.focus')}</p>
+          <p className="text-foreground mt-4">
+            {current.position[language] || current.position.en}
+          </p>
+          <p className="text-muted">Kinebot / {current.location}</p>
+          <div className="studio-degree">
+            <p className="text-foreground">{t('studio.degree')}</p>
+            <p>PUCPR / 2025</p>
+          </div>
+          <a
+            className="studio-text-link"
+            href={cvPaths[language]}
+            download={`Vinicius_Bregoli_CV_${language.toUpperCase()}.pdf`}
+          >
+            <FiDownload aria-hidden />
+            {t('hero.cta')}
+          </a>
+        </aside>
+      </div>
+      <div className="studio-hero-rule">
+        <span>{t('studio.systems')}</span>
+        <span>01 / 05</span>
       </div>
     </section>
   );

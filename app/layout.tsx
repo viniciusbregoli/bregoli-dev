@@ -1,18 +1,25 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, JetBrains_Mono, Press_Start_2P } from 'next/font/google';
+import { Instrument_Serif, IBM_Plex_Sans, IBM_Plex_Mono, Press_Start_2P } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from './(core)/i18n/context';
 import { ViewModeProvider } from './(core)/view/context';
 import { AssistantChatProvider } from './components/chat/useAssistantChat';
 import AppChrome from './components/chrome/AppChrome';
 
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  weight: '400',
+  style: ['normal', 'italic'],
   subsets: ['latin'],
 });
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: '--font-jetbrains-mono',
+const plexSans = IBM_Plex_Sans({
+  variable: '--font-plex-sans',
+  weight: ['400', '500', '600'],
+  subsets: ['latin'],
+});
+const plexMono = IBM_Plex_Mono({
+  variable: '--font-plex-mono',
+  weight: ['400', '500', '600'],
   subsets: ['latin'],
 });
 
@@ -24,13 +31,13 @@ const pressStart = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: 'bregoli_dev',
+  title: 'Vinícius Bregoli | Computer Engineer',
   description:
-    'Portfolio of Vinícius Bregoli — a Computer Engineer leading a small AI team, building agentic AI systems and Python services on AWS.',
+    'Vinícius Bregoli, Computer Engineering graduate from PUCPR. Robotics, computer vision, agentic AI, and Python services on AWS.',
   openGraph: {
-    title: 'bregoli_dev',
+    title: 'Vinícius Bregoli | Computer Engineer',
     description:
-      'Portfolio of Vinícius Bregoli — a Computer Engineer leading a small AI team, building agentic AI systems and Python services on AWS.',
+      'Vinícius Bregoli, Computer Engineering graduate from PUCPR. Robotics, computer vision, agentic AI, and Python services on AWS.',
     type: 'website',
   },
 };
@@ -43,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${pressStart.variable} antialiased bg-background text-foreground`}
+        className={`${instrumentSerif.variable} ${plexSans.variable} ${plexMono.variable} ${pressStart.variable} antialiased bg-background text-foreground`}
       >
         <LanguageProvider>
           <ViewModeProvider>

@@ -1,35 +1,20 @@
 'use client';
 
-import { FiUser, FiTerminal } from 'react-icons/fi';
+import { FiTerminal } from 'react-icons/fi';
 import { useViewMode } from '../../(core)/view/context';
-import { cn } from '../../(core)/utils/cn';
+import { useLanguage } from '../../(core)/i18n/context';
 
 export default function ViewModeToggle() {
   const { mode, setMode } = useViewMode();
-
+  const { t } = useLanguage();
   return (
-    <div className="flex items-center rounded-full border border-line overflow-hidden">
-      <button
-        onClick={() => setMode('classic')}
-        title="Recruiter view"
-        aria-label="Switch to recruiter view"
-        className={cn(
-          'flex items-center justify-center h-9 w-9 transition-colors',
-          mode === 'classic' ? 'bg-primary/15 text-primary' : 'text-muted hover:text-foreground',
-        )}
-      >
-        <FiUser size={16} />
+    <div className="studio-mode">
+      <button onClick={() => setMode('classic')} aria-pressed={mode === 'classic'}>
+        {t('studio.portfolio')}
       </button>
-      <button
-        onClick={() => setMode('terminal')}
-        title="Developer / terminal view"
-        aria-label="Switch to terminal view"
-        className={cn(
-          'flex items-center justify-center h-9 w-9 transition-colors',
-          mode === 'terminal' ? 'bg-primary/15 text-primary' : 'text-muted hover:text-foreground',
-        )}
-      >
-        <FiTerminal size={16} />
+      <button onClick={() => setMode('terminal')} aria-pressed={mode === 'terminal'}>
+        <FiTerminal aria-hidden />
+        <span>Terminal</span>
       </button>
     </div>
   );

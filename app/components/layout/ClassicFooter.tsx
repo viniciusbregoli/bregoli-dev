@@ -10,8 +10,8 @@ export default function ClassicFooter() {
   return (
     <footer className="border-t border-line mt-24">
       <div className="max-w-[1500px] mx-auto px-6 md:px-16 lg:px-24 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-muted">
-          © {currentYear} Vinícius Bregoli — {t('footer.rights')}
+        <p className="font-mono text-xs text-muted">
+          © {currentYear} Vinícius Bregoli / {t('footer.rights')}
         </p>
         <div className="flex items-center gap-4">
           <a

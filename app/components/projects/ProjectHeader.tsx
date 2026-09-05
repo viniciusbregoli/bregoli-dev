@@ -40,7 +40,7 @@ export default function ProjectHeader({ project, language }: ProjectHeaderProps)
           <p className="mono-label mb-4">
             {`// ${translations['projects.project'][language] || translations['projects.project'].en}`}
           </p>
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
+          <h1 className="font-display text-5xl md:text-7xl font-normal text-foreground mb-6 tracking-tight text-balance">
             {project.title[language] || project.title.en}
           </h1>
           <p className="text-muted text-lg md:text-xl max-w-3xl leading-relaxed">
