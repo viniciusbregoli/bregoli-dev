@@ -351,6 +351,7 @@ export const COMMANDS: Command[] = [
     pure: true,
     run: (ctx) => <Projects ctx={ctx} />,
   },
+  { name: 'blog', descriptionKey: 'nav.blog', pure: true, run: (ctx) => <Link className="text-primary underline" href="/blog">{ctx.t('blog.title')}</Link> },
   { name: 'contact', descriptionKey: 'terminal.cmd.contact', pure: true, run: (ctx) => <Contact ctx={ctx} /> },
   {
     name: 'cv',

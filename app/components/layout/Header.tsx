@@ -16,13 +16,14 @@ export default function Header() {
   const navigation = [
     { name: t('nav.home'), href: '/', path: '~' },
     { name: t('nav.projects'), href: '/projects', path: '~/projects' },
+    { name: t('nav.blog'), href: '/blog', path: '~/blog' },
     { name: t('nav.contact'), href: '/contact', path: '~/contact' },
     { name: t('nav.chat'), href: '/chat', path: '~/chat' },
   ];
 
   return (
     <header className="term-titlebar flex-col items-start sm:flex-row sm:items-center gap-3 sm:gap-4">
-      <div className="flex items-center gap-3 overflow-x-auto no-scrollbar">
+      <div className="flex min-w-0 max-w-full items-center gap-3 overflow-x-auto no-scrollbar">
         <TrafficLights />
         <nav className="flex items-center gap-1">
           {navigation.map((item) => (
