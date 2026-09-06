@@ -103,7 +103,7 @@ export default function TerminalChat() {
             <select
               value={model}
               onChange={(e) => setModel(e.target.value)}
-              className="cursor-pointer rounded-md border border-line bg-surface/40 px-3 py-2 text-foreground outline-none transition-colors hover:border-primary/50 focus:border-primary"
+              className="cursor-pointer rounded-md border border-line bg-transparent px-3 py-2 text-foreground outline-none transition-colors hover:border-primary/50 focus:border-primary"
             >
               {MODELS.map((m) => (
                 <option key={m.id} value={m.id}>
@@ -115,7 +115,7 @@ export default function TerminalChat() {
         </div>
 
         {/* Input box — OpenCode-style left accent bar, at the very bottom */}
-        <div className="flex items-center gap-3 rounded-md border border-line border-l-2 border-l-primary bg-surface/30 px-4 py-3">
+        <div className="flex items-center gap-3 rounded-md border border-line border-l-2 border-l-primary bg-transparent px-4 py-3">
           <span className="text-primary">❯</span>
           <input
             ref={inputRef}

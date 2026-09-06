@@ -53,7 +53,7 @@ body {
 /* ── Terminal utilities ────────────────────────────────────────────────── */
 
 .term-window {
-  background: color-mix(in srgb, var(--background) 94%, transparent);
+  background: transparent;
   border: 1px solid var(--line);
   border-radius: 0.35rem;
   overflow: hidden;
@@ -69,7 +69,7 @@ body {
   gap: 0.75rem;
   padding: 0.65rem 1rem;
   border-bottom: 1px solid color-mix(in oklab, var(--line) 70%, transparent);
-  background: color-mix(in oklab, var(--surface) 16%, transparent);
+  background: transparent;
 }
 
 .term-dot {
@@ -834,3 +834,5 @@ body {
   .blog-entry time { grid-column: 1 / -1; }
   .blog-page { padding-block: 2.5rem; }
 }
+
+.vinigpt-panel { background: transparent; }

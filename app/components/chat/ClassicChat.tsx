@@ -31,7 +31,7 @@ export default function ClassicChat() {
 
   return (
     <div className="mx-auto max-w-[1500px] px-4 sm:px-6 md:px-16 lg:px-24 pb-10">
-      <div className="panel flex h-[calc(100dvh-9rem)] min-h-[26rem] flex-col overflow-hidden">
+      <div className="panel vinigpt-panel flex h-[calc(100dvh-9rem)] min-h-[26rem] flex-col overflow-hidden">
         {/* Header */}
         <div className="term-titlebar flex items-center gap-2 px-5 py-3">
           <span className="h-2 w-2 rounded-full bg-secondary" />
@@ -41,7 +41,7 @@ export default function ClassicChat() {
             <select
               value={model}
               onChange={(e) => setModel(e.target.value)}
-              className="rounded-md border border-line bg-surface/60 px-2 py-1 text-foreground outline-none focus:border-primary/50"
+              className="rounded-md border border-line bg-transparent px-2 py-1 text-foreground outline-none focus:border-primary/50"
             >
               {MODELS.map((m) => (
                 <option key={m.id} value={m.id}>
@@ -73,7 +73,7 @@ export default function ClassicChat() {
                     key={key}
                     type="button"
                     onClick={() => send(t(key))}
-                    className="rounded-full border border-line bg-surface/40 px-3 py-1.5 text-sm text-primary transition-colors hover:border-primary/50 hover:bg-primary/10"
+                    className="rounded-full border border-line bg-transparent px-3 py-1.5 text-sm text-primary transition-colors hover:border-primary/50 hover:bg-primary/10"
                   >
                     {t(key)}
                   </button>
@@ -85,13 +85,13 @@ export default function ClassicChat() {
           {messages.map((m, i) =>
             m.role === 'user' ? (
               <div key={i} className="flex justify-end">
-                <span className="max-w-[46rem] whitespace-pre-wrap rounded-2xl rounded-br-sm bg-primary/20 px-4 py-2.5 text-foreground">
+                <span className="max-w-[46rem] whitespace-pre-wrap rounded-2xl rounded-br-sm bg-transparent px-4 py-2.5 text-foreground">
                   {m.content}
                 </span>
               </div>
             ) : (
               <div key={i} className="flex justify-start">
-                <span className="max-w-[46rem] whitespace-pre-wrap rounded-2xl rounded-bl-sm bg-surface/60 px-4 py-2.5 text-foreground/90">
+                <span className="max-w-[46rem] whitespace-pre-wrap rounded-2xl rounded-bl-sm bg-transparent px-4 py-2.5 text-foreground/90">
                   {m.content}
                   {busy && i === messages.length - 1 && (
                     <span className="ml-0.5 inline-block animate-pulse text-primary">▋</span>
@@ -114,7 +114,7 @@ export default function ClassicChat() {
               onKeyDown={onKeyDown}
               placeholder={t('assistant.placeholder')}
               aria-label={t('assistant.placeholder')}
-              className="min-w-0 flex-1 rounded-lg border border-line bg-surface/40 px-4 py-2.5 text-sm text-foreground caret-primary outline-none placeholder:text-muted focus:border-primary/50"
+              className="min-w-0 flex-1 rounded-lg border border-line bg-transparent px-4 py-2.5 text-sm text-foreground caret-primary outline-none placeholder:text-muted focus:border-primary/50"
             />
             <button
               type="button"
