@@ -34,12 +34,12 @@ export default function ClassicContact() {
           animate="visible"
           className="grid grid-cols-1 gap-6 lg:grid-cols-2 items-start"
         >
-          <motion.div variants={itemVariants} className="panel p-8 md:p-10">
+          <motion.div variants={itemVariants} className="contact-panel panel p-8 md:p-10">
             <h2 className="mono-label mb-6">{t('contact.getInTouch')}</h2>
             <ContactInfo />
           </motion.div>
 
-          <motion.div variants={itemVariants} className="panel p-8 md:p-10">
+          <motion.div variants={itemVariants} className="contact-panel panel p-8 md:p-10">
             <h2 className="mono-label mb-8">{t('contact.sendMessage')}</h2>
             <ContactForm />
           </motion.div>

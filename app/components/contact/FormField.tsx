@@ -28,7 +28,7 @@ export default function FormField({
   rows = 4,
 }: FormFieldProps) {
   const fieldClassName = cn(
-    'w-full px-4 py-3 rounded-lg bg-background border text-foreground placeholder:text-muted/60 focus:outline-none transition-colors',
+    'w-full px-4 py-3 rounded-lg bg-transparent border text-foreground placeholder:text-muted/60 focus:outline-none transition-colors',
     error
       ? 'border-red-500/60 focus:border-red-500'
       : 'border-line focus:border-primary/60',
