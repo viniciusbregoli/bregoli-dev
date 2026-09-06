@@ -47,3 +47,13 @@ test('persona speaks in first person and handles greetings without a formal intr
   assert.ok(prompt.includes('earlier assistant messages'));
   assert.ok(!prompt.includes('use "I" only for your own capabilities'));
 });
+
+
+test('personal context preserves stated favorites and uncertainty without inventing details', () => {
+  const prompt = exports.buildSystemPrompt('en');
+  for (const fact of ['My favorite color is celestial blue', 'Interstellar, Fight Club, and Kill Bill', 'Pink Floyd is my favorite band', 'King Crimson', 'Alice in Chains, Creed, and Radiohead', 'Red Dead Redemption 2', 'probably The Three-Body Problem trilogy', 'part-time in IT support']) {
+    assert.ok(prompt.includes(fact), fact);
+  }
+  assert.ok(prompt.includes('do not assume I play their songs on guitar'));
+  assert.ok(prompt.includes('No specific routine'));
+});
