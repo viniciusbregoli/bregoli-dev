@@ -1,14 +1,7 @@
-// app/api/chat/route.ts
-// Server-side proxy to OpenRouter (OpenAI-compatible). The API key lives here and
-// NEVER reaches the browser — the client only ever talks to this route. Guardrails:
-// model allowlist, bounded history, capped message length, capped output tokens.
-// For verifiability, the actual model OpenRouter used is read off the first stream
-// chunk and returned in the `X-Model` response header (and surfaced per-message in
-// the UI) — so a visitor can confirm their model choice really took effect.
 import { NextRequest } from 'next/server';
 import OpenAI from 'openai';
 import { buildSystemPrompt } from '../../(core)/assistant/knowledge';
-import { DEFAULT_MODEL, isAllowedModel } from '../../(core)/assistant/models';
+import { DEFAULT_MODEL } from '../../(core)/assistant/models';
 import { Language } from '../../(core)/i18n/translations';
 
 export const runtime = 'nodejs';
@@ -43,10 +36,9 @@ export async function POST(request: NextRequest) {
     return json({ error: 'Invalid request body.' }, 400);
   }
 
-  const { messages, language, model } = (body ?? {}) as {
+  const { messages, language } = (body ?? {}) as {
     messages?: ChatMessage[];
     language?: string;
-    model?: string;
   };
 
   if (!Array.isArray(messages) || messages.length === 0) {
@@ -69,8 +61,6 @@ export async function POST(request: NextRequest) {
   }
 
   const lang: Language = SUPPORTED.includes(language as Language) ? (language as Language) : 'en';
-  // Only allowlisted models — anything else falls back to the default.
-  const requestedModel = isAllowedModel(model) ? model : DEFAULT_MODEL;
 
   const client = new OpenAI({
     apiKey: process.env.OPENROUTER_API_KEY,
@@ -83,7 +73,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const completion = await client.chat.completions.create({
-      model: requestedModel,
+      model: DEFAULT_MODEL,
       temperature: 0.7,
       max_tokens: MAX_TOKENS,
       stream: true,
@@ -95,7 +85,7 @@ export async function POST(request: NextRequest) {
     const iterator = completion[Symbol.asyncIterator]();
     const first = await iterator.next();
     const usedModel =
-      (!first.done && first.value?.model) || requestedModel;
+      (!first.done && first.value?.model) || DEFAULT_MODEL;
 
     const encoder = new TextEncoder();
     const stream = new ReadableStream<Uint8Array>({

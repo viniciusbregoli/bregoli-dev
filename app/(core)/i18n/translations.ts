@@ -703,15 +703,6 @@ export const translations = {
     zh: '问问我的工作…',
   },
   'assistant.send': { en: 'Send', pt: 'Enviar', de: 'Senden', es: 'Enviar', zh: '发送' },
-  'assistant.model': { en: 'Model', pt: 'Modelo', de: 'Modell', es: 'Modelo', zh: '模型' },
-  'assistant.via': { en: 'via', pt: 'via', de: 'über', es: 'vía', zh: '由' },
-  'assistant.modelHint': {
-    en: "Pick a model — each reply shows which one actually answered, so you can verify it changed.",
-    pt: 'Escolha um modelo — cada resposta mostra qual realmente respondeu, então você pode verificar que mudou.',
-    de: 'Wähle ein Modell — jede Antwort zeigt, welches tatsächlich geantwortet hat, sodass du die Änderung prüfen kannst.',
-    es: 'Elige un modelo — cada respuesta muestra cuál respondió de verdad, para que puedas verificar el cambio.',
-    zh: '选择一个模型——每条回复都会显示实际回答的模型，方便你核实切换是否生效。',
-  },
   'assistant.terminalPlaceholder': {
     en: 'Ask anything… e.g. "what do you do at Kinebot?"',
     pt: 'Pergunte qualquer coisa… ex.: "o que você faz na Kinebot?"',

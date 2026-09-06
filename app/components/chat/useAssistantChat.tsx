@@ -3,7 +3,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { useLanguage } from '../../(core)/i18n/context';
 import { TranslationKey } from '../../(core)/i18n/translations';
-import { DEFAULT_MODEL } from '../../(core)/assistant/models';
 import { ChatMessage, streamChat } from '../assistant/streamChat';
 
 const MAX_INPUT = 500;
@@ -20,8 +19,6 @@ type AssistantChat = {
   messages: ChatMessage[];
   input: string;
   setInput: (value: string) => void;
-  model: string;
-  setModel: (id: string) => void;
   busy: boolean;
   error: boolean;
   send: (override?: string) => Promise<void>;
@@ -40,7 +37,6 @@ export function AssistantChatProvider({ children }: { children: ReactNode }) {
   const { language } = useLanguage();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
-  const [model, setModel] = useState<string>(DEFAULT_MODEL);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(false);
 
@@ -68,9 +64,7 @@ export function AssistantChatProvider({ children }: { children: ReactNode }) {
       await streamChat({
         messages: base,
         language,
-        model,
         onToken: (full) => patchLast({ content: full }),
-        onModel: (used) => patchLast({ model: used }),
       });
     } catch {
       setError(true);
@@ -85,8 +79,6 @@ export function AssistantChatProvider({ children }: { children: ReactNode }) {
     messages,
     input,
     setInput: setInputCapped,
-    model,
-    setModel,
     busy,
     error,
     send,

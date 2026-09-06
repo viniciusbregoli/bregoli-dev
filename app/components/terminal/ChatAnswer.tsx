@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { Language } from '../../(core)/i18n/translations';
-import { DEFAULT_MODEL } from '../../(core)/assistant/models';
 import { streamChat } from '../assistant/streamChat';
 
 /**
@@ -29,7 +28,6 @@ export default function ChatAnswer({
     streamChat({
       messages: [{ role: 'user', content: question }],
       language,
-      model: DEFAULT_MODEL,
       onToken: setText,
       signal: controller.signal,
     })

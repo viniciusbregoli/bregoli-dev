@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import { useLanguage } from '../../(core)/i18n/context';
-import { MODELS } from '../../(core)/assistant/models';
 import { SUGGESTIONS, useAssistantChat } from './useAssistantChat';
 
 // Distinct accent colors for the starter words (à la OpenCode's colored options).
@@ -10,7 +9,7 @@ const STARTER_COLORS = ['var(--primary)', 'var(--secondary)', 'var(--dot-yellow)
 
 export default function TerminalChat() {
   const { t } = useLanguage();
-  const { messages, input, setInput, model, setModel, busy, error, send, started } =
+  const { messages, input, setInput, busy, error, send, started } =
     useAssistantChat();
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -77,7 +76,7 @@ export default function TerminalChat() {
 
       {/* Bottom dock: starters + meta on top, input box pinned at the very bottom. */}
       <div className="mt-4 space-y-3">
-        {/* Starter suggestions (hero only) on the left, model selector on the right. */}
+        {/* Starter suggestions are shown before the conversation begins. */}
         <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
           {!started && (
             <div className="flex flex-wrap gap-x-5 gap-y-1">
@@ -95,23 +94,7 @@ export default function TerminalChat() {
             </div>
           )}
 
-          <label
-            className="ml-auto flex items-center gap-2 text-sm text-muted"
-            title={t('assistant.modelHint')}
-          >
-            <span className="text-secondary">{t('assistant.model').toLowerCase()}:</span>
-            <select
-              value={model}
-              onChange={(e) => setModel(e.target.value)}
-              className="cursor-pointer rounded-md border border-line bg-transparent px-3 py-2 text-foreground outline-none transition-colors hover:border-primary/50 focus:border-primary"
-            >
-              {MODELS.map((m) => (
-                <option key={m.id} value={m.id}>
-                  {m.id}
-                </option>
-              ))}
-            </select>
-          </label>
+
         </div>
 
         {/* Input box — OpenCode-style left accent bar, at the very bottom */}

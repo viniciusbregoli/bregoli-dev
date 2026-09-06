@@ -3,12 +3,11 @@
 import { useEffect, useRef } from 'react';
 import { FiSend } from 'react-icons/fi';
 import { useLanguage } from '../../(core)/i18n/context';
-import { MODELS } from '../../(core)/assistant/models';
 import { SUGGESTIONS, useAssistantChat } from './useAssistantChat';
 
 export default function ClassicChat() {
   const { t } = useLanguage();
-  const { messages, input, setInput, model, setModel, busy, error, send, started } =
+  const { messages, input, setInput, busy, error, send, started } =
     useAssistantChat();
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -36,20 +35,7 @@ export default function ClassicChat() {
         <div className="term-titlebar flex items-center gap-2 px-5 py-3">
           <span className="h-2 w-2 rounded-full bg-secondary" />
           <span className="text-sm font-semibold text-foreground">{t('assistant.title')}</span>
-          <label className="ml-auto flex items-center gap-2 text-xs text-muted" title={t('assistant.modelHint')}>
-            <span className="hidden sm:inline">{t('assistant.model')}</span>
-            <select
-              value={model}
-              onChange={(e) => setModel(e.target.value)}
-              className="rounded-md border border-line bg-transparent px-2 py-1 text-foreground outline-none focus:border-primary/50"
-            >
-              {MODELS.map((m) => (
-                <option key={m.id} value={m.id}>
-                  {m.label}
-                </option>
-              ))}
-            </select>
-          </label>
+
         </div>
 
         {/* Messages */}
