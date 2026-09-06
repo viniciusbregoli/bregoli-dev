@@ -23,7 +23,7 @@ test('context includes verified public engineering work and distinguishes pollin
   for (const fact of ['Sim2Log', 'SoundSense', 'Anki Flashcard Maker', 'Graduated in Computer Engineering', 'polling, not WebSockets', 'does not prove job progress', 'The Matrix']) {
     assert.ok(prompt.includes(fact), fact);
   }
-  assert.ok(prompt.includes('not Vinícius himself'));
+  assert.ok(prompt.includes('not the human Vinícius chatting live'));
   assert.ok(prompt.includes('Never provide employer code'));
   assert.ok(prompt.includes('Do not invent personal opinions'));
   assert.ok(prompt.includes('Do not pretend to browse GitHub'));
@@ -35,4 +35,15 @@ test('language selection changes reply instructions without dropping the profile
     assert.ok(prompt.includes(`Reply in ${expected}`));
     assert.ok(prompt.includes('Sim2Log'));
   }
+});
+
+
+test('persona speaks in first person and handles greetings without a formal introduction', () => {
+  const prompt = exports.buildSystemPrompt('en');
+  assert.ok(prompt.includes('Speak in his first-person voice'));
+  assert.ok(prompt.includes('convert it to first person'));
+  assert.ok(prompt.includes('A greeting gets a short greeting'));
+  assert.ok(prompt.includes('Visitor: hi\nReply: hey, what'));
+  assert.ok(prompt.includes('earlier assistant messages'));
+  assert.ok(!prompt.includes('use "I" only for your own capabilities'));
 });
