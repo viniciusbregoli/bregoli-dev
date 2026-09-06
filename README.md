@@ -3,6 +3,18 @@
 A modern, responsive portfolio website built with Next.js and Tailwind CSS, featuring a
 dark-first "dev/techy" design, a multilingual interface, and a dynamic project showcase.
 
+## Preview
+
+[View the website](https://bregoli-dev.vercel.app)
+
+### Portfolio view
+
+![Portfolio homepage with Matrix rain, serif typography, and Computer Engineering introduction](public/images/bregoli-dev-portfolio.png)
+
+### Terminal view
+
+![Interactive terminal homepage with the whoami output and Matrix rain](public/images/bregoli-dev-terminal.png)
+
 ## Features
 
 - **Multilingual Support**: English, Portuguese, German, Spanish, and Chinese, with the selection persisted across visits

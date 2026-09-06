@@ -72,7 +72,7 @@ export const projects: Project[] = [
     ],
     color: 'blue',
     icon: 'code',
-    gallery: ['/images/bregoli-dev.png'],
+    gallery: ['/images/bregoli-dev-portfolio.png', '/images/bregoli-dev-terminal.png'],
     links: {
       github: 'https://github.com/viniciusbregoli/bregoli-dev',
       website: 'https://bregoli-dev.vercel.app',
