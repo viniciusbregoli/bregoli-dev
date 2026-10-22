@@ -9,6 +9,7 @@ import ProjectNotFound from '../../../components/projects/ProjectNotFound';
 import ProjectLoading from '../../../components/projects/ProjectLoading';
 import TerminalProjectDetail from '../../../components/projects/TerminalProjectDetail';
 import ClassicProjectDetail from '../../../components/projects/ClassicProjectDetail';
+import RetroProjectDetail from '../../../components/retro/RetroProjectDetail';
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -28,9 +29,7 @@ export default function ProjectDetailPage() {
   if (loading) return <ProjectLoading />;
   if (!project) return <ProjectNotFound />;
 
-  return mode === 'terminal' ? (
-    <TerminalProjectDetail project={project} />
-  ) : (
-    <ClassicProjectDetail project={project} />
-  );
+  if (mode === 'terminal') return <TerminalProjectDetail project={project} />;
+  if (mode === 'retro') return <RetroProjectDetail project={project} />;
+  return <ClassicProjectDetail project={project} />;
 }

@@ -2,7 +2,9 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-export type ViewMode = 'classic' | 'terminal';
+export type ViewMode = 'classic' | 'terminal' | 'retro';
+
+const MODES: ViewMode[] = ['classic', 'terminal', 'retro'];
 
 type ViewModeContextType = {
   mode: ViewMode;
@@ -24,8 +26,8 @@ export function ViewModeProvider({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'classic' || stored === 'terminal') {
+    const stored = localStorage.getItem(STORAGE_KEY) as ViewMode | null;
+    if (stored && MODES.includes(stored)) {
       setModeState(stored);
       setChosen(true);
     }
