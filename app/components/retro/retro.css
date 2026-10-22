@@ -18,6 +18,8 @@
 }
 
 .retro {
+  /* The rest of the site is dark; native radios/selects should look like 1999. */
+  color-scheme: light;
   --win-gray: #c0c0c0;
   --win-dark: #808080;
   --win-darker: #0a0a0a;
@@ -42,9 +44,15 @@
   color: #ff0000;
 }
 
-.retro :focus-visible {
+/* Prefixed with .studio-app to outrank the app-wide focus ring in globals.css. */
+.studio-app .retro :focus-visible {
   outline: 1px dotted #000;
   outline-offset: 2px;
+}
+
+/* The footer sits on the dark starfield, where a black outline would vanish. */
+.studio-app .retro-page > footer :focus-visible {
+  outline-color: #ffff66;
 }
 
 .retro h1,
@@ -86,6 +94,45 @@
   position: absolute;
   left: 2px;
   color: #ff9900;
+}
+
+/* Rendered Markdown (blog posts): restore what Tailwind's reset strips. */
+.retro-prose > * + * {
+  margin-top: 10px;
+}
+
+.retro-prose ul {
+  list-style: square;
+  padding-left: 1.5em;
+}
+
+.retro-prose ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+}
+
+.retro-prose blockquote {
+  border-left: 4px solid #c0c0c0;
+  padding-left: 10px;
+  color: #404040;
+}
+
+.retro-prose code {
+  font-family: 'Courier New', Courier, monospace;
+  background: #ffffcc;
+  padding: 0 3px;
+}
+
+.retro-prose pre {
+  overflow-x: auto;
+  background: #000;
+  color: #00ff00;
+  padding: 8px 10px;
+}
+
+.retro-prose pre code {
+  background: none;
+  padding: 0;
 }
 
 /* ── Page layout ─────────────────────────────────────────────────────────── */
