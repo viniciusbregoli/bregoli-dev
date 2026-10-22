@@ -1,0 +1,578 @@
+/* ── Retro (Y2K personal homepage) view ─────────────────────────────────────
+   A nod to GeoCities / early Neocities: tiled starfield, Windows 98 windows,
+   marquees, blinking "NEW!", hit counters and 88×31 buttons. Everything is
+   scoped under `.retro` so it never leaks into the classic/terminal views.
+   Sizes are in px on purpose: the old web was pixel-sized. */
+
+.retro-bg {
+  background-color: #000022;
+  background-image:
+    radial-gradient(1px 1px at 12px 18px, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 64px 92px, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 101px 37px, #ffffcc 50%, transparent 51%),
+    radial-gradient(1px 1px at 33px 121px, #ccccff 50%, transparent 51%),
+    radial-gradient(1px 1px at 140px 140px, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 150px 70px, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 88px 8px, #ffccff 50%, transparent 51%);
+  background-size: 160px 160px;
+}
+
+.retro {
+  /* The rest of the site is dark; native radios/selects should look like 1999. */
+  color-scheme: light;
+  --win-gray: #c0c0c0;
+  --win-dark: #808080;
+  --win-darker: #0a0a0a;
+  --win-light: #dfdfdf;
+  --win-navy: #000080;
+  color: #000;
+  font-family: Verdana, Tahoma, 'DejaVu Sans', Geneva, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.retro a {
+  color: #0000ee;
+  text-decoration: underline;
+}
+
+.retro a:visited {
+  color: #551a8b;
+}
+
+.retro a:hover {
+  color: #ff0000;
+}
+
+/* Prefixed with .studio-app to outrank the app-wide focus ring in globals.css. */
+.studio-app .retro :focus-visible {
+  outline: 1px dotted #000;
+  outline-offset: 2px;
+}
+
+/* The footer sits on the dark starfield, where a black outline would vanish. */
+.studio-app .retro-page > footer :focus-visible {
+  outline-color: #ffff66;
+}
+
+.retro h1,
+.retro h2,
+.retro h3 {
+  font-family: 'Comic Sans MS', 'Comic Neue', 'Chalkboard SE', 'Comic Relief', cursive;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.retro h2 {
+  font-size: 22px;
+  color: #800080;
+  margin-bottom: 8px;
+}
+
+.retro h3 {
+  font-size: 17px;
+  color: #000080;
+  margin: 14px 0 6px;
+}
+
+.retro p + p {
+  margin-top: 10px;
+}
+
+.retro ul.retro-list {
+  padding-left: 0;
+}
+
+.retro ul.retro-list > li {
+  position: relative;
+  padding-left: 20px;
+  margin: 2px 0;
+}
+
+.retro ul.retro-list > li::before {
+  content: '★';
+  position: absolute;
+  left: 2px;
+  color: #ff9900;
+}
+
+/* Rendered Markdown (blog posts): restore what Tailwind's reset strips. */
+.retro-prose > * + * {
+  margin-top: 10px;
+}
+
+.retro-prose ul {
+  list-style: square;
+  padding-left: 1.5em;
+}
+
+.retro-prose ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+}
+
+.retro-prose blockquote {
+  border-left: 4px solid #c0c0c0;
+  padding-left: 10px;
+  color: #404040;
+}
+
+.retro-prose code {
+  font-family: 'Courier New', Courier, monospace;
+  background: #ffffcc;
+  padding: 0 3px;
+}
+
+.retro-prose pre {
+  overflow-x: auto;
+  background: #000;
+  color: #00ff00;
+  padding: 8px 10px;
+}
+
+.retro-prose pre code {
+  background: none;
+  padding: 0;
+}
+
+/* ── Page layout ─────────────────────────────────────────────────────────── */
+
+.retro-page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 16px 10px 32px;
+}
+
+.retro-columns {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .retro-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Pair the sidebar windows up so the content isn't pushed a screen down. */
+  .retro-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .retro-sidebar > * + * {
+    margin-top: 0;
+  }
+}
+
+.retro-stack > * + * {
+  margin-top: 12px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.retro-title {
+  text-align: center;
+  font-family: 'Comic Sans MS', 'Comic Neue', 'Chalkboard SE', 'Comic Relief', cursive;
+  font-size: clamp(26px, 5vw, 44px);
+  font-weight: bold;
+  line-height: 1.15;
+  padding: 6px 0 10px;
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #ff9900,
+    #ffff00,
+    #33ff00,
+    #00ccff,
+    #6633ff,
+    #ff00cc,
+    #ff0000
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(3px 3px 0 #000) drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
+  animation: retro-rainbow 6s linear infinite;
+}
+
+@keyframes retro-rainbow {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.retro-sparkle {
+  color: #ffff66;
+  -webkit-text-fill-color: #ffff66;
+}
+
+@media (max-width: 480px) {
+  .retro-sparkle {
+    display: none;
+  }
+}
+
+.retro-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #000;
+  color: #00ff00;
+  border: 2px inset #808080;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  padding: 3px 0;
+}
+
+.retro-marquee > span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: retro-marquee 28s linear infinite;
+}
+
+@keyframes retro-marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.retro-hr {
+  height: 5px;
+  border: 0;
+  margin: 12px 0;
+  background: linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #33ff00, #00ccff, #6633ff, #ff00cc);
+}
+
+/* ── Windows 98 primitives ───────────────────────────────────────────────── */
+
+.retro-window {
+  background: var(--win-gray);
+  padding: 3px;
+  box-shadow:
+    inset -1px -1px var(--win-darker),
+    inset 1px 1px var(--win-light),
+    inset -2px -2px var(--win-dark),
+    inset 2px 2px #fff;
+}
+
+.retro-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 3px 3px 5px;
+  background: linear-gradient(90deg, var(--win-navy), #1084d0);
+  color: #fff;
+  font-family: Tahoma, Verdana, 'DejaVu Sans', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+}
+
+.retro-titlebar-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.retro-titlebar-buttons {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.retro-titlebar-buttons > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 14px;
+  background: var(--win-gray);
+  color: #000;
+  font-size: 10px;
+  line-height: 1;
+  box-shadow:
+    inset -1px -1px var(--win-darker),
+    inset 1px 1px #fff,
+    inset -2px -2px var(--win-dark),
+    inset 2px 2px var(--win-light);
+}
+
+.retro-window-body {
+  padding: 8px;
+}
+
+/* White "sunken" content well: where the readable text lives. */
+.retro-sunken {
+  background: #fff;
+  padding: 12px 14px;
+  box-shadow:
+    inset -1px -1px #fff,
+    inset 1px 1px var(--win-dark),
+    inset -2px -2px var(--win-light),
+    inset 2px 2px var(--win-darker);
+}
+
+.retro-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 80px;
+  padding: 5px 14px;
+  background: var(--win-gray);
+  color: #000 !important;
+  text-decoration: none !important;
+  font-family: Tahoma, Verdana, 'DejaVu Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow:
+    inset -1px -1px var(--win-darker),
+    inset 1px 1px #fff,
+    inset -2px -2px var(--win-dark),
+    inset 2px 2px var(--win-light);
+}
+
+.retro-btn:active:not(:disabled) {
+  box-shadow:
+    inset -1px -1px #fff,
+    inset 1px 1px var(--win-darker),
+    inset -2px -2px var(--win-light),
+    inset 2px 2px var(--win-dark);
+}
+
+.retro-btn:disabled {
+  color: var(--win-dark) !important;
+  text-shadow: 1px 1px 0 #fff;
+  cursor: default;
+}
+
+.retro-input,
+.retro-select {
+  width: 100%;
+  padding: 4px 6px;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  border: 0;
+  box-shadow:
+    inset -1px -1px #fff,
+    inset 1px 1px var(--win-dark),
+    inset -2px -2px var(--win-light),
+    inset 2px 2px var(--win-darker);
+}
+
+.retro-select {
+  cursor: pointer;
+}
+
+.retro-field-error {
+  color: #cc0000;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Classic bordered HTML table look. */
+.retro-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border: 2px outset #c0c0c0;
+  background: #fff;
+}
+
+.retro-table th,
+.retro-table td {
+  border: 1px inset #c0c0c0;
+  padding: 6px 8px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.retro-table th {
+  background: var(--win-navy);
+  color: #fff;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 13px;
+}
+
+.retro-table tr.retro-table-detail td {
+  background: #ffffee;
+  font-size: 13px;
+}
+
+/* Photo / screenshot in a raised frame. */
+.retro-frame {
+  display: block;
+  background: #fff;
+  padding: 4px;
+  border: 3px ridge #c0c0c0;
+}
+
+/* Blocky Windows 98 progress bar. */
+.retro-progress {
+  height: 16px;
+  padding: 2px;
+  background: #fff;
+  box-shadow:
+    inset 1px 1px var(--win-dark),
+    inset -1px -1px #fff;
+}
+
+.retro-progress > span {
+  display: block;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, var(--win-navy) 0 8px, transparent 8px 10px);
+}
+
+/* ── Old-web decorations ─────────────────────────────────────────────────── */
+
+.retro-blink {
+  animation: retro-blink 1s steps(1, end) infinite;
+}
+
+@keyframes retro-blink {
+  50% {
+    visibility: hidden;
+  }
+}
+
+.retro-new {
+  display: inline-block;
+  padding: 0 4px;
+  background: #ff0000;
+  color: #ffff00;
+  font-family: Impact, 'Arial Black', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  transform: rotate(-6deg);
+}
+
+.retro-construction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border: 2px solid #000;
+  background: repeating-linear-gradient(-45deg, #ffcc00 0 14px, #000 14px 28px);
+}
+
+.retro-construction > span {
+  background: #ffcc00;
+  color: #000;
+  padding: 2px 8px;
+  font-family: Impact, 'Arial Black', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+}
+
+/* Odometer-style hit counter. */
+.retro-counter {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: #333;
+  border: 2px inset #808080;
+}
+
+.retro-counter > span {
+  display: inline-block;
+  min-width: 16px;
+  padding: 3px 2px;
+  background: #000;
+  color: #39ff14;
+  font-family: var(--font-pixel), 'Courier New', monospace;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* 88×31 web buttons. */
+.retro-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.retro-badge {
+  display: inline-flex;
+  width: 88px;
+  height: 31px;
+  overflow: hidden;
+  border: 1px solid #000;
+  font-family: Verdana, Tahoma, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1.05;
+  text-decoration: none !important;
+}
+
+.retro-badge > b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  font-size: 14px;
+}
+
+.retro-badge > span {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  text-align: center;
+  border-left: 1px solid #000;
+}
+
+/* AIM-style chat log. */
+.retro-im-log {
+  height: clamp(260px, 50vh, 440px);
+  overflow-y: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.retro-im-log p {
+  margin: 0 0 6px;
+  white-space: pre-wrap;
+}
+
+.retro-im-me {
+  color: #0000cc;
+  font-weight: bold;
+}
+
+.retro-im-buddy {
+  color: #cc0000;
+  font-weight: bold;
+}
+
+.retro-chip {
+  padding: 2px 8px;
+  min-width: 0;
+  font-size: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .retro-title,
+  .retro-blink {
+    animation: none !important;
+  }
+
+  /* The global reduced-motion rule would leave the marquee parked off-screen,
+     so show it as static, wrapped text instead. */
+  .retro-marquee {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .retro-marquee > span {
+    padding-left: 0;
+    animation: none !important;
+  }
+}

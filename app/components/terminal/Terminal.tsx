@@ -2,9 +2,9 @@
 
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../../(core)/i18n/context';
-import { Language } from '../../(core)/i18n/translations';
 import { COMMAND_NAMES, CommandContext, resolveCommand, withTokens } from './commands';
 import Cursor from './Cursor';
+import { downloadCV } from '../../(core)/cv';
 
 // Command auto-typed on first load, like a shell running its startup line.
 const BOOT_COMMAND = 'whoami';
@@ -29,27 +29,11 @@ const Prompt = () => (
 export default function Terminal() {
   const { t, language, setLanguage } = useLanguage();
 
-  const downloadCV = () => {
-    const cvPaths: Partial<Record<Language, string>> = {
-      en: '/CV - English.pdf',
-      pt: '/CV - Portugues.pdf',
-      de: '/CV - Deutsch.pdf',
-      es: '/CV - Espanol.pdf',
-      zh: '/CV - Chinese.pdf',
-    };
-    const link = document.createElement('a');
-    link.href = cvPaths[language] || cvPaths.en || '';
-    link.setAttribute('download', `Vinicius_Bregoli_CV_${language.toUpperCase()}.pdf`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   const ctx: CommandContext = {
     t,
     language,
     setLanguage,
-    downloadCV,
+    downloadCV: () => downloadCV(language),
   };
 
   const idRef = useRef(1);
