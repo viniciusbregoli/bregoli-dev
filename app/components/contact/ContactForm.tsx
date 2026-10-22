@@ -6,27 +6,16 @@ import FormField from './FormField';
 import SubmitButton from './SubmitButton';
 import SuccessMessage from './SuccessMessage';
 import ErrorMessage from './ErrorMessage';
-
-type FormData = {
-  name: string;
-  email: string;
-  message: string;
-};
-
-type FormErrors = {
-  name?: string;
-  email?: string;
-  message?: string;
-};
+import { ContactFormData, ContactFormErrors, submitContact, validateContact } from './contactApi';
 
 export default function ContactForm() {
   const { t } = useLanguage();
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     message: '',
   });
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState<ContactFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -36,42 +25,15 @@ export default function ContactForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
 
     // Clear error when user starts typing
-    if (errors[name as keyof FormErrors]) {
+    if (errors[name as keyof ContactFormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
   const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
-    let isValid = true;
-
-    // Validate name
-    if (!formData.name.trim()) {
-      newErrors.name = t('contact.validation.nameRequired');
-      isValid = false;
-    }
-
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
-      newErrors.email = t('contact.validation.emailRequired');
-      isValid = false;
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = t('contact.validation.emailInvalid');
-      isValid = false;
-    }
-
-    // Validate message
-    if (!formData.message.trim()) {
-      newErrors.message = t('contact.validation.messageRequired');
-      isValid = false;
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = t('contact.validation.messageTooShort');
-      isValid = false;
-    }
-
+    const newErrors = validateContact(formData, t);
     setErrors(newErrors);
-    return isValid;
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -85,18 +47,7 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      // Send data to the API endpoint
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Something went wrong');
-      }
+      await submitContact(formData);
 
       setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });

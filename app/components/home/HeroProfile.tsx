@@ -5,19 +5,13 @@ import { FiArrowUpRight, FiDownload, FiTerminal } from 'react-icons/fi';
 import { useLanguage } from '../../(core)/i18n/context';
 import { useViewMode } from '../../(core)/view/context';
 import { getExperienceData } from './experience/experienceData';
+import { cvFileName, cvPath } from '../../(core)/cv';
 
 export default function HeroSection() {
   const reduced = useReducedMotion();
   const { t, language } = useLanguage();
   const { setMode } = useViewMode();
   const current = getExperienceData()[0];
-  const cvPaths = {
-    en: '/CV - English.pdf',
-    pt: '/CV - Portugues.pdf',
-    de: '/CV - Deutsch.pdf',
-    es: '/CV - Espanol.pdf',
-    zh: '/CV - Chinese.pdf',
-  };
 
   return (
     <section className="studio-container" aria-labelledby="hero-title">
@@ -54,8 +48,8 @@ export default function HeroSection() {
           </div>
           <a
             className="studio-text-link"
-            href={cvPaths[language]}
-            download={`Vinicius_Bregoli_CV_${language.toUpperCase()}.pdf`}
+            href={cvPath(language)}
+            download={cvFileName(language)}
           >
             <FiDownload aria-hidden />
             {t('hero.cta')}
